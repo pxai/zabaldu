@@ -1,0 +1,1697 @@
+/***
+NOTICE: this CSS is based on the Digg.com CSS, the basic structure and some
+	class names have been kept. All images referenced by the CSS and
+	distributed in the tar file are copyrighted by Benjamí Villoslada
+	and published under a CC license: 
+	http://creativecommons.org/licenses/by-sa/2.5/
+
+	Source code was developed by Ricardo Galli, it's published 
+	under the Affero GPL License (http://meneame.net/COPYING) unless
+	stated otherwise in individual files.
+
+	The whole tar package available at http://meneame.net/archives/meneame-src.tgz
+	and used at http://meneame.net have been comprehensively audited by Ricardo Galli. 
+	No third party image or source code was included without the authorisation or 
+	license of their respective owners.
+
+	Any code or image mistakenly included in the package is under Ricardo Galli's responsibility. 
+	Please, tell/complain him about any problem: gallir at uib.es [1]
+
+***/
+
+
+/* main */
+
+body {
+	font-family: sans-serif;
+	color: #303030;
+	margin: 0;
+	padding: 0;
+	background-color: #fff;
+}
+
+body, td, th, h3 { /* browser differencs workaround  */
+	font-size: x-small;
+	voice-family: "\"}\"";
+	voice-family: inherit;
+	font-size: small;
+}
+
+#container {
+	margin: 0 auto;
+	min-width: 750px;
+	position: absolute; /* footer at bottom workaround */
+}
+
+/* footer at bottom workaround */
+
+html, body, #container {
+	height: 100%;
+	min-height: 100%;
+	width: 100%;
+	min-width: 100%;
+}
+
+html > body, html > body #container {
+	height: auto;
+}
+
+.air-with-footer { /* footer separator */
+	clear: both;
+	margin-bottom: 75px;
+}
+
+/* footer at bottom workaround: end */
+
+#logo {
+	margin: 25px 10px;
+	width: 250px;
+	height: 58px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 0;
+}
+
+#contents {
+	width: 71%;
+	float: right;
+	padding-bottom: 50px;
+	z-index: 1;
+}
+#contents-user {
+	width: 71%;
+	float: right;
+	position: relative;
+	clear: both;
+}
+
+#sidebar {
+	width: 25%;
+	float: right;
+	background: #fff; 
+	margin-right: 0;
+	padding-bottom: 25px;
+	overflow: hidden;
+}
+
+#home #contents, #post #contents {
+	width: 71%;
+	float: left;
+	margin-right: 3%;
+	overflow: hidden;
+}
+
+#home #sidebar, #post #sidebar {
+	width: 25%;
+	float: left;
+	margin: 0;
+}
+
+/* elements */
+
+a {
+	color: #03a;
+	text-decoration: none;
+	outline: none;
+}
+
+a:hover, a:focus {
+	color: #4682b4;
+	text-decoration: underline;
+}
+
+a:active {
+	color: #000;
+}
+
+.simple:link, .simple:visited {
+	text-decoration: none;
+	color: #666;
+}
+
+.simple:hover, .simple:active {
+	color: #333;
+	text-decoration: underline;
+}
+
+hr {
+	height: 1px;
+	background: #ccc;
+	border: none;
+}
+
+.tight {
+	white-space: nowrap;
+}
+
+img {
+	border: none;
+}
+
+p {
+	line-height: 130%;
+}
+
+li {
+	margin-bottom: 16px;
+}
+
+form {
+	margin: 0;
+}
+
+
+h2 {
+	margin: 0 0 3px 100px;
+	font-size: 160%;
+	font-weight: normal;
+	color: #4682b4;
+	clear: left;
+	border: 1px dotted #4682b4;
+}
+
+h2 + p, h3 + p, h4 + p, h5 + p, div > p, fieldset p {
+	margin-top: 0;
+}
+
+h3 {
+	margin-top: 0;
+	margin-bottom: 3px;
+	font-size: 140%;
+	font-weight: normal;
+	clear: left;
+}
+
+h4 {
+	font-size: 100%;
+	font-weight: bold;
+	margin-bottom: 3px;
+}
+
+table {
+	border-collapse: collapse;
+	width: 100%;
+	margin-bottom: 16px;
+	clear: both;
+}
+
+table img {
+	border: 1px solid #ccc;
+}
+
+th, td {
+	text-align: left;
+	font-size: 85%;
+	padding: 6px;
+	border-bottom: 1px solid #ddd;
+}
+
+th.short, td.short {
+	text-align: center;
+}
+
+th.short a, td.short a {
+	text-decoration: none;
+	display: block;
+	padding: 3px 0;
+	border: 1px solid #fff;
+}
+
+th.short a:hover, td.short a:hover {
+	text-decoration: underline;
+	border: 1px solid #000;
+	background: #fff;
+}
+
+tr:hover td {
+	background: #90b3d0;
+}
+
+th a.info, th a:hover.info {
+	padding: 0 12px 0 0;
+	display: inline;
+	border: none;
+}
+
+th img {
+	border: none;
+	margin-right: 1px;
+	vertical-align: middle;
+}
+
+th span.info_s {
+	padding: 0 12px 0 0;
+	font-size: 120%;
+	color: #a00;
+	text-decoration: none;
+	border: none;
+}
+
+td.count {
+	font-size: 140%;
+	text-align: right;
+}
+
+/* gallir: agregado */
+.error {
+	color: #4682b4;
+	font-weight: bold;
+	font-size: 140%;
+	background: url(/web/20070628141549im_/http://www.zabaldu.com/img/common/error.png) no-repeat;
+	margin: 30px 0 0 0;
+	padding: 25px 0 0 0;
+}
+
+.error-text {
+	color: #7ca9d0;
+	font-size: 100%;
+}
+
+.form-error, .form-error-submit {
+	color: #ff5900;
+	font-size: 120%;
+	font-weight: bold;
+	padding: 40px 0 0 150px;
+}
+
+.form-error-submit {
+	padding: 10px;
+	margin: 15px 0 0 0;
+	background: #90b3d0;
+	border: 1px dotted #4682b4;
+}
+
+.form-act {
+	color: #ff5900;
+	font-size: 120%;
+	font-weight: bold;
+	padding: 0;
+	margin: 40px 0 0 150px;
+}
+
+.form-full {
+	width: 100%;
+}
+
+.instruction {
+	margin-bottom: 16px;
+	color: #2c3d4e;
+}
+
+.instruction div {
+	padding: 16px;
+}
+
+.instruction h3 {
+	background: none;
+	margin-top: 20px;
+}
+
+.instruction-list {
+	margin: 0;
+	padding: 0;
+}
+
+.instruction-list li {
+	list-style: none;
+	margin: 0;
+	padding: 10px 0 10px 25px;
+}
+
+/* header */
+
+#header {
+	padding: 0;
+	margin: 0;
+	height: 37px;
+	color: #fff;
+	background-color: #4682b4;
+	margin-left: 275px;
+}
+
+#header ul {
+	margin: 0;
+	list-style: none;
+}
+
+#header li {
+	float: right;
+	margin: 8px 0 0 0;
+	padding: 0;
+}
+
+#header li a, #header li a:visited {
+	color: #fff;
+	float: left;
+	font-size: 110%;
+	background-color: #4682b4;
+	border-left: 3px solid #7ca9d0;
+	padding: 2px 10px;
+}
+
+#header form {
+	margin: 0;
+	border-left: 0 solid #7ca9d0;
+	padding: 2px 10px 0 0;
+}
+
+#header form input {
+	width: 100px;
+	font-size: 100%;
+	color: #fff;
+	padding: 0 3px;
+	background-color: #7ca9d0;
+	border: 1px solid #fff;
+	margin: 0;
+	margin-top: -1px;
+}
+
+#header form input:hover {
+	background-color: #fff;
+	color: #7ca9d0;
+	border: 1px solid #7ca9d0;
+}
+
+#header label.inside {
+	position: absolute;
+	visibility: hidden;
+}
+
+* html #header h1 a, * html #header h1 span {
+	bottom: -1px;
+}
+
+#nav-string {
+	background: #7ca9d0;
+	margin: 0 0 10px 275px;
+	font-size: 85%;
+	color: #303030;
+	text-transform: lowercase;
+	padding-left: 30px;
+	background-image: url(/web/20070628141549im_/http://www.zabaldu.com/img/common/tri01.png);
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+
+#nav-string div {
+	padding: 0;
+	color: #fff;
+}
+
+#nav-string a {
+	color: #fff;
+}
+
+#nav-string a:hover {
+	color: #fff;
+}
+
+/* news */
+
+.news-summary {
+	padding: 15px 0 22px 0;
+	position: relative;
+	clear: left;
+}
+
+
+.news-body {
+	padding-left: 100px;
+}
+
+.news-shakeit {
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	width: 65px;
+	text-align: center;
+	font-size: 85%;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.news-shakeit li {
+	border: 1px solid #FFF;
+	margin: 0;
+	padding: 0;
+}
+
+.news-details {
+	float: left;
+	color: #4682b4;
+	margin: 2px 0 0 0;
+}
+
+.news-details a:link, .news-details a:visited {
+	color: #7ca9d0;
+}
+
+* html .news-details {
+	padding-right: 136px;
+}
+
+.news-details select {
+	background-color: #fff;
+	border: none;
+	color: #7ca9d0;
+	font-size: 90%;
+}
+
+.news-details .tool {
+	display: block;
+	float: left;
+	border-left: 1px solid #4682b4;
+	padding: 0 4px;
+}
+.news-details .tool-right {
+	display: block;
+	float: left;
+	padding: 0 4px;
+}
+
+.news-details .comments {
+	padding: 0 4px 0 0;
+	border-left: none;
+}
+
+.news-details .comments_no {
+	padding-left: 37px;
+	border-left: none;
+}
+
+ul.news-details li li {
+	border-left: none;
+	float: none;
+	height: 21px;
+}
+
+
+/* Counter box */
+
+/* common */
+
+/** IE& freaking error */
+.mnm-published a:first-line {
+	font-size: 190%;
+	letter-spacing: -1px;
+}
+.mnm-queued a:first-line {
+	font-size: 190%;
+	letter-spacing: -1px;
+}
+.mnm-discarded a:first-line {
+	font-size: 190%;
+	letter-spacing: -1px;
+}
+/** IE& freaking error */
+
+.mnm-published img, .mnm-queued img, .mnm-discarded img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	border: none;
+}
+
+.mnm-published a:hover, .mnm-queued a:hover, .mnm-discarded a:hover {
+	color: #666;
+}
+
+/* published */
+.mnm-published a {
+	background-color: #4682b4;
+	color: #fff;
+	display: block;
+	padding: 6px 0;
+	text-decoration: none;
+	margin-bottom: 0;
+	background-image: url(/web/20070628141549im_/http://www.zabaldu.com/img/common/elmnm-p03.png);
+	background-repeat: no-repeat;
+	background-position: top left;
+}
+
+/* queued */
+.mnm-queued a {
+	background-color: #fff;
+	color: #4682b4;
+	display: block;
+	padding: 6px 0;
+	text-decoration: none;
+	margin-bottom: 0;
+	background-image: url(/web/20070628141549im_/http://www.zabaldu.com/img/common/elmnm-p03a.png);
+	background-repeat: no-repeat;
+	background-position: top left;
+	border: 1px solid #4682b4;
+}
+
+.mnm-queued a:first-line {
+	font-weight: bold;
+}
+
+/* discarded */
+.mnm-discarded a {
+	background-color: #d9aa95;
+	color: #fff;
+	display: block;
+	padding: 6px 0;
+	text-decoration: none;
+	margin-bottom: 0;
+	background-image: url(/web/20070628141549im_/http://www.zabaldu.com/img/common/elmnm-p03b.png);
+	background-repeat: no-repeat;
+	background-position: top left;
+	border: 1px solid #d9aa95;
+}
+
+.mnm-discarded a:first-line {
+	font-weight: bold;
+}
+
+/* vote box */
+.menealo {
+	background: #ffc8af 0 0;
+}
+
+* html .menealo {
+	background: #90b3d0 1px 1px;
+}
+
+.menealo a, .menealo span {
+	display: block;
+	padding: 4px 0 4px 0;
+	border-width: 1px;
+	border-style: dotted;
+	border-color: #4682b4;
+	color: #4682b4;
+}
+
+.menealo span {
+	background-color: #fff;
+	color: #4682b4;
+}
+
+.news-body h3 {
+	margin: 0;
+	font-size: 140%;
+	font-weight: normal;
+	background: none;
+	margin-bottom: 3px;
+}
+
+.news-body-text {
+	padding: 3px 0 0 0;
+}
+
+.news-summary .news-body .read-more {
+	font-size: 85%;
+	font-weight: bold;
+}
+
+.news-submitted {
+	color: #666;
+	font-size: 85%;
+	margin: 0;
+	margin-bottom: 3px;
+}
+
+.news-submitted a:link, .news-submitted a:visited {
+	color: #666;
+}
+
+.news-submitted a:hover {
+	color: #333;
+}
+
+/* gravatar */
+.news-submitted img {
+	border: 1px solid #90b3d0;
+	float: left;
+	margin-right: 4px;
+	vertical-align: bottom;
+}
+
+/* Side Menu */
+
+.main-menu {
+	list-style: none;
+	margin: 20px 20px 0 0;
+	padding: 0;
+}
+
+.main-menu a, .main-menu li.menu-item span {
+	display: block;
+	padding: 12px;
+	border: 1px solid #90b3d0;
+	font-size: 125%;
+}
+
+.main-menu li.menu-item span a {
+	background: none;
+	padding: 0 0 0 3px;
+	display: inline;
+}
+
+.main-menu li {
+	clear: left;
+	margin: 0 0 10px 0;
+	border-bottom: 1px solid #fff;
+}
+
+.main-menu li.side-boxed {
+	background: none;
+}
+
+.main-menu li.side-boxed span {
+	padding: 0;
+}
+
+.note-temp {
+	margin: 0;
+	border: 1px solid #90b3d0;
+	font-size: 90%;
+	color: #437aa9;
+	padding: 10px;
+	background-image: url(/web/20070628141549im_/http://www.zabaldu.com/img/mnu-mnm.png);
+	background-repeat: no-repeat;
+	background-position: right top;
+}
+
+.note-temp a {
+	display: inline;
+	border: 0;
+	padding: 0;
+	font-size: 100%;
+}
+
+.mnu-top a {
+	color: #437aa9;
+	font-size: 140%;
+	background-image: url(/web/20070628141549im_/http://www.zabaldu.com/img/mnu-top.png);
+	background-repeat: no-repeat;
+	background-position: right bottom;
+}
+
+.std-link a {
+  color: #437aa9;
+	font-size: 140%;
+  background-repeat: no-repeat;
+	background-position: right bottom;
+}
+
+#etiketak a {
+	background-image: url(/web/20070628141549im_/http://www.zabaldu.com/img/std-etiketak.png);
+}
+
+#zabalduenak a {
+  background-image: url(/web/20070628141549im_/http://www.zabaldu.com/img/std-zabalduenak.png);
+}
+
+#blogak a {
+  background-image: url(/web/20070628141549im_/http://www.zabaldu.com/img/std-blogak.png);
+}
+
+#erabiltzaileak a {
+  background-image: url(/web/20070628141549im_/http://www.zabaldu.com/img/std-erabiltzaileak.png);
+}
+
+#zerrendak a {
+  background-image: url(/web/20070628141549im_/http://www.zabaldu.com/img/std-zerrendak.png);
+}
+
+.main-mnm a {
+	text-align: center;
+	font-size: 140%;
+	color: #fff;
+	border: none;
+	background: #4682b4;
+}
+
+.main-mnm-moretext a {
+	text-align: center;
+	font-size: 110%;
+	color: #fff;
+	border: none;
+	background: #7ca9d0;
+}
+
+.main-menu li#main-submit a {
+	text-align: center;
+	font-size: 140%;
+	color: #FFF;
+	border: none;
+	background: #4682b4;
+}
+
+.main-sneak a {
+	text-align: right;
+	font-size: 140%;
+	color: #4682b4;
+	border: 1px solid #4682b4;
+	background-color: #fff;
+  background-image: url(/web/20070628141549im_/http://www.zabaldu.com/img/begia.png);
+	background-repeat: no-repeat;
+	background-position: 20px 0;
+}
+
+.main-menu li span {
+	display: block;
+	padding-top: 6px;
+}
+
+.main-menu #search {
+	width: 128px;
+}
+
+.aukerak {
+	padding: 10px;
+	overflow: hidden;
+	border: 1px solid #90b3d0;
+}
+
+.aukerak li {
+	list-style: none;
+	font-weight: normal;
+	margin: 0;
+	padding: 0;
+	border: none;
+}
+
+li.aukerak-izenb  {
+	font-size: 140%;
+	color: #437aa9;
+	padding-bottom: 10px;
+}
+
+.aukerak li a, .aukerak li span {
+	padding: 6px 0 6px 22px !important;
+	display: block;
+	border: none;
+	font-size: 90%;
+  background-image: none;
+}
+
+.zerrendak {
+	padding: 10px;
+	overflow: hidden;
+	border: 1px solid #90b3d0;
+}
+
+.zerrendak li {
+	list-style: none;
+	font-weight: normal;
+	margin: 0;
+	padding: 0;
+	border: none;
+}
+
+li.zerrendak-izenb  {
+	font-size: 140%;
+	color: #437aa9;
+	padding-bottom: 10px;
+}
+
+.zerrendak li a, .zerrendak li span {
+	padding: 6px 0 6px 22px !important;
+	display: block;
+	border: none;
+	font-size: 90%;
+  background-image: none;
+}
+
+.rss-list {
+	padding: 10px;
+	overflow: hidden;
+	background-image: url(/web/20070628141549im_/http://www.zabaldu.com/img/std-rss.png);
+	background-repeat: no-repeat;
+	background-position: right bottom;
+	border: 1px solid #90b3d0;
+}
+
+.rss-list li {
+	list-style: none;
+	font-weight: normal;
+	margin: 0;
+	padding: 0;
+	border: none;
+}
+
+li.rss-retol  {
+	font-size: 140%;
+	color: #437aa9;
+	padding-bottom: 10px;
+}
+
+.rss-list li a, .rss-list li span {
+	padding: 6px 0 6px 22px !important;
+	display: block;
+	border: none;
+	font-size: 90%;
+	background: url(/web/20070628141549im_/http://www.zabaldu.com/img/common/feed-icon-16x16.png) no-repeat 2px 4px !important;
+}
+
+/* categories */
+
+.column-list {
+	border: 1px solid #90b3d0;
+	background-image: url(/web/20070628141549im_/http://www.zabaldu.com/img/std-kategoriak.png);
+	background-repeat: no-repeat;
+	background-position: right bottom;
+	padding: 10px 0 5px 0; /* list top & bottom */
+}
+
+.column-one-list {
+	border: 1px solid #90b3d0;
+	background-image: url(/web/20070628141549im_/http://www.zabaldu.com/img/mnu-cat.png);
+	background-repeat: no-repeat;
+	background-position: right top;
+	padding: 10px 0 0 0; /* list top & bottom */
+}
+
+.column-select-us {
+	border: 1px solid #90b3d0;
+	background-image: url(/web/20070628141549im_/http://www.zabaldu.com/img/mnu-us.png);
+	background-repeat: no-repeat;
+	background-position: right bottom;
+	padding: 10px 0 40px 0; /* list top & bottom */
+}
+
+.column-list ul, .column-one-list ul, .column-select-us ul {
+	list-style: none;
+	padding-left: 5px; /* from box border */
+}
+
+.column-one-list ul {
+	padding-left: 0; /* from box border */
+	padding-right: 35px;
+}
+
+.column-select-us ul {
+	padding-left: 15px; /* from box border */
+}
+
+.column-list li {
+	float: left;
+	width: 50%;
+	margin: 0;
+	padding-bottom: 5px;
+	font-size: 75%;
+	border: none;
+	background: none;
+}
+
+.column-one-list li, .column-select-us li {
+	font-size: 85%;
+	border: none;
+	padding: 5px 0 5px 20px;
+	margin: 0;
+}
+
+.column-list li a, .column-list li span, .column-one-list li a, .column-one-list li span, .column-select-us li a, .column-select-us li span {
+	border: none;
+	background: none;
+	display: inline;
+}
+
+.column-list li a, .column-one-list li a {
+	background: url(/web/20070628141549im_/http://www.zabaldu.com/img/kategoria.png) no-repeat 4px 0;
+	padding: 0 0 0 20px;
+}
+
+.column-select-us li a {
+	padding: 0;
+}
+
+/* submit form */
+
+#thisform .column-list {
+	margin: -15px 0 20px 0;
+	min-height: 185px;
+}
+
+#thisform .column-list li {
+	font-size: 100%;
+	font-weight: normal;
+}
+
+#thisform .column-list ul {
+	padding-left: 15px;
+	margin: 0;
+}
+
+/* benjami: thiscat: selected category */
+.column-one-list li.thiscat {
+	font-weight: bold;
+	background: #7ca9d0;
+	background-image: url(/web/20070628141549im_/http://www.zabaldu.com/img/common/arrow-l.png);
+	background-repeat: no-repeat;
+	background-position: center left;
+}
+
+.column-select-us li.thiscat {
+	font-weight: bold;
+	font-size: 115%;
+	background: #7ca9d0;
+	background-image: url(/web/20070628141549im_/http://www.zabaldu.com/img/common/arrow-l.png);
+	background-repeat: no-repeat;
+	background-position: center left;
+}
+
+.column-one-list li.thiscat a:hover {
+	color: #FFF;
+}
+
+.column-list li.thiscat {
+	font-weight: bold;
+}
+
+.column-list li {
+	clear: none;
+}
+
+.categorylist li {
+	float: left;
+	width: 25%;
+	margin: 0;
+	padding-bottom: 5px;
+	font-size: 75%;
+	border: none;
+	background: none;
+}
+
+
+/* end of column-list? */
+
+/* Friends list */
+
+.friends-list {
+	margin-top: 10px;
+	border: 1px solid #90b3d0;
+	padding: 10px; /* list top & bottom */
+}
+
+.friends-list ul, .friends-list ol, .friends-list li {
+	list-style-image: url(/web/20070628141549im_/http://www.zabaldu.com/img/common/mnm-tie.png);
+}
+
+.friends-list a {
+	font-weight: bold;
+	font-size: 110%;
+}
+
+/* trackback list  */
+
+#trackback h2 {
+	margin: 20px 20px 0 0;
+	font-size: 125%;
+}
+
+#trackback ul {
+	margin: 8px 0;
+	padding: 0;
+}
+
+#trackback li {
+	margin: 0;
+	padding: 8px 0 0 0;
+	list-style: none;
+	clear: left;
+	overflow: hidden;
+	width: 100%; /* need width for IE */
+	font-size: 90%;
+	color: #7ca9d0;
+}
+
+#trackback a:link {
+	padding-bottom: 2px;
+	color: #7ca9d0;
+}
+
+/* comments */
+
+#comments {
+	margin: 50px 0 0 64px;
+	clear: left;
+}
+
+#comments h2 {
+	margin: 0;
+}
+
+
+#comments .commentform {
+	border: 0;
+	padding: 5px 0;
+	background: #4682b4;
+	color: #fff;
+	font-weight: bold;
+}
+
+#comments .commentform a:link, .commentform a:visited {
+	color: #fff;
+	border-bottom-width: 1px;
+	border-bottom-style: dotted;
+}
+
+#comments .submitcomment {
+	background: #4682b4;
+	color: #fff;
+	font-weight: bold;
+	border: 1px dotted #fff;
+}
+
+#comments .commentform a:hover {
+	text-decoration: none;
+}
+
+#comments fieldset {
+	background-color: #fff;
+}
+
+#comments textarea {
+	width: 100%;
+	height: 128px;
+	background-color: #90b3d0;
+	border: 1px dotted #7ca9d0;
+	color: #303030;
+	margin-bottom: 10px;
+}
+
+#comments label {
+	color: #4682b4;
+	font-weight: bold;
+	font-size: 100%;
+}
+
+#comments-list {
+	list-style: none;
+	margin: 8px 0 0 0;
+	padding: 0;
+}
+
+#comments-list li {
+	clear: left;
+	margin-bottom: 16px;
+}
+
+#comments-list .comment-body {
+	background-color: #90b3d0;
+	padding: 10px 50px 10px 10px;
+	color: #303030;
+	line-height: 130%;
+	overflow: hidden;
+	border: 1px dotted #4682b4;
+	min-height: 25px;
+}
+
+.comment-body strong {
+	color: #4682b4;
+	font-weight: bold;
+}
+
+.comment-body img {
+	vertical-align: bottom;
+	border: 0;
+}
+
+#comments-list .comment-info {
+	font-size: 85%;
+	line-height: 160%;
+	text-align: right;
+	background: #FFF;
+	padding: 5px 0 5px 0;
+	color: #4682b4;
+}
+
+.comment-info a:link, .comment-info a:visited {
+	color: #7ca9d0;
+}
+
+/* gravatar */
+.comment-info img {
+	border: 1px solid #90b3d0;
+	margin-left: 4px;
+	margin-right: 0;
+	vertical-align: middle;
+}
+
+#comments-list ul li {
+	list-style: none;
+	margin: 0 0 16px 0;
+}
+
+#comments-list ul {
+	margin: 0;
+	padding: 16px 0 0 48px;
+	background: #FFF;
+}
+
+#comments .comment-info select {
+	font-size: 85%;
+}
+
+#tolerance, #tolerance select {
+	font-size: 85%;	
+}
+
+/* fieldsets */
+
+fieldset {
+	border: 1px solid #7ca9d0;
+	padding: 16px 24px;
+	margin: 16px 0;
+}
+ /* only for IE */ * html fieldset {
+	background: none;
+}
+
+legend {
+	font-weight: bold;
+	padding: 0 8px;
+	/* gallir color: #499722; */
+	color: #7ca9d0;
+	font-size: 125%;
+}
+
+fieldset dl {
+	margin: 0;
+	padding: 0;
+}
+
+fieldset dt {
+	clear: left;
+	float: left;
+	width: 288px; /* increase for wider dt text */
+	text-align: right;
+	padding: 0 16px 4px 0;
+}
+
+fieldset dd {
+	padding: 0 0 8px 0;
+	font-weight: bold;
+}
+
+label {
+	font-weight: bold;
+}
+
+fieldset.labels label {
+	width: 160px;
+	float: left;
+	text-align: right;
+	display: block;
+	padding: 3px 8px 3px 0;
+}
+
+fieldset.labels div {
+	padding: 3px 0;
+	clear: left
+}
+
+/* tabbed navigation */
+
+.sub-nav {
+	/*overflow: auto;*/
+	padding: 0 0 0 0;
+	margin: 0 0 0 0;
+}
+
+.sub-nav ul {
+	padding: 0 0 0 0;
+	margin: 10px 0 0 0;
+	list-style: none;
+	font-size: 100%;
+}
+
+ul.shakeit-sub-nav {
+	padding: 0 0 0 0;
+	margin: 0 0 0 100px;
+}
+
+.sub-nav li {
+	margin: 0 2px 0 0;
+	padding: 0 0 0 0;
+	float: left;
+	border: 1px solid #7ca9d0;
+}
+
+.sub-nav li.active {
+	border: 1px solid #7ca9d0;
+	background: #FFF;
+}
+
+.sub-nav li a, .sub-nav li span {
+	display: block;
+	padding: 2px 5px 2px 5px;
+	text-align: center;
+	color: #FFF;
+	background-color: #7ca9d0;
+	text-decoration: none;
+}
+
+.sub-nav li a:hover {
+	text-decoration: none;
+	background: #4682b4;
+}
+
+.sub-nav li.active a, .sub-nav li.active span {
+	background-color: #fff;
+	color: #7ca9d0;
+}
+
+.sub-nav li span {
+	color: #7ca9d0;
+}
+
+.sub-nav br {
+	clear: both;
+}
+
+
+/* gravatar */
+.sub-nav-img {
+	border: 1px solid #90b3d0;
+	float: right;
+}
+
+/* pagination */
+
+.pages {
+	padding: 10px 0 0 0;
+	border-top: 1px dotted #4682b4;
+	margin: 20px 0 75px 100px;
+	clear: left;
+	font-size: 90%;
+}
+
+.pages a, .pages span {
+	display: block;
+	float: left;
+	color: #4682b4;
+	padding: 5px 7px;
+	margin-right: 3px;
+	border: 1px solid #fff;
+	background-color: #fff;
+}
+
+.pages span.current {
+	border: 1px solid #4682b4;
+	font-weight: bold;
+	background-color: #4682b4;
+	color: #fff;
+}
+
+.pages a {
+	border: 1px solid #4682b4;
+	text-decoration: none;
+}
+
+.pages a:hover {
+	border-color: #7ca9d0;
+	background-color: #7ca9d0;
+	color: #fff;
+}
+
+.pages a.nextprev {
+	font-weight: bold;
+}
+
+.pages span.nextprev {
+	color: #90b3d0;
+}
+
+.pages span.nextprev {
+	border: 1px solid #90b3d0;
+	color: #90b3d0;
+}
+
+/* faq page */
+
+.faq-title {
+	margin: 0 30px 0 150px;
+}
+
+#faq-contents {
+	margin: 0 30px 75px 150px;
+}
+
+#faq-contents ol {
+	color: #4682b4;
+	font-weight: bold;
+}
+
+#faq-contents ul {
+	color: #303030;
+	font-weight: normal;
+}
+
+#faq-contents h4 {
+	color: #4682b4;
+	font-weight: bold;
+	font-size: 125%;
+}
+
+#faq-contents p {
+	color: #303030;
+	font-weight: normal;
+}
+
+/* generic form and wide page */
+
+#genericform-contents {
+	margin: 0 30px 75px 150px;
+}
+
+#genericform-contents h2/*, #contents-wide h2*/ {
+	margin: 10px 0 0 0;
+}
+
+#genericform-contents .pages {
+	margin-left: 0;
+	margin-top: 30px;
+	margin-bottom: 100px;
+}
+
+#genericform fieldset, #genericform-contents fieldset {
+	background-color: #fff;
+	border: 1px solid #4682b4;
+	font-size: 110%;
+}
+
+#genericform {
+	border: 0;
+	margin: 0;
+	padding: 0 0 20px 0;
+	background-color: #fff;
+	color: #4682b4;
+	font-weight: bold;
+}
+
+#genericform .sign, #genericform-contents legend {
+	color: #4682b4;
+	font-weight: bold;
+	font-size: 110%;
+}
+
+#genericform .genericsubmit {
+	background-color: #4682b4;
+	color: #fff;
+	font-weight: bold;
+	border: 1px dotted #fff;
+}
+
+#genericform input {
+	background: #90b3d0;
+	border: 1px solid #4682b4;
+	color: #303030;
+}
+
+#genericform .nobold {
+	font-weight: normal;
+}
+
+#genericform .genericformtxt {
+	color: #303030;
+	font-size: 100%;
+	font-weight: normal;
+}
+
+#genericform .genericformnote {
+	font-size: 85%;
+	font-weight: normal;
+	color: #7ca9d0;
+}
+
+#genericform textarea {
+	width: 100%;
+	height: 128px;
+	background-color: #90b3d0;
+	border: 1px solid #4682b4;
+	color: #303030;
+}
+
+/* generic form: login page specials */
+
+#genericform .recoverpass {
+	color: #4682b4;
+	font-size: 125%;
+}
+
+#genericform .recoverpass a:link, .recoverpass a:visited {
+	color: #4682b4;
+	border-bottom-width: 1px;
+	border-bottom-style: dotted;
+	padding-bottom: 1px;
+	text-decoration: none;
+}
+
+#genericform .recoverpass a:hover {
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	padding-bottom: 1px;
+	text-decoration: none;
+}
+
+#genericform .formnotice {
+	color: #303030;
+	font-weight: normal;
+}
+
+/* image forms */
+
+.tc {
+	margin: 5px 0;
+}
+
+/* shakeit page search form */
+
+.shakeit-form {
+	margin: 5px 0;
+}
+
+.shakeit-form-input {
+	color: #303030;
+	width: 65%;
+	border: 1px solid #4682b4;
+	background-color: #90b3d0;
+	margin-right: 5px;
+}
+
+.shakeit-form-submit {
+	background-color: #4682b4;
+	color: #fff;
+	border: 1px dotted #fff;
+	padding: 1px 0;
+}
+
+.shakeit-form label {
+	font-weight: normal;
+	color: #4682b4;
+	font-size: 140%;
+}
+
+/* BANNERS */
+/* top banner */
+
+.banner-01 {
+	margin: 0 30px 10px 150px;
+	/**
+	padding: 5px;
+	background: #90b3d0;
+	**/
+	min-width: 728px;
+	height: 90px;
+}
+
+.banner-01-c { /* banner centered */
+	width: 728px;
+	margin: 0 auto;
+}
+
+/* adbrite */
+
+.banner-02 {
+	margin: 10px 0 10px 0;
+	padding: 0 10px 0 10px;
+}
+
+.banner-02-c { /* banner centered */
+	width: 160px;
+	height: 600px; /* the banner size */
+	margin: 0 auto;
+}
+
+/* adbrite */
+
+.adHeadline {
+	font-weight: bold;
+	font-family: sans-serif;
+	text-decoration: underline; 
+	color: #4682b4;
+	margin: 0;
+	font-size: 12px;
+}
+
+.adText {
+	font-weight: normal;
+	font-family: sans-serif;
+	text-decoration: none;
+	color: #303030;
+}
+
+a.adText {color: #303030;}
+
+/* adbrite:end */
+
+/* credits */
+
+.credits-strip {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	border-top: 1px dotted #4682b4;
+	min-height: 55px;
+	background: #90b3d0;
+}
+
+.credits-strip-buttons {
+	margin: 10px 10px 10px 0;
+	float: right;
+}
+
+.credits-strip-text {
+	color: #000;
+	font-size: 85%;
+	margin: 10px 0 0 20px;
+	float: left;
+	line-height: 18px;
+}
+
+.credits-strip a:link, .credits-strip a:visited {
+	color: #000;
+}
+
+/* sneaker */
+
+.sneaker {
+	margin: 20px 20px 60px 50px;
+  background-image: url(/web/20070628141549im_/http://www.zabaldu.com/img/kuxkux1.png);
+	background-repeat: no-repeat;
+	background-position: 97% 95%;
+}
+
+.sneaker strong {
+	font-size: 95%;
+	color: #000;
+}
+
+.sneaker-legend {
+	color: #000;
+	text-align: center;
+	padding: 0 0 5px 0;
+	margin: 0;
+	background-color: #90b3d0;
+	border-bottom: 1px solid #fff;
+}
+
+.sneaker-legend img {
+	padding: 0 20px 0 5px;
+	margin: 0 0 -4px 0;
+}
+
+.sneaker-control {
+	margin: 0;
+}
+
+.sneaker-item {
+	width: 100%;
+	clear: both;
+	border-bottom: 1px solid #000;
+	padding: 5px 0 5px 0;
+	text-align: center;
+	overflow: hidden;
+}
+
+.sneaker-ts, .sneaker-type, .sneaker-votes, .sneaker-story, .sneaker-chat, .sneaker-who, .sneaker-status {
+	float: left;
+	display: block;
+}
+
+.sneaker-ts {
+	width: 8%;
+	text-align: left;
+}
+
+.sneaker-type {
+	width: 7%;
+}
+
+.sneaker-type img {
+	border: none;
+	margin: 0;
+	vertical-align: middle;
+}
+
+.sneaker-votes {
+	width: 7%;
+}
+
+.sneaker-story {
+	width: 53%;
+	text-align: left;
+}
+
+.sneaker-chat {
+	color: #9b0000;
+	width: 53%;
+	text-align: left;
+	overflow: hidden;
+}
+
+.sneaker-chat a {
+	color: #9b0000;
+}
+
+.sneaker-who {
+	width: 16%;
+	text-align: left;
+}
+
+/* gravatar */
+.sneaker-who img {
+	border: 0;
+	float: right;
+	margin-right: 2px;
+	margin-left: 4px;
+	vertical-align: bottom;
+}
+
+.sneaker-problem {
+	color: #f00;
+}
+
+.sneaker-status {
+	width: 8%;
+	text-align: right;
+}
+
+.sneaker-published {
+	color: #4682b4;
+}
+
+.sneaker-discarded {
+	color: #d9aa95;
+}
+
+.sneaker input {
+	background-color: #90b3d0;
+	margin: 7px 0 2px 0;
+	border: 1px solid #4682b4;
+	color: #303030;
+	font-size: 90%;
+}
+
+.sneaker input.sendmessage {
+	color: #4682b4;
+	border: 1px dotted #4682b4;
+	font-size: 90%;
+}
