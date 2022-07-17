@@ -6,7 +6,7 @@ import { UserProvider } from "./contexts/app.context";
 
 import "./index.scss";
 
-const rootElement = document.getElementById("root");
+const rootElement = document.getElementById("container");
 
 render(
   <React.StrictMode>

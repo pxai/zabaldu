@@ -75,7 +75,7 @@ html > body, html > body #container {
 
 #contents {
 	width: 71%;
-	float: right;
+	/*float: right;*/
 	padding-bottom: 50px;
 	z-index: 1;
 }
