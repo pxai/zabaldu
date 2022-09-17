@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom'; 
-import Albisteak from '../../components/albisteak/albisteak.component';
+import Entries from '../../components/entries/entries.component';
+import Footer from '../../components/footer/footer.component';
 
 const Home = () => {
     const imageUrl = 'https://raw.githubusercontent.com/pxai/zabaldu-backend/master/zabaldu.png';
@@ -33,8 +34,9 @@ const Home = () => {
 
   return (
     <div id="contents">
-       <Albisteak categories={categories} />
+       <Entries categories={categories} />
        <Outlet />
+       <Footer />
     </div>
    
   )

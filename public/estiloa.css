@@ -526,7 +526,7 @@ ul.news-details li li {
 	padding: 6px 0;
 	text-decoration: none;
 	margin-bottom: 0;
-	background-image: url(/web/20070628141549im_/http://www.zabaldu.com/img/common/elmnm-p03.png);
+	background-image: url(https://raw.githubusercontent.com/pxai/zabaldu/master/public/elmnm-p03.png);
 	background-repeat: no-repeat;
 	background-position: top left;
 }

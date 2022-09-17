@@ -1,12 +1,12 @@
 
-import './send.styles.scss';
+import SendForm from '../../components/send-form/send-form.component';
 
-const Shop = () => {
+const Send = () => {
   return (
     <div className='products-container'>
-      Bidali hemen
+      <SendForm />
     </div>
   );
 };
 
-export default Shop;
+export default Send;

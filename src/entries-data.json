@@ -1,0 +1,41 @@
+[
+    {
+      "id": 1,
+      "title": "Funtzionatzen al du hau?",
+      "text": "Riszard Kapuscinzki journalista poloniarraren liburu bati buruzko iruzkina",
+      "link": "http://alua.mundua.com/2006/08/29/kazetarientzat-eta-pertsonentzat-ikasbidea/",
+      "submitted":  { "user":  "hatxekin" },
+      "when": "2022-07-17 08:01:00",
+      "price": 25,
+      "comments": [],
+      "tags": ["liburua", "kazetaritza", "nazioartea"],
+      "category": "kultura",
+      "votes": 6
+    },
+    {
+      "id": 2,
+      "title": "Kazetari eta pertsonentzat ikasbidea",
+      "text": "Riszard Kapuscinzki journalista poloniarraren liburu bati buruzko iruzkina",
+      "link": "http://alua.mundua.com/2006/08/29/kazetarientzat-eta-pertsonentzat-ikasbidea/",
+      "submitted":  { "user":  "hatxekin" },
+      "when": "2022-07-17 08:01:00",
+      "price": 25,
+      "comments": [],
+      "tags": ["liburua", "kazetaritza", "nazioartea"],
+      "category": "kultura",
+      "votes": 5
+    },
+    {
+      "id": 3,
+      "title": "Hona hemen github proiektua",
+      "text": "Riszard Kapuscinzki journalista poloniarraren liburu bati buruzko iruzkina",
+      "link": "https://github.com/pxai/zabaldu",
+      "submitted":  { "user":  "hatxekin" },
+      "when": "2022-07-17 08:01:00",
+      "price": 25,
+      "comments": [],
+      "tags": ["liburua", "kazetaritza", "nazioartea"],
+      "category": "kultura",
+      "votes": 2
+    }
+  ]
