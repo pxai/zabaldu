@@ -44,8 +44,8 @@ const Navigation = () => {
           )}
           <li>
             <form action="./" method="get" name="thisform" id="thisform-search">
-              <label for="search" accesskey="100" class="inside">bilatu</label>
-              <input name="search" id="search" value="bilatu..." type="text" onblur="if(this.value=='') this.value='bilatu...';" onfocus="if(this.value=='bilatu...') this.value='';" />
+              <label htmlFor="search" accessKey="100" className="inside">bilatu</label>
+              <input name="search" id="search" type="text" />
             </form>
           </li>
           </ul>
@@ -53,8 +53,8 @@ const Navigation = () => {
         <div id="nav-string">
           <div>» <Link to='/'><strong>www.zabaldu.com</strong></Link></div>
         </div>
-        <div class="banner-01">
-          <div class="banner-01-c">
+        <div className="banner-01">
+          <div className="banner-01-c">
           </div>
         </div>
       <Outlet />
