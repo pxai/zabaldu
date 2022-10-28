@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom'; 
-import Entries from '../../components/entries/entries.component';
+import StoriesComponent from '../../components/stories/stories.component';
 import Footer from '../../components/footer/footer.component';
 
 const Home = () => {
@@ -34,7 +34,7 @@ const Home = () => {
 
   return (
     <div id="contents">
-       <Entries categories={categories} />
+       <StoriesComponent categories={categories} />
        <Outlet />
        <Footer />
     </div>

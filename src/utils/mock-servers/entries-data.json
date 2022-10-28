@@ -1,7 +1,7 @@
 [
     {
       "id": 1,
-      "title": "Funtzionatzen al du hau?",
+      "title": "Funtzionatzen al du hau? Bai",
       "text": "Riszard Kapuscinzki journalista poloniarraren liburu bati buruzko iruzkina",
       "link": "http://alua.mundua.com/2006/08/29/kazetarientzat-eta-pertsonentzat-ikasbidea/",
       "submitted":  { "user":  "hatxekin" },
@@ -19,7 +19,6 @@
       "link": "http://alua.mundua.com/2006/08/29/kazetarientzat-eta-pertsonentzat-ikasbidea/",
       "submitted":  { "user":  "hatxekin" },
       "when": "2022-07-17 08:01:00",
-      "price": 25,
       "comments": [],
       "tags": ["liburua", "kazetaritza", "nazioartea"],
       "category": "kultura",
@@ -32,7 +31,6 @@
       "link": "https://github.com/pxai/zabaldu",
       "submitted":  { "user":  "hatxekin" },
       "when": "2022-07-17 08:01:00",
-      "price": 25,
       "comments": [],
       "tags": ["liburua", "kazetaritza", "nazioartea"],
       "category": "kultura",
