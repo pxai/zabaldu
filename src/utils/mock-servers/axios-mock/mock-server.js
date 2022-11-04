@@ -10,8 +10,13 @@ const mockServer = new MockAdapter(axios);
 mockServer.onGet('/api/story').reply(200, stories);
 
 mockServer.onPost('/api/story').reply(function (config) {
-    const { name } = JSON.parse(config.data)
-    const story = {id: Math.round(Math.random() * 10000), name };
+    let { title, link, text, tags, category } = JSON.parse(config.data)
+    const submitted = { user: "whoever"}
+    const comments = [];
+    tags = tags.split(',');
+    const votes = 0;
+    const story = {id: Math.round(Math.random() * 10000), title, link, text, tags, category, comments, votes, submitted };
+    stories.push(story)
 
     return [200, story];
 });
@@ -40,8 +45,9 @@ mockServer.onGet(/\/api\/comment\/[0-9]+/).reply(function (config) {
 
 mockServer.onPost('/api/comment').reply(function (config) {
     const { storyId, text } = JSON.parse(config.data)
-    const submitted = { user: "whoever "}
+    const submitted = { user: "whoever"}
     const comment = {id: Math.round(Math.random() * 10000), storyId, text, submitted };
+    comments.push(comment)
 
     return [200, comment];
 });

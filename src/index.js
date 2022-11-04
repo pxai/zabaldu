@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { store } from './store/store';
 import App from "./App";
 import { UserProvider } from "./contexts/app.context";
-import mockServer from './utils/mock-servers/axios-mock/mock-server';
+import mockServer from "./utils/mock-servers/axios-mock/mock-server";
 
 import "./index.scss";
 

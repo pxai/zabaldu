@@ -64,10 +64,10 @@ export const selectStoriesAsync =  () => async (dispatch) => {
     }
 };
 
-export const addStoryAsync = (name) => async (dispatch) => {
+export const addStoryAsync = (story) => async (dispatch) => {
     dispatch(addStoryStart());
     try {
-        const response = await axios.post('/api/story', {name})
+        const response = await axios.post('/api/story', {...story})
         dispatch(addStorySuccess(response.data));
     } catch (error) {
         dispatch(addStoryError(error));

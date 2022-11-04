@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { addStoryAsync } from '../../store/story/story.actions';
 import FormInput from '../form-input/form-input';
 import Button from '../button/button';
 
@@ -11,16 +14,15 @@ const defaultFormFields = {
 }
 
 const SendForm = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { title, link, text, tags, category } = formFields;
 
-  const resetFormFields = () => {
-    setFormFields(defaultFormFields);
-  };
-
-
   const handleSubmit = async (event) => {
     event.preventDefault();
+    dispatch(addStoryAsync(formFields))
+    navigate('/')
   };
   
   const handleChange = (event) => {
