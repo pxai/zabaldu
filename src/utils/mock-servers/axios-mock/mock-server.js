@@ -39,8 +39,9 @@ mockServer.onGet(/\/api\/comment\/[0-9]+/).reply(function (config) {
 });
 
 mockServer.onPost('/api/comment').reply(function (config) {
-    const { name } = JSON.parse(config.data)
-    const comment = {id: Math.round(Math.random() * 10000), name };
+    const { storyId, text } = JSON.parse(config.data)
+    const submitted = { user: "whoever "}
+    const comment = {id: Math.round(Math.random() * 10000), storyId, text, submitted };
 
     return [200, comment];
 });

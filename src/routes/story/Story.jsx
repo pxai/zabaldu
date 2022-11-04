@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import StoryComponent from '../../components/story/story.component';
 import { selectStory } from '../../store/story/story.selector';
 import CommentsComponent from '../../components/comments/comments.component';
+import AddCommentComponent  from '../../components/add-comment/add-comment.component';
 
 const Story = () => {
   const { id } = useParams(); 
@@ -12,6 +13,7 @@ const Story = () => {
     <div id="contents">
        <StoryComponent story={story} />
        <CommentsComponent storyId={story.id}/>
+       <AddCommentComponent storyId={story.id}/>
     </div>
    
   )

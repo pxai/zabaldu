@@ -34,10 +34,11 @@ const SendForm = () => {
       <form onSubmit={handleSubmit}>
         <FormInput
           label='Title'
+          child='input'
           type='text'
           required
           onChange={handleChange}
-          name='displayName'
+          name='title'
           value={title}
         />
 

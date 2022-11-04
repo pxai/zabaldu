@@ -64,10 +64,10 @@ export const selectCommentsAsync =  (storyId) => async (dispatch) => {
     }
 };
 
-export const addCommentAsync = (name) => async (dispatch) => {
+export const addCommentAsync = (storyId, text) => async (dispatch) => {
     dispatch(addCommentStart());
     try {
-        const response = await axios.post('/api/comment', {name})
+        const response = await axios.post('/api/comment', {storyId, text})
         dispatch(addCommentSuccess(response.data));
     } catch (error) {
         dispatch(addCommentError(error));
