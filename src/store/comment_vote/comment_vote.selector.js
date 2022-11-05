@@ -1,0 +1,8 @@
+import { createSelector } from 'reselect';
+
+const selectCommentVoteReducer = (state) => state.commentVote;
+
+export const selectCommentVotes = (commentId) => createSelector(
+    [selectCommentVoteReducer],
+    (commentVote) => commentVote.votes[0]
+);

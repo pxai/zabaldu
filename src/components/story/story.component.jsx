@@ -1,17 +1,24 @@
 import { Fragment } from 'react';
+import { useDispatch } from "react-redux";
+import { addStoryVoteAsync } from '../../store/story_vote/story_vote.actions'; 
 import { Link } from 'react-router-dom';
 import CommentsComponent from '../comments/comments.component';
 import './story.styles.scss';
 
 const Story = ({ story }) => {
   const { id, title, text, link, submitted, when, comments, tags, category, votes } = story;
+  const dispatch = useDispatch();
+  const vote = (event) => {
+    event.preventDefault();
+    dispatch(addStoryVoteAsync({storyId: id}))
+  }
   return (
     <>
       <div className="news-summary">
         <div className="news-body">
           <ul className="news-shakeit">
             <li className="mnm-published" id="main691"><a id="mnms-691" href="story.php?albistea=691">{votes} zabaltze</a></li>
-            <li className="menealo" id="mnmlink-691"><a href="/" title="bozkatu gogoko baduzu">zabaldu</a></li>
+            <li className="menealo" id="mnmlink-691"><a href="/" onClick={vote} title="bozkatu gogoko baduzu">zabaldu</a></li>
           </ul>
           <h3 id="title691">
           <Link to={`story/${id}`}>{title}</Link>

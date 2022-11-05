@@ -10,7 +10,7 @@ export const selectStories = createSelector(
 
 export const selectStory = (id) => createSelector(
     [selectStoryReducer],
-    (story) => story.stories[0]
+    (story) => story.stories.filter(s => s.id === +id)[0]
 );
 
 

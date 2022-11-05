@@ -6,7 +6,7 @@ export const selectSearchTerm = (state) => state.comment.searchTerm;
 
 export const selectComments = (storyId) => createSelector(
     [selectCommentReducer],
-    (comment) => comment.comments.filter(c => c.storyId === storyId)
+    (comment) => comment.comments.filter(c => c.storyId === +storyId)
 );
 
 export const selectCommentCount = createSelector(
