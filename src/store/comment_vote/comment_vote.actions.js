@@ -19,10 +19,9 @@ export const addCommentVoteError = (error) => {
 export const addCommentVoteAsync = (commentVote) => async (dispatch) => {
     dispatch(addCommentVoteStart());
     try {
-        console.log(commentVote)
         const response = await axios.post(`/api/comment/${commentVote.commentId}/vote`, {...commentVote})
         dispatch(addCommentVoteSuccess(response.data));
     } catch (error) {
-        dispatch(addCommentVoteError(error));
+        dispatch(addCommentVoteError({message: error.message, ...commentVote}));
     }
 }

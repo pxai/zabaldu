@@ -8,7 +8,7 @@ import AddCommentComponent  from '../../components/add-comment/add-comment.compo
 const Story = () => {
   const { id } = useParams(); 
   const story = useSelector(selectStory(id));
-  console.log("Story: ", id, story)
+
   return (
     <div id="contents">
        <StoryComponent story={story} />

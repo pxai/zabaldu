@@ -2,9 +2,12 @@ import MockAdapter from 'axios-mock-adapter';
 import axios from 'axios';
 import initialStories from '../entries-data.json';
 import initialComments from '../comments-data.json';
+import initialCommentVotes from '../comment-votes-data.json';
 
 let stories = initialStories;
 let comments = initialComments; 
+let commentVotes = initialCommentVotes;
+
 const mockServer = new MockAdapter(axios);
 
 mockServer.onGet('/api/story').reply(200, stories);
@@ -80,13 +83,18 @@ mockServer.onPost(/\/api\/story\/[0-9]+\/vote/).reply(function (config) {
 
 mockServer.onPost(/\/api\/comment\/[0-9]+\/vote/).reply(function (config) {
     const voteCommentId = +config.url.split("/").slice(-2)[0];
+    const submitted = JSON.parse(config.data)
+    if (+voteCommentId === 1) {
+        return [500, {error: "La cagaste"}]
+    }
     const filteredComments = comments.filter( comment => comment.id !== voteCommentId);
     const updatedComment = comments.filter( comment => comment.id === voteCommentId)[0];
     updatedComment.votes++;
     stories = [...filteredComments, updatedComment];
     console.log("COMMENT VOTE REGISTERED:" , voteCommentId, updatedComment)
 
-    return [200, updatedComment];
+    const commentVote = {id: Math.round(Math.random() * 10000), ...submitted }
+    return [200, commentVote];
 });
 
 export default mockServer;

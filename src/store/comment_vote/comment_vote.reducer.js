@@ -9,7 +9,6 @@ export const initialCommentVoteState = {
 
 export const commentVoteReducer = (state = initialCommentVoteState, action) => {
     const {type, payload} = action;
-    console.log("Initial state: ", state, action)
     let changedComments = null;
     switch (type) {
         case COMMENT_VOTES_ACTION_TYPES.ADD_COMMENT_VOTE_START:
@@ -19,7 +18,6 @@ export const commentVoteReducer = (state = initialCommentVoteState, action) => {
                 error: null,
             };
         case COMMENT_VOTES_ACTION_TYPES.ADD_COMMENT_VOTE_SUCCESS:
-            console.log("Reducer: ", [...state.commentVotes, payload])
             return {
                 ...state,
                 isLoading: false,

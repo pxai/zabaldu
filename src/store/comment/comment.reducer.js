@@ -15,7 +15,7 @@ export const initialCommentState = {
 
 export const commentReducer = (state = initialCommentState, action) => {
     const {type, payload} = action;
-    console.log("Initial state: ", state, action)
+
     let changedComments = null;
     switch (type) {
         case COMMENTS_ACTION_TYPES.SELECT_COMMENTS_START:
@@ -43,7 +43,6 @@ export const commentReducer = (state = initialCommentState, action) => {
                 error: null,
             };
         case COMMENTS_ACTION_TYPES.ADD_COMMENT_SUCCESS:
-            console.log("Reducer: ", [...state.comments, payload])
             return {
                 ...state,
                 isLoading: false,

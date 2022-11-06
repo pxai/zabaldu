@@ -9,7 +9,6 @@ export const initialStoryVoteState = {
 
 export const storyVoteReducer = (state = initialStoryVoteState, action) => {
     const {type, payload} = action;
-    console.log("Initial state: ", state, action)
     let changedStories = null;
     switch (type) {
         case STORY_VOTES_ACTION_TYPES.ADD_STORY_VOTE_START:
@@ -19,7 +18,6 @@ export const storyVoteReducer = (state = initialStoryVoteState, action) => {
                 error: null,
             };
         case STORY_VOTES_ACTION_TYPES.ADD_STORY_VOTE_SUCCESS:
-            console.log("Reducer: ", [...state.storyVotes, payload])
             return {
                 ...state,
                 isLoading: false,

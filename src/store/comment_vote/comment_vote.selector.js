@@ -4,5 +4,8 @@ const selectCommentVoteReducer = (state) => state.commentVote;
 
 export const selectCommentVotes = (commentId) => createSelector(
     [selectCommentVoteReducer],
-    (commentVote) => commentVote.votes[0]
+    (commentVote) => ({
+        commentVotes: commentVote.commentVotes.filter(cv => cv.commentId === +commentId),
+        ...commentVote
+    })
 );
