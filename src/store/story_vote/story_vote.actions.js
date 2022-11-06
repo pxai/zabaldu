@@ -21,6 +21,6 @@ export const addStoryVoteAsync = (storyVote) => async (dispatch) => {
         const response = await axios.post(`/api/story/${storyVote.storyId}/vote`, {...storyVote})
         dispatch(addStoryVoteSuccess(response.data));
     } catch (error) {
-        dispatch(addStoryVoteError(error));
+        dispatch(addStoryVoteError({message: error.message, ...storyVote}));
     }
 }

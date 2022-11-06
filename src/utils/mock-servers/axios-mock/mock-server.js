@@ -72,13 +72,18 @@ mockServer.onDelete(/\/api\/comment\/[0-9]+/).reply(function (config) {
 
 mockServer.onPost(/\/api\/story\/[0-9]+\/vote/).reply(function (config) {
     const voteStoryId = +config.url.split("/").slice(-2)[0];
+    const submitted = JSON.parse(config.data)
+    if (+voteStoryId === 1) {
+        return [500, {error: "La cagaste"}]
+    }
     const filteredStories = stories.filter( story => story.id !== voteStoryId);
     const updatedStory = stories.filter( story => story.id === voteStoryId)[0];
     updatedStory.votes++;
     stories = [...filteredStories, updatedStory];
-    console.log("VOTE REGISTERED:" , voteStoryId, updatedStory)
+    const storyVote = {id: Math.round(Math.random() * 10000), ...submitted }
+    console.log("STORY VOTE REGISTERED:" , voteStoryId, updatedStory)
 
-    return [200, updatedStory];
+    return [200, storyVote];
 });
 
 mockServer.onPost(/\/api\/comment\/[0-9]+\/vote/).reply(function (config) {
@@ -91,7 +96,6 @@ mockServer.onPost(/\/api\/comment\/[0-9]+\/vote/).reply(function (config) {
     const updatedComment = comments.filter( comment => comment.id === voteCommentId)[0];
     updatedComment.votes++;
     stories = [...filteredComments, updatedComment];
-    console.log("COMMENT VOTE REGISTERED:" , voteCommentId, updatedComment)
 
     const commentVote = {id: Math.round(Math.random() * 10000), ...submitted }
     return [200, commentVote];

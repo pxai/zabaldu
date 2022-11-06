@@ -4,5 +4,8 @@ const selectStoryVoteReducer = (state) => state.storyVote;
 
 export const selectStoryVotes = (storyId) => createSelector(
     [selectStoryVoteReducer],
-    (storyVote) => storyVote.votes[0]
+    (storyVote) => ({
+        storyVotes: storyVote.storyVotes.filter(vote => vote.storyId === +storyId),
+        ...storyVote
+    })
 );

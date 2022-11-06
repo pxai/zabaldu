@@ -1,13 +1,16 @@
 import { Fragment } from 'react';
-import { useDispatch } from "react-redux";
+import ModalComponent from "../modal/modal.component";
+import { useDispatch, useSelector } from "react-redux";
 import { addStoryVoteAsync } from '../../store/story_vote/story_vote.actions'; 
-import { Link } from 'react-router-dom';
-import CommentsComponent from '../comments/comments.component';
+import { selectStoryVotes } from '../../store/story_vote/story_vote.selector';
 import './story.styles.scss';
+import { Link } from 'react-router-dom';
 
 const Story = ({ story }) => {
   const { id, title, text, link, submitted, when, comments, tags, category, votes } = story;
   const dispatch = useDispatch();
+  const storyVote = useSelector(selectStoryVotes(id))
+  console.log("Story> Component> ", storyVote)
   const vote = (event) => {
     event.preventDefault();
     dispatch(addStoryVoteAsync({storyId: id}))
@@ -37,6 +40,7 @@ const Story = ({ story }) => {
           </div>
         </div>
       </div>
+      { storyVote.error?.storyId === id && <ModalComponent message={storyVote.error.message} /> }
     </>
   );
 };
