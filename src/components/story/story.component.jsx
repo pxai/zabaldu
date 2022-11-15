@@ -10,7 +10,7 @@ const Story = ({ story }) => {
   const { id, title, text, link, submitted, when, comments, tags, category, votes } = story;
   const dispatch = useDispatch();
   const storyVote = useSelector(selectStoryVotes(id))
-  console.log("Story> Component> ", storyVote)
+
   const vote = (event) => {
     event.preventDefault();
     dispatch(addStoryVoteAsync({storyId: id}))

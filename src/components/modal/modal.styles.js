@@ -1,22 +1,22 @@
 import styled from 'styled-components';
 
 export const Modal = styled.div`
+    position: absolute;
+    top: 0;
+    background-color: rgb(0, 0, 0, 0.3);
+    width: 100%;
     height: 100%;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    z-index: 2;
 `;
 
 export const ModalMessage = styled.div`
-    background-color: tomato;
-    padding: 5px;
+    position: absolute;
+    padding: 2em;
+    left: 50%;
+    top: 50%;
     width: 300px;
-    height: 200px:
-    height: 20px;
-    margin: 10px;
-    line-height: 20px;
-    font-size: 1em;
+    height: 250px;
+    background-color: white;
+    transform: translate(-50%, -50%);
     text-align: center;
 `;

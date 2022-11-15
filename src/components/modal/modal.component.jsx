@@ -6,8 +6,8 @@ const ModalComponent = ({message}) => {
 
     return visible 
         ? (
-            <Modal>
-                <div onClick={() => setVisible(false)}>x</div>
+            <Modal onClick={() => setVisible(false)}>
+                <div >x</div>
                 <ModalMessage>{message}</ModalMessage>
             </Modal>
         )

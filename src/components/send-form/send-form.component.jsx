@@ -1,9 +1,11 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { addStoryAsync } from '../../store/story/story.actions';
+import { selectStoryError } from '../../store/story/story.selector';
 import FormInput from '../form-input/form-input';
 import Button from '../button/button';
+import ModalComponent from '../modal/modal.component';
 
 const defaultFormFields = {
   title: '',
@@ -16,15 +18,23 @@ const defaultFormFields = {
 const SendForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const storyError = useSelector(selectStoryError);
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { title, link, text, tags, category } = formFields;
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     dispatch(addStoryAsync(formFields))
-    navigate('/')
   };
+
+  useEffect(() => {
+    if (storyError.createdStory !== null && !storyError.error)
+      navigate('/')
+  }, [storyError])
   
+
+  const submitError = () =>  !storyError.isLoading && storyError.error;
+
   const handleChange = (event) => {
     const { name, value } = event.target;
 
@@ -81,6 +91,7 @@ const SendForm = () => {
         />
         <Button type='submit'>Bidali</Button>
       </form>
+      { submitError() && <ModalComponent message={storyError.error} /> }
     </div>
   );
 };

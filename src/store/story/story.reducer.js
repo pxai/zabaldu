@@ -11,22 +11,25 @@ export const initialStoryState = {
     error: null,
     stories: [],
     searchTerm: '',
+    totalStories: 0,
+    createdStory: null,
 }
 
 export const storyReducer = (state = initialStoryState, action) => {
     const {type, payload} = action;
-    console.log("Initial state: ", state, action)
     let changedStories = null;
     switch (type) {
         case STORIES_ACTION_TYPES.SELECT_STORIES_START:
             return {
                 ...state,
-                isLoading: true
+                isLoading: true,
+                createdStory: null,
             };
         case STORIES_ACTION_TYPES.SELECT_STORIES_SUCCESS:
             return {
                 ...state,
-                stories: payload,
+                stories: payload.stories,
+                totalStories: payload.totalStories,
                 isLoading: false,
                 error: null
             };
@@ -41,20 +44,21 @@ export const storyReducer = (state = initialStoryState, action) => {
                 ...state,
                 isLoading: true,
                 error: null,
+                createdStory: null,
             };
         case STORIES_ACTION_TYPES.ADD_STORY_SUCCESS:
-            console.log("Reducer: ", [...state.stories, payload])
             return {
                 ...state,
                 isLoading: false,
                 error: null,
                 stories: [...state.stories, payload],
+                createdStory: payload
             };
         case STORIES_ACTION_TYPES.ADD_STORY_ERROR:
             return {
                 ...state,
                 isLoading: false,
-                error: payload,
+                error: payload.error,
             };
         case STORIES_ACTION_TYPES.UPDATE_STORY_START:
             return {

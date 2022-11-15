@@ -50,14 +50,15 @@ export const updateStoryError = (error) => {
     return createAction(STORIES_ACTION_TYPES.UPDATE_STORY_ERROR, error);
 };
 
-export const searchStory = (name) => {
-    return createAction(STORIES_ACTION_TYPES.SEARCH_STORY, name);
+export const searchStory = (term) => {
+    return createAction(STORIES_ACTION_TYPES.SEARCH_STORY, term);
 };
 
-export const selectStoriesAsync =  () => async (dispatch) => {
+export const selectStoriesAsync =  (page = 0, searchTerm = 'hau') => async (dispatch) => {
+    console.log("HERE SEKECT : ", page, searchTerm)
     dispatch(selectStoriesStart());
     try {
-        const response = await axios.get('/api/story');
+        const response = await axios.get(`/api/story/page/${page}/${searchTerm}`);
         dispatch(selectStoriesSuccess(response.data));
     } catch (error) {
         dispatch(selectStoriesError(error))
@@ -70,7 +71,7 @@ export const addStoryAsync = (story) => async (dispatch) => {
         const response = await axios.post('/api/story', {...story})
         dispatch(addStorySuccess(response.data));
     } catch (error) {
-        dispatch(addStoryError(error));
+        dispatch(addStoryError({error: error.message}));
     }
 }
 

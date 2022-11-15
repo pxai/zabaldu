@@ -54,10 +54,10 @@ export const searchComment = (name) => {
     return createAction(COMMENTS_ACTION_TYPES.SEARCH_COMMENT, name);
 };
 
-export const selectCommentsAsync =  (storyId) => async (dispatch) => {
+export const selectCommentsAsync =  (storyId, page = 0) => async (dispatch) => {
     dispatch(selectCommentsStart());
     try {
-        const response = await axios.get(`/api/comment/${storyId}`);
+        const response = await axios.get(`/api/comment/${storyId}/${page}`);
         dispatch(selectCommentsSuccess(response.data));
     } catch (error) {
         dispatch(selectCommentsError(error))
@@ -70,7 +70,7 @@ export const addCommentAsync = (storyId, text) => async (dispatch) => {
         const response = await axios.post('/api/comment', {storyId, text})
         dispatch(addCommentSuccess(response.data));
     } catch (error) {
-        dispatch(addCommentError(error));
+        dispatch(addCommentError({error: error.message}));
     }
 }
 

@@ -11,6 +11,8 @@ export const initialCommentState = {
     error: null,
     comments: [],
     searchTerm: '',
+    page: 0,
+    createdComment: null,
 }
 
 export const commentReducer = (state = initialCommentState, action) => {
@@ -21,7 +23,8 @@ export const commentReducer = (state = initialCommentState, action) => {
         case COMMENTS_ACTION_TYPES.SELECT_COMMENTS_START:
             return {
                 ...state,
-                isLoading: true
+                isLoading: true,
+                createdComment: null,
             };
         case COMMENTS_ACTION_TYPES.SELECT_COMMENTS_SUCCESS:
             return {
@@ -41,19 +44,21 @@ export const commentReducer = (state = initialCommentState, action) => {
                 ...state,
                 isLoading: true,
                 error: null,
+                createdComment: null,
             };
         case COMMENTS_ACTION_TYPES.ADD_COMMENT_SUCCESS:
             return {
                 ...state,
                 isLoading: false,
                 error: null,
+                createdComment: payload,
                 comments: [...state.comments, payload],
             };
         case COMMENTS_ACTION_TYPES.ADD_COMMENT_ERROR:
             return {
                 ...state,
                 isLoading: false,
-                error: payload,
+                error: payload.error,
             };
         case COMMENTS_ACTION_TYPES.UPDATE_COMMENT_START:
             return {

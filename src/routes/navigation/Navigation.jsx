@@ -1,12 +1,26 @@
-import { Fragment, useContext } from 'react';
+import { Fragment, useContext, useState } from 'react';
 import { Outlet, Link } from 'react-router-dom';
 import { UserContext } from '../../contexts/app.context';
+import { useDispatch } from 'react-redux';
+import { searchStory }  from '../../store/story/story.actions';
 
 import { signOutUser } from '../../utils/firebase/firebase';
 import './navigation.styles.scss';
 
 const Navigation = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+  const dispatch = useDispatch()
   const { currentUser } = useContext(UserContext);
+
+  const handleChange = (event) => {
+    setSearchTerm(event.target.value);
+  }
+
+  const handleSearch = (event) => {
+    if (event.key === 'Enter') {
+      dispatch(searchStory(searchTerm))
+    }
+  }
 
   return (
     <Fragment>
@@ -43,10 +57,10 @@ const Navigation = () => {
 
           )}
           <li>
-            <form action="./" method="get" name="thisform" id="thisform-search">
+            <div>
               <label htmlFor="search" accessKey="100" className="inside">bilatu</label>
-              <input name="search" id="search" type="text" />
-            </form>
+              <input name="search" id="search" type="text" onChange={handleChange} onKeyDown={handleSearch}/>
+            </div>
           </li>
           </ul>
         </div>

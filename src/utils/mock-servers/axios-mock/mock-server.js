@@ -4,16 +4,48 @@ import initialStories from '../entries-data.json';
 import initialComments from '../comments-data.json';
 import initialCommentVotes from '../comment-votes-data.json';
 
-let stories = initialStories;
+const repopulate = (items, amount) => {
+    let repopulated = items;
+    Array(amount).fill(0).forEach((_,i) => {
+        repopulated = repopulated.concat(items)
+    })
+    return repopulated.map((item, i) => ({...item, id: (i+1)}))
+}
+let stories = repopulate(initialStories, 10);
 let comments = initialComments; 
 let commentVotes = initialCommentVotes;
 
 const mockServer = new MockAdapter(axios);
 
-mockServer.onGet('/api/story').reply(200, stories);
+mockServer.onGet('/api/story').reply(function (config) {    
+    const page = +config.url.split("/")[3] || 0;
+
+    const [from , to ] = [ 10 * page, (10 * page) + 10]
+    console.log("stories: ", page, from, to , config.url)
+
+    return [200, {stories: stories.slice(from, to ), totalStories: stories.length}]
+});
+
+mockServer.onGet(/\/api\/story\/page\/[0-9]+\/[\w\W]*/).reply(function (config) {
+    const page = +config.url.split("/")[4] || 0;    
+    const searchTerm = config.url.split("/")[5] || '';
+    console.log("HERE WE ARE: ", page, searchTerm)
+
+    const [from , to ] = [ 10 * page, (10 * page) + 10]
+    console.log("stories: ", page, from, to , config.url)
+
+    const filterBySearch = story => story.title.includes(searchTerm.trim())
+    const filteredStories = stories.filter(filterBySearch)
+
+    return [200, {stories: filteredStories.slice(from, to ), totalStories: filteredStories.length}]
+});
 
 mockServer.onPost('/api/story').reply(function (config) {
     let { title, link, text, tags, category } = JSON.parse(config.data)
+
+    if (title === "error") {
+        return [500, {error: "La cagaste"}]
+    }
     const submitted = { user: "whoever"}
     const comments = [];
     tags = tags.split(',');
@@ -26,6 +58,7 @@ mockServer.onPost('/api/story').reply(function (config) {
 
 mockServer.onPut('/api/story').reply(function (config) {
     const updatedStory = JSON.parse(config.data)
+
     const filteredStories = stories.filter( story => story.id !== updatedStory.id);
     stories = [...filteredStories, updatedStory];
 
@@ -40,14 +73,32 @@ mockServer.onDelete(/\/api\/story\/[0-9]+/).reply(function (config) {
 });
 
 mockServer.onGet(/\/api\/comment\/[0-9]+/).reply(function (config) {
-    const storyId = +config.url.split("/").slice(-1)[0];
-    const filteredComments = comments.filter( comment => comment.storyId === storyId);
+    const storyId = +config.url.split("/")[3];
+    const page = +config.url.split("/")[4] || 0;
+
+    const [from , to ] = [ 10 * page, (10 * page) + 10]
+    console.log("comments: ", storyId, page, from, to , config.url)
+    const filteredComments = comments.filter( comment => comment.storyId === storyId).slice(from, to );
+    console.log("comments after: ", filteredComments)
+    return [200, filteredComments];
+});
+
+mockServer.onGet(/\/api\/comment\/[0-9]+\/[0-9]+/).reply(function (config) {
+    const storyId = +config.url.split("/")[2];
+    const page = +config.url.split("/")[3];
+
+    const [from , to ] = [ 10 * page, (10 * page) + 10]
+    console.log("comments: ", storyId, page, from, to , filteredComments)
+    const filteredComments = comments.filter( comment => comment.storyId === storyId).slice(from, to);
 
     return [200, filteredComments];
 });
 
 mockServer.onPost('/api/comment').reply(function (config) {
     const { storyId, text } = JSON.parse(config.data)
+    if (text === "error") {
+        return [500, {error: "La cagaste"}]
+    }
     const submitted = { user: "whoever"}
     const comment = {id: Math.round(Math.random() * 10000), storyId, text, submitted };
     comments.push(comment)
@@ -100,5 +151,8 @@ mockServer.onPost(/\/api\/comment\/[0-9]+\/vote/).reply(function (config) {
     const commentVote = {id: Math.round(Math.random() * 10000), ...submitted }
     return [200, commentVote];
 });
+
+
+
 
 export default mockServer;
