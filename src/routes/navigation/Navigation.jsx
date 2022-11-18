@@ -38,9 +38,15 @@ const Navigation = () => {
               </Link>
             </li>
           {currentUser ? (
-            <li onClick={signOutUser}>
-              Irten
-            </li>
+            <>
+              <li onClick={signOutUser}>
+                Irten
+              </li>
+              <li>
+                <Link to={`/user/${currentUser.displayName}`}>{currentUser.displayName}</Link>
+              </li>
+            </>
+
           ) : (
             <>
               <li>

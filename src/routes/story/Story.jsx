@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useParams } from 'react-router-dom'; 
 import { useSelector } from 'react-redux'; 
+import { UserContext } from '../../contexts/app.context';
 import StoryComponent from '../../components/story/story.component';
 import { selectStory } from '../../store/story/story.selector';
 import CommentsComponent from '../../components/comments/comments.component';
@@ -8,6 +9,7 @@ import AddCommentComponent  from '../../components/add-comment/add-comment.compo
 
 const Story = () => {
   const { id } = useParams(); 
+  const { currentUser } = useContext(UserContext);
   const [page, setPage] = useState(0)
   const story = useSelector(selectStory(id));
 
@@ -15,7 +17,7 @@ const Story = () => {
     <div id="contents">
        <StoryComponent story={story} />
        <CommentsComponent storyId={story.id} pages={story.commentPages}/>
-       <AddCommentComponent storyId={story.id}/>
+       { currentUser && <AddCommentComponent storyId={story.id}/>}
     </div>
    
   )
