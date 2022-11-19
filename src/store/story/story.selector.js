@@ -14,7 +14,7 @@ export const selectStories = createSelector(
 
 export const selectStoryError = createSelector(
     [selectStoryReducer],
-    (story) => ({error: story.error, isLoading: story.isLoading, createdStory: story.createdStory})
+    (story) => ({error: story.error, isLoading: story.isLoading, changedStory: story.changedStory})
 );
 
 export const selectStory = (id) => createSelector(

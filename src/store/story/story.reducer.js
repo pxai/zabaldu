@@ -12,7 +12,7 @@ export const initialStoryState = {
     stories: [],
     searchTerm: '',
     totalStories: 0,
-    createdStory: null,
+    changedStory: null,
 }
 
 export const storyReducer = (state = initialStoryState, action) => {
@@ -23,7 +23,7 @@ export const storyReducer = (state = initialStoryState, action) => {
             return {
                 ...state,
                 isLoading: true,
-                createdStory: null,
+                changedStory: null,
             };
         case STORIES_ACTION_TYPES.SELECT_STORIES_SUCCESS:
             return {
@@ -44,7 +44,7 @@ export const storyReducer = (state = initialStoryState, action) => {
                 ...state,
                 isLoading: true,
                 error: null,
-                createdStory: null,
+                changedStory: null,
             };
         case STORIES_ACTION_TYPES.ADD_STORY_SUCCESS:
             return {
@@ -52,7 +52,7 @@ export const storyReducer = (state = initialStoryState, action) => {
                 isLoading: false,
                 error: null,
                 stories: [...state.stories, payload],
-                createdStory: payload
+                changedStory: payload
             };
         case STORIES_ACTION_TYPES.ADD_STORY_ERROR:
             return {
@@ -65,6 +65,7 @@ export const storyReducer = (state = initialStoryState, action) => {
                 ...state,
                 isLoading: true,
                 error: null,
+                changedStory: null,
             };
         case STORIES_ACTION_TYPES.UPDATE_STORY_SUCCESS:
             changedStories = updateStoryFromStories(state.stories, payload);
@@ -72,6 +73,7 @@ export const storyReducer = (state = initialStoryState, action) => {
                 ...state,
                 stories: changedStories,
                 isLoading: false,
+                changedStory: payload
             };
         case STORIES_ACTION_TYPES.UPDATE_STORY_ERROR:
             return {

@@ -55,7 +55,6 @@ export const searchStory = (term) => {
 };
 
 export const selectStoriesAsync =  (page = 0, searchTerm = 'hau') => async (dispatch) => {
-    console.log("HERE SEKECT : ", page, searchTerm)
     dispatch(selectStoriesStart());
     try {
         const response = await axios.get(`/api/story/page/${page}/${searchTerm}`);
@@ -78,7 +77,6 @@ export const addStoryAsync = (story) => async (dispatch) => {
 export const removeStoryAsync = (id) => async (dispatch) => {
     dispatch(removeStoryStart());
     try {
-        console.log("About to send ID: ", id)
         const response = await axios.delete(`/api/story/${id}`);
         dispatch(removeStorySuccess(response.data))
     } catch (error) {
@@ -89,6 +87,7 @@ export const removeStoryAsync = (id) => async (dispatch) => {
 export const updateStoryAsync = (story) => async (dispatch) => {
     dispatch(updateStoryStart(story));
     try {
+        console.log("updateStoryAsync: ",story)
         const response = await axios.put('/api/story', {...story});
         dispatch(updateStorySuccess(response.data));
     } catch (error) {

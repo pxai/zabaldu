@@ -15,20 +15,21 @@ const defaultFormFields = {
   category: ''
 }
 
-const SendForm = () => {
+const SendForm = ({formValues = defaultFormFields, sendAction = addStoryAsync}) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const storyError = useSelector(selectStoryError);
-  const [formFields, setFormFields] = useState(defaultFormFields);
-  const { title, link, text, tags, category } = formFields;
+  const [formFields, setFormFields] = useState(formValues);
+  const { id, title, link, text, tags, category } = formFields;
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    dispatch(addStoryAsync(formFields))
+    console.log("Component > About to send: ", formFields)
+    dispatch(sendAction(formFields))
   };
 
   useEffect(() => {
-    if (storyError.createdStory !== null && !storyError.error)
+    if (storyError.changedStory !== null && !storyError.error)
       navigate('/')
   }, [storyError])
   

@@ -10,12 +10,11 @@ const AddCommentComponent = ({storyId}) => {
     const dispatch = useDispatch();
 
 
-   /* useEffect(() => {
+   useEffect(() => {
         console.log("CHANGED: ", commentError)
         if (commentError.createdComment !== null && !commentError.error)
             setText('')
-      }, [commentError])
-     */ 
+    }, [commentError])
     
     const submitError = () =>  !commentError.isLoading && commentError.error;
 

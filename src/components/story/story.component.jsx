@@ -1,4 +1,5 @@
-import { Fragment } from 'react';
+import { useContext, Fragment } from 'react';
+import { UserContext } from '../../contexts/app.context';
 import ModalComponent from "../modal/modal.component";
 import { useDispatch, useSelector } from "react-redux";
 import { addStoryVoteAsync } from '../../store/story_vote/story_vote.actions'; 
@@ -10,11 +11,13 @@ const Story = ({ story }) => {
   const { id, title, text, link, submitted, when, comments, tags, category, votes } = story;
   const dispatch = useDispatch();
   const storyVote = useSelector(selectStoryVotes(id))
+  const { currentUser } = useContext(UserContext);
 
   const vote = (event) => {
     event.preventDefault();
     dispatch(addStoryVoteAsync({storyId: id}))
   }
+
   return (
     <>
       <div className="news-summary">
@@ -24,7 +27,7 @@ const Story = ({ story }) => {
             <li className="menealo" id="mnmlink-691"><a href="/" onClick={vote} title="bozkatu gogoko baduzu">zabaldu</a></li>
           </ul>
           <h3 id="title691">
-          <Link to={`story/${id}`}>{title}</Link>
+          <Link to={`/story/${id}`}>{title}</Link>
           </h3>
           <div className="news-submitted">
             <a href="user.php?login={submitted.user}" title="hatxekin"><img src="http://www.gravatar.com/avatar.php?gravatar_id=73c41b8144c402ee8e7df4902eaa75fc&amp;rating=PG&amp;size=25&amp;default=http%3A%2F%2Fwww.zabaldu.com%2Fimg%2Fcommon%2Fno-gravatar-2-25.jpg" width="25" height="25" alt="icon gravatar.com" /></a>
@@ -40,6 +43,12 @@ const Story = ({ story }) => {
           </div>
         </div>
       </div>
+      { submitted?.user_id === currentUser?.uid && (
+              <div>
+                  <Link to={`/story/edit/${id}`}>Aldatu</Link>
+              </div>
+          )
+      }  
       { storyVote.error?.storyId === id && <ModalComponent message={storyVote.error.message} /> }
     </>
   );

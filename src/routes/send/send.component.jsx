@@ -1,7 +1,7 @@
 
 import SendForm from '../../components/send-form/send-form.component';
 
-const Send = () => {
+const Edit = () => {
   return (
     <div className='products-container'>
       <SendForm />
@@ -9,4 +9,4 @@ const Send = () => {
   );
 };
 
-export default Send;
+export default Edit;
