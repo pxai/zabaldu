@@ -11,11 +11,11 @@ const EditCommentComponent = ({comment}) => {
 
 
     useEffect(() => {
-        console.log("CHANGED: ", commentError)
-        if (commentError.createdComment !== null && !commentError.error)
+        if (commentError.createdComment !== null && !commentError.error) {
             setText('')
-      }, [commentError])
-      
+        }
+    }, [commentError])
+    
     
     const submitError = () =>  !commentError.isLoading && commentError.error;
 

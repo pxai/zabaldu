@@ -108,9 +108,10 @@ mockServer.onPost('/api/comment').reply(function (config) {
 
 mockServer.onPut('/api/comment').reply(function (config) {
     const updatedComment = JSON.parse(config.data)
-    const filteredComments = stories.filter( comment => comment.id !== updatedComment.id);
+    console.log("API> updatedComment: ", updatedComment)
+    const filteredComments = comments.filter( comment => comment.id !== updatedComment.id);
     comments = [...filteredComments, updatedComment];
-
+    console.log("API> updatedComments: ", comments)
     return [200, updatedComment];
 });
 

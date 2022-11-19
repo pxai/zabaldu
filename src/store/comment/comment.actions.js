@@ -77,7 +77,6 @@ export const addCommentAsync = (storyId, text) => async (dispatch) => {
 export const removeCommentAsync = (id) => async (dispatch) => {
     dispatch(removeCommentStart());
     try {
-        console.log("About to send ID: ", id)
         const response = await axios.delete(`/api/comment/${id}`);
         dispatch(removeCommentSuccess(response.data))
     } catch (error) {
@@ -88,7 +87,7 @@ export const removeCommentAsync = (id) => async (dispatch) => {
 export const updateCommentAsync = (comment) => async (dispatch) => {
     dispatch(updateCommentStart(comment));
     try {
-        const response = await axios.put('/api/comments', {...comment});
+        const response = await axios.put('/api/comment', {...comment});
         dispatch(updateCommentSuccess(response.data));
     } catch (error) {
         dispatch(updateCommentError(error));

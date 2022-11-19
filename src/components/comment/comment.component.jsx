@@ -16,7 +16,9 @@ const CommentComponent = ({comment, number}) => {
     const commentVote = useSelector(selectCommentVotes(id))
 
     useEffect(() => {
-        console.log("CHANGED: ", comment)
+        console.log("updateCommentAsync> dale:", edit, {...comment})
+        if (edit) setEdit(false)
+        console.log("updateCommentAsync> dale now:", edit, {...comment})
       }, [comment])
 
     const voteUp = (event) => {
