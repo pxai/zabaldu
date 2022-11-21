@@ -6,6 +6,7 @@ import { store } from './store/store';
 import App from "./App";
 import { UserProvider } from "./contexts/app.context";
 import mockServer from "./utils/mock-servers/axios-mock/mock-server";
+import './utils/i18n';
 
 import "./index.scss";
 
