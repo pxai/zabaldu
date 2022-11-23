@@ -16,26 +16,30 @@ let comments = initialComments;
 let commentVotes = initialCommentVotes;
 
 const mockServer = new MockAdapter(axios);
+const byStatus = status => story => story["status"] === status
 
-mockServer.onGet('/api/story').reply(function (config) {    
-    const page = +config.url.split("/")[3] || 0;
+// mockServer.onGet(/\/api\/story\/page\/[0-9]+\/[\w\W]*/).reply(function (config) {
+//     const page = +config.url.split("/")[4] || 0;    
+//     const searchTerm = config.url.split("/")[5] || '';
 
-    const [from , to ] = [ 10 * page, (10 * page) + 10]
-    console.log("stories: ", page, from, to , config.url)
+//     const [from , to ] = [ 10 * page, (10 * page) + 10]
 
-    return [200, {stories: stories.slice(from, to ), totalStories: stories.length}]
-});
+//     const filterBySearch = story => story.title.includes(searchTerm.trim())
+//     const filteredStories = stories.filter(filterBySearch)
 
-mockServer.onGet(/\/api\/story\/page\/[0-9]+\/[\w\W]*/).reply(function (config) {
+//     return [200, {stories: filteredStories.slice(from, to ), totalStories: filteredStories.length}]
+// });
+
+mockServer.onGet(/\/api\/story\/page\/[0-9]+\/[\w\W]*\/[\w\W]*/).reply(function (config) {
     const page = +config.url.split("/")[4] || 0;    
     const searchTerm = config.url.split("/")[5] || '';
-    console.log("HERE WE ARE: ", page, searchTerm)
+    const status = config.url.split("/")[6] || 'published';
 
     const [from , to ] = [ 10 * page, (10 * page) + 10]
-    console.log("stories: ", page, from, to , config.url)
 
     const filterBySearch = story => story.title.includes(searchTerm.trim())
-    const filteredStories = stories.filter(filterBySearch)
+    const filteredStories = stories.filter(filterBySearch).filter(byStatus(status))
+    console.log("Status filter: ", status, filteredStories)
 
     return [200, {stories: filteredStories.slice(from, to ), totalStories: filteredStories.length}]
 });

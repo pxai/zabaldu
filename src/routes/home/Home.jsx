@@ -2,7 +2,7 @@ import { Outlet } from 'react-router-dom';
 import StoriesComponent from '../../components/stories/stories.component';
 import Footer from '../../components/footer/footer.component';
 
-const Home = () => {
+const Home = ({status}) => {
     const imageUrl = 'https://raw.githubusercontent.com/pxai/zabaldu-backend/master/zabaldu.png';
     const categories = [
         {
@@ -34,7 +34,7 @@ const Home = () => {
 
   return (
     <div id="contents">
-       <StoriesComponent categories={categories} />
+       <StoriesComponent status={status} categories={categories} />
        <Outlet />
        <Footer />
     </div>

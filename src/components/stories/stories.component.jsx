@@ -8,7 +8,7 @@ import PaginatorComponent from '../paginator/paginator.component';
 
 import './stories.styles.scss';
 
-const StoriesComponent = ({ categories }) => {
+const StoriesComponent = ({ categories, status }) => {
   const { t } = useTranslation();
   const [page, setPage] = useState(0);
   const {stories, storiesPages} = useSelector(selectStories);
@@ -16,8 +16,8 @@ const StoriesComponent = ({ categories }) => {
   const dispatch = useDispatch();
 
   useEffect( () => {
-    dispatch(selectStoriesAsync(page, searchTerm));
-  }, [page, searchTerm]);
+    dispatch(selectStoriesAsync(page, searchTerm, status));
+  }, [page, searchTerm, status]);
 
   useCallback(() => {
   }, [stories]);

@@ -37,6 +37,11 @@ const Navigation = () => {
                 Bidali berria
               </Link>
             </li>
+            <li>
+                <Link className='nav-link' to='/queue'>
+                  Ilarakoak
+                </Link>
+            </li>
           {currentUser ? (
             <>
               <li onClick={signOutUser}>

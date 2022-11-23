@@ -54,10 +54,10 @@ export const searchStory = (term) => {
     return createAction(STORIES_ACTION_TYPES.SEARCH_STORY, term);
 };
 
-export const selectStoriesAsync =  (page = 0, searchTerm = 'hau') => async (dispatch) => {
+export const selectStoriesAsync =  (page = 0, searchTerm = 'hau', status = 'published') => async (dispatch) => {
     dispatch(selectStoriesStart());
     try {
-        const response = await axios.get(`/api/story/page/${page}/${searchTerm}`);
+        const response = await axios.get(`/api/story/page/${page}/${searchTerm}/${status}`);
         dispatch(selectStoriesSuccess(response.data));
     } catch (error) {
         dispatch(selectStoriesError(error))

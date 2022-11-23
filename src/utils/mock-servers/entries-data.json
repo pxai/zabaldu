@@ -1,7 +1,7 @@
 [
     {
       "id": 1,
-      "title": "Funtzionatzen al du hau? Bai",
+      "title": "Funtzionatzen al du hau? Bai pub",
       "text": "Riszard Kapuscinzki journalista poloniarraren liburu bati buruzko iruzkina",
       "link": "http://alua.mundua.com/2006/08/29/kazetarientzat-eta-pertsonentzat-ikasbidea/",
       "submitted":   { "user":  "hatxekin", "user_id": "CsewtCAigYSXp2tPtoOX2CdGIvJ3" },
@@ -11,11 +11,12 @@
       "tags": ["liburua", "kazetaritza", "nazioartea"],
       "category": "kultura",
       "votes": 6,
-      "comments": 27
+      "comments": 27,
+      "status": "published"
     },
     {
       "id": 2,
-      "title": "Kazetari eta pertsonentzat ikasbidea",
+      "title": "Kazetari eta pertsonentzat ikasbidea pub",
       "text": "Riszard Kapuscinzki journalista poloniarraren liburu bati buruzko iruzkina",
       "link": "http://alua.mundua.com/2006/08/29/kazetarientzat-eta-pertsonentzat-ikasbidea/",
       "submitted":   { "user":  "bestea", "user_id": "3" },
@@ -24,11 +25,12 @@
       "tags": ["liburua", "kazetaritza", "nazioartea"],
       "category": "kultura",
       "votes": 5,
-      "comments": 3
+      "comments": 3,
+      "status": "published"
     },
     {
       "id": 3,
-      "title": "Hona hemen github proiektua",
+      "title": "Hona hemen github proiektua que",
       "text": "Riszard Kapuscinzki journalista poloniarraren liburu bati buruzko iruzkina",
       "link": "https://github.com/pxai/zabaldu",
       "submitted":   { "user":  "another", "user_id": "4" },
@@ -37,6 +39,7 @@
       "tags": ["liburua", "kazetaritza", "nazioartea"],
       "category": "kultura",
       "votes": 2,
-      "comments": 0
+      "comments": 0,
+      "status": "queued"
     }
   ]

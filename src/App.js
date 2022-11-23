@@ -15,6 +15,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Navigation />} >
             <Route index element={<Home/>} />
+            <Route path='queue' element={<Home status={"queued"} />} />
             <Route path='story/:id' element={<Story />} />
             <Route path='send' element={<Send />} />
             <Route path='story/edit/:id' element={<Edit />} />
