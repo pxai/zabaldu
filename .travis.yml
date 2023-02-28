@@ -1,8 +1,0 @@
-language: node_js
-cache:
-  yarn: true
-  npm: true
-node_js:
-  - '14'
-script:
-  - yarn install && CI=true npm test

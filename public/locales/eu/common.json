@@ -1,0 +1,43 @@
+{
+    "site": {
+        "name": "Zabaldu",
+        "description": "Zabaldu naiz"
+    },
+    "latest": "Latest News",
+    "description": {
+      "part1": "To get started, edit <1>src/App.js</1> and save to reload.",
+      "part2": "Switch language between english and german using buttons above."
+    },
+    "add_comment": "Add Comment",
+    "sent_by": "Sent by",
+    "published_at": "Published at",
+    "vote": "Vote",
+    "votes": "VOTES",
+    "at": "at",
+    "edit": "edit",
+    "remove": "Remove",
+    "comments": "Comments",
+    "update_comment": "Update comment",
+    "search": "search...",
+    "title": "Title",
+    "text": "Text",
+    "link": "Link",
+    "tags": "Tags",
+    "category": "Category",
+    "submit_story": "Submit Story",
+    "profile": "Profile",
+    "do_you_have": "Do you have an account?",
+    "sign_in_with": "Sign In with email and password",
+    "email": "Email",
+    "password": "Password",
+    "dont_you_have": "Don't you have an account yet?",
+    "sign_up_with": "Sign up with name, email and password:",
+    "display_name": "Display Name",
+    "confirm_password": "Confirm Password",
+    "sign_up": "Sign Up",
+    "sign_in": "Sign In",
+    "sign_in_with_google": "Sign In With Google",
+    "sign_out": "Sign Out",
+    "send_story": "Send Story",
+    "register": "Register"
+  }
