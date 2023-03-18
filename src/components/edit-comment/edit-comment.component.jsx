@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next'
 import { UserContext } from '../../contexts/app.context';
 import { updateCommentAsync } from '../../store/comment/comment.actions';
 import { selectCommentError } from '../../store/comment/comment.selector';

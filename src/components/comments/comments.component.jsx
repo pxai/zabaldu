@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from 'react-redux'; 
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next'
 import { selectCommentsAsync } from '../../store/comment/comment.actions';
 import { selectComments } from '../../store/comment/comment.selector';
 import CommentComponent from "../comment/comment.component";

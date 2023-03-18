@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../contexts/app.context';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next'
 import { addStoryAsync } from '../../store/story/story.actions';
 import { selectStoryError } from '../../store/story/story.selector';
 import FormInput from '../form-input/form-input';

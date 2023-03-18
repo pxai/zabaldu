@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { UserContext } from '../../contexts/app.context';
 import { addCommentAsync } from '../../store/comment/comment.actions';
 import { selectCommentError } from '../../store/comment/comment.selector';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next'
 import ModalComponent from "../modal/modal.component";
 import Button from '../button/button';
 import './add-comment.styles.scss';

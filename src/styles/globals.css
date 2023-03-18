@@ -1695,3 +1695,8 @@ a.adText {color: #303030;}
 	border: 1px dotted #4682b4;
 	font-size: 90%;
 }
+
+.edit-story {
+    padding-left: 2em;
+    text-align: center;
+}

@@ -3,6 +3,7 @@ import axios from 'axios';
 import initialStories from './entries-data.json';
 import initialComments from './comments-data.json';
 
+console.log("THIS IS THE MOCK")
 
 const repopulate = (items, amount) => {
     let repopulated = items;
@@ -11,13 +12,13 @@ const repopulate = (items, amount) => {
     })
     return repopulated.map((item, i) => ({...item, id: (i+1)}))
 }
-let stories = repopulate(initialStories, 10);
+let stories = repopulate(initialStories, 1);
 let comments = initialComments;
 
 const mockServer = new MockAdapter(axios);
 const byStatus = status => story => story["status"] === status
 
-mockServer.onGet(/http\:\/\/localhost\:3000\/api\/story/).reply(function (config) {
+mockServer.onGet(/\/api\/story/).reply(function (config) {
     console.log("Im mocking man!")
     const page = 0;    
     const searchTerm = '';

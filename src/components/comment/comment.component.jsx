@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useContext, useState, useEffect } from 'react';
 import { UserContext } from '../../contexts/app.context';
 import { Link } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'next-i18next'
 import ModalComponent from "../modal/modal.component";
 import { removeCommentAsync } from '../../store/comment/comment.actions';
 import { addCommentVoteAsync } from '../../store/comment_vote/comment_vote.actions'; 

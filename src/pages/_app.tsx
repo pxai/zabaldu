@@ -4,6 +4,8 @@ import { SessionProvider } from 'next-auth/react'
 import { appWithTranslation } from 'next-i18next'
 import mockServer from "../mock-server/mock-server.js";
 
+mockServer.resetHistory();
+
 function App({ Component, pageProps }: AppProps) {
   return <SessionProvider session={pageProps.session}>
     <Component {...pageProps} />
