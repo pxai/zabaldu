@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "commentId": 1,
+        "vote": 1
+    }, 
+    {
+        "id": 2,
+        "commentId": 1,
+        "vote": 1
+    }, 
+    {
+        "id": 3,
+        "commentId": 2,
+        "vote": 1
+    }, 
+    {
+        "id": 4,
+        "commentId": 2,
+        "vote": 1
+    }, 
+    {
+        "id": 5,
+        "commentId": 3,
+        "vote": 1
+    }, 
+    {
+        "id": 6,
+        "commentId": 3,
+        "vote": 1
+    }
+]
