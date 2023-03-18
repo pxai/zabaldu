@@ -1,21 +1,13 @@
-import { useDispatch, useSelector } from "react-redux";
 import { useContext, useState, useEffect } from 'react';
-import { UserContext } from '../../contexts/app.context';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { useTranslation } from 'next-i18next'
 import ModalComponent from "../modal/modal.component";
-import { removeCommentAsync } from '../../store/comment/comment.actions';
-import { addCommentVoteAsync } from '../../store/comment_vote/comment_vote.actions'; 
-import { selectCommentVotes } from '../../store/comment_vote/comment_vote.selector';
 import EditCommentComponent from "../edit-comment/edit-comment.component";
 
 const CommentComponent = ({comment, number}) => {
     const { t } = useTranslation();
     const [edit, setEdit] = useState(false)
     const {id, text, submitted, when } = comment;
-    const { currentUser } = useContext(UserContext);
-    const dispatch = useDispatch();
-    const commentVote = useSelector(selectCommentVotes(id))
 
     useEffect(() => {
         console.log("updateCommentAsync> dale:", edit, {...comment})
@@ -34,12 +26,11 @@ const CommentComponent = ({comment, number}) => {
     }
 
     const vote = (vote) => {
-        dispatch(addCommentVoteAsync({vote, commentId: id}))
+
     }
 
     const deleteComment = (e) => {
         e.preventDefault();
-            dispatch(removeCommentAsync(id));
     }
 
     const updateComment = (e) => {
@@ -58,16 +49,16 @@ const CommentComponent = ({comment, number}) => {
                         </div>
                         <div className="comment-info">  
                             <a href="" onClick={voteUp}> + </a> | <a href="" onClick={voteDown}> - </a>
-                            {t`sent_by`} <Link to={`/user/${submitted.user}`}>{submitted.user}</Link> {t`at`} {when}
+                            {t`sent_by`} <Link href={`/user/${submitted.user}`}>{submitted.user}</Link> {t`at`} {when}
                         </div>
-                        { submitted?.user_id === currentUser?.uid && (
+                        { /*submitted?.user_id === currentUser?.uid && (
                                 <div>
                                     <a href="javacript: void(0)" onClick={updateComment}>{t`edit`}</a> | 
                                     <a href="javacript: void(0)" onClick={deleteComment}>{t`remove`}</a>
                                 </div>
-                            )
+                            )*/
                         }           
-                        { commentVote.error?.commentId === id && <ModalComponent message={commentVote.error.message} /> }
+                        { /*commentVote.error?.commentId === id && <ModalComponent message={commentVote.error.message} />  */}
                     </li>
                 )
 }

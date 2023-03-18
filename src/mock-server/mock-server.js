@@ -18,7 +18,7 @@ let comments = initialComments;
 const mockServer = new MockAdapter(axios);
 const byStatus = status => story => story["status"] === status
 
-mockServer.onGet(/\/api\/story/).reply(function (config) {
+mockServer.onGet(/\/api\/story$/).reply(function (config) {
     console.log("Im mocking man!")
     const page = 0;    
     const searchTerm = '';
@@ -31,6 +31,15 @@ mockServer.onGet(/\/api\/story/).reply(function (config) {
     console.log("Status filter: ", status, filteredStories)
 
     return [200, {stories: filteredStories.slice(from, to ), totalStories: filteredStories.length}]
+});
+
+mockServer.onGet(/\/api\/story\/[0-9]+/).reply(function (config) {
+    const storyId = +config.url.split("/").slice(-1)[0];
+    const story = stories.filter( story => story.id !== storyId)[0];
+    const filteredComments = comments.filter( comment => comment.storyId === storyId).slice(0, 10 );
+
+    console.log("Im mocking man! Found: ", story, filteredComments)
+    return [200, {...story, comments: filteredComments}];
 });
 
 mockServer.onGet(/\/api\/story\/page\/[0-9]+\/[\w\W]*\/[\w\W]*/).reply(function (config) {
