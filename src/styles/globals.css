@@ -1700,3 +1700,7 @@ a.adText {color: #303030;}
     padding-left: 2em;
     text-align: center;
 }
+
+.add-comment {
+	margin-left: 4em;
+  }

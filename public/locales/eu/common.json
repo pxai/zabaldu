@@ -8,6 +8,10 @@
       "part1": "To get started, edit <1>src/App.js</1> and save to reload.",
       "part2": "Switch language between english and german using buttons above."
     },
+    "story": {
+      "add": "Add Story",
+      "story": "Story"
+    },
     "add_comment": "Add Comment",
     "sent_by": "Sent by",
     "published_at": "Published at",

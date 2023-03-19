@@ -1,15 +1,22 @@
 
 import ModalComponent from "../modal/modal.component";
 import { useTranslation } from 'next-i18next'
-
+import { useState } from 'react';
 import Link from 'next/link';
+import { useSession } from 'next-auth/react';
+import { UserProps, StoryProps } from '../../../prisma/types';
 
-const Story = ({ story }) => {
+type Props = {
+  story: StoryProps
+};
+
+const Story = ({ story }: Props) => {
+  const { data: session, status } = useSession();
+  const [currentUser, setCurrentUser] = useState<UserProps>(session?.user as UserProps)
+
   const { t } = useTranslation();
-  const { id, title, text, link, submitted, when, comments, tags, category } = story;
-  const storyVotes = { storyVotes: []};
-  const { currentUser } = {}
-
+  const { id, title, content, link, permalink, createdAt, user, comments, tags, category } = story;
+  const storyVotes: any = { storyVotes: []};
   const vote = () => {
 
   }
@@ -27,19 +34,19 @@ const Story = ({ story }) => {
           </h3>
           <div className="news-submitted">
             <a href={`${link}`}><strong>{link}</strong></a><br />
-            {t`sent_by`}<strong>{submitted.user}</strong> {t`published_at`} {when}
+            {t`sent_by`}<strong>{user?.name}</strong> {t`published_at`} {createdAt}
           </div>
           <div className="news-body-text">
-            {text}
+            {content}
           </div>
           <div className="news-details">
-            <span className="tool">{comments.length} comments</span>
-            <span className="tool">tags: {tags.join(',')}</span>
+            <span className="tool">{comments?.length} comments</span>
+            <span className="tool">tags: {tags}</span>
             <span className="tool">category: {category}</span>
           </div>
         </div>
       </div>
-      { submitted?.user_id === currentUser?.uid && (
+      { user?.id === currentUser?.id && (
               <div className="edit-story">
                   <Link href={`/story/edit/${id}`}>Edit</Link>
               </div>

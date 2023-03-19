@@ -26,6 +26,9 @@ export default function Nav () {
                     <Link href="/profile" data-active={isActive('/profile')}>
                         {t`profile`}
                     </Link>{' | '}
+                    <Link href="/story/add" data-active={isActive('/profile')}>
+                        {t`story.add`}
+                    </Link>{' | '}
                     <Link href="/api/auth/signout" data-active={isActive('/signup')}>
                         {t`logout`}
                     </Link>
