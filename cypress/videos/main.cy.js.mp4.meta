@@ -1,0 +1,16 @@
+;FFMETADATA1
+[CHAPTER]
+TIMEBASE=1/1000
+START=2576
+END=3397
+title=main spec cy.document() - get the document object
+[CHAPTER]
+TIMEBASE=1/1000
+START=3514
+END=4221
+title=main spec has a page title
+[CHAPTER]
+TIMEBASE=1/1000
+START=4257
+END=4930
+title=main spec shows Header title
