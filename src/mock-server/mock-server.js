@@ -28,7 +28,7 @@ mockServer.onGet(/\/api\/story$/).reply(function (config) {
 
     const filterBySearch = story => story.title.includes(searchTerm.trim())
     const filteredStories = stories.filter(filterBySearch).filter(byStatus(status))
-    console.log("Status filter: ", status, filteredStories)
+    //console.log("Status filter: ", status, filteredStories)
 
     return [200, {stories: filteredStories.slice(from, to ), totalStories: filteredStories.length}]
 });
@@ -38,7 +38,7 @@ mockServer.onGet(/\/api\/story\/[0-9]+/).reply(function (config) {
     const story = stories.filter( story => story.id !== storyId)[0];
     const filteredComments = comments.filter( comment => comment.storyId === storyId).slice(0, 10 );
 
-    console.log("Im mocking man! Found: ", story, filteredComments)
+    //console.log("Im mocking man! Found: ", story, filteredComments)
     return [200, {...story, comments: filteredComments}];
 });
 
@@ -51,7 +51,7 @@ mockServer.onGet(/\/api\/story\/page\/[0-9]+\/[\w\W]*\/[\w\W]*/).reply(function 
 
     const filterBySearch = story => story.title.includes(searchTerm.trim())
     const filteredStories = stories.filter(filterBySearch).filter(byStatus(status))
-    console.log("Status filter: ", status, filteredStories)
+    //console.log("Status filter: ", status, filteredStories)
 
     return [200, {stories: filteredStories.slice(from, to ), totalStories: filteredStories.length}]
 });

@@ -12,7 +12,7 @@ export default function Home({stories}) {
   return (
     <Layout>
       <main className="main">
-      {t`site.name`}
+      <h1>{t`site.name`}</h1>
       <StoriesComponent stories={stories} status="published" />
       </main>
     </Layout>
@@ -23,7 +23,7 @@ export default function Home({stories}) {
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   //const stories = [];
   const {data:{stories}} = await axios.get(`${process.env.API_URL}/api/story`)
-  console.log('App: ', stories)
+  //console.log('App: ', stories)
   return {
     props: { 
       stories,
