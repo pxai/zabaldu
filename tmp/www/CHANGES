@@ -1,0 +1,284 @@
+14/10/2006
+	- Insertar siempre los eventos de "edit" y "discard" si la noticia ha sido
+	  descartada manualmente.
+
+13/10/2006
+	- Optimizada la BBDD de acuerdo a los datos históricos existentes
+		ALTER TABLE `users` CHANGE `user_names` `user_names` CHAR( 60 ) NOT NULL;
+		ALTER TABLE `users` CHANGE `user_lang` `user_lang` TINYINT( 2 ) UNSIGNED NOT NULL DEFAULT '1';
+
+	- Agregada opción para ver o no todos los comentarios (en el perfil)
+		libs/comment.php
+		libs/login.php
+		libs/user.php
+		ALTER TABLE `users` ADD `user_comment_pref` TINYINT( 2 ) UNSIGNED NOT NULL DEFAULT '0' AFTER `user_lang`;
+
+	- Agregado soporte para url sexies en user.php, del tipo /user/gallir
+		REGLA Apache:
+			RewriteRule ^/user/(.+)$ /user.php/$1  [L,NS]
+		Modificados:
+		config.php
+		profile.php
+		register.php
+		story.php
+		topusers.php
+		user.php
+		backend/get_prefered.php
+		backend/get_prefered_bars.php
+		backend/ip_clones.php
+		backend/meneos.php
+		libs/comment.php
+		libs/html1.php
+		libs/link.php
+		libs/utils.php
+
+	- Quitado todo el soporte a gravatar.com, varios ficheros tocados. 
+		config.php
+		topusers.php
+		user.php
+		backend/get_avatar.php
+		backend/get_avatar_url.php
+		backend/get_prefered.php
+		backend/get_prefered_bars.php
+		backend/meneos.php
+		libs/comment.php
+		libs/link.php
+		libs/utils.php
+	  Complicaba el código innecesaiamente, con un beneficio cero teniendo soporte propio
+	  de avatares.
+	- karma4.php: borra los usuarios de más de 24 horas que no hayan validado su email.
+	- Muestra sólo las estadísticas de usuarios validados en la fisgona.
+
+12/10/2006
+	- Doble verificacion de que los datos de un nuevo usuario sean correctos (aviso de Alex Concha).
+	- Agregada pestaña de "logs" a cada noticia
+
+11/10/2006
+	- Se actualiza al valor del karma y votos después de votar un comentario
+	- Nuevo cálculo del karma: karma4.php
+	- Mejorada la detección de blogs que fallaba por orden incosistente de los rss en algunos
+	  blogs, como http://irreverencia.cl/
+
+09/10/2006
+	- Implementacion del url /search/cadena1+cadena2 si está definida la variable
+	  $globals['base_search_url']. La regla de redirección en apache es:
+	  	RewriteRule ^/search(/.*)$ /index.php$1  [L,QSA]
+
+08/10/2006
+	- Votos en los comentarios (todavía en pruebas, CHANGES en preparación)
+	- IMPORTANTE: modificación en la estructura de la base de datos
+		ALTER TABLE `comments` ADD `comment_votes` SMALLINT( 4 ) NOT NULL DEFAULT '0' AFTER `comment_ip` ;
+		ALTER TABLE `comments` CHANGE `comment_date` `comment_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ;
+		ALTER TABLE `comments` ADD `comment_order` SMALLINT NOT NULL DEFAULT '0' AFTER `comment_ip` ;
+		ALTER TABLE `comments` DROP `comment_nick` ;
+
+06/10/2006
+	- Añadido los iconos y javascript para las ediciones y descartadas al módulo del netvibes
+	- Agregada las etiquetas similares el telnet.php
+	- Agregdo borde #FFB300 de 1px a la caja de enviar historias y pendientes
+
+04/10/2006
+	- SEGURIDAD: submit.php y editlink.php: pasar categoria a entero, que el if de control posterior siempre
+	             da falso si es un string, permite SQL injection para mysql < 5.0. 
+				 Informado por Alexander Concha, http://www.buayacorp.com
+
+	- link.php: toma en cuenta que pueden haber redirecciones relativas cuando verifica el url
+	///// IMPORTANTE IMPORTANTE
+	- IMPORTANTE: nueva tabla logs, nueva fisgona que muestra las ediciones y descartes
+	  comment.php, link.php, editlink.php, submit.php, telnet.php, sneak.php, sneaker.php
+	  +discard3.php
+	  +promote6.php
+	  +log.php
+	  Ver tabla nueva en meneame-1.5.sql
+
+03/10/2006
+	- topusers.php: quitar los enlaces al order por votos y comentarios, es demasiada carga
+
+02/10/2006
+	- Agregado detección de usuarios clones: backend/ip_clones.php, user.php.
+	- Simplificado user.php, y muestra los votos sólo si el usuario está registrado
+	- utils.php, comment.php: agregada función que limita la cantidad de \n\r consecutivos
+
+01/10/2006
+	- sneaker-stats.php: agregado comando !stats3 para ver estadísticas de la última hora
+	- Errata texto: http://meneame.wikispaces.com/page/diff/Bugs?v=1326499
+
+29/09/2006
+	- submit.php: Agregado </div> cuando el enlace es incorrecto (por JRA)
+
+26/09/2006
+	- Arreglado bug que no envíaba el url correcto ante una noticia duplicada. Gracias jusore.
+	- Falta un </li> cuando la noticia está cerrada para los votos (por JRA)
+
+25/09/2006
+	- Added controls to trackback.php (clean_text() and clean_input_text()). TODO: add checks to file_get_contents() as in link.php.
+
+
+21/09/2006
+	- Add function_exists('htmlspecialchars_decode') for PHP < 5.0 (parche de JRA, pezonesnegros)
+
+20/09/2006
+	- Mejorada la fórmula para mover de descartadas a pendientes, así se evita tanto vaivén sin sentido.
+	if ($link->status == 'discard' && $current_user->user_id>0 && $link->karma > $link->votes * 2  && $link->votes > $link->negatives)
+	
+17/09/2006
+	- Agregado control de los dominios baneados también entre los enlaces del HTML
+	  del URL enviado. Así se evitan trucos de enviar a buscadores (especialmente
+	  de blogs).
+	- Si se detecta que el usuario envía un url baneado, le baja 0.1 del karma. Es muy poco
+	  pero evita los intentos y pruebas repetidas. Al poco tiempo ya no podrá enviar al tener
+	  el karma muy bajo. ¡Mierda de spammers! generan mucho curro, y hacen pensar demasiado :-)
+
+
+15/09/2006
+	- Agregado stripslashes a clean_text (en utils.php).
+
+14/09/2006
+	- Los "god" (administradores) pueden editar comentarios hasta las tres horas después que 
+	  se escribieron.
+
+13/09/2006
+	- Agregado javascript que verifica que las condiciones legales estén aceptadas
+	  antes de hacer el submit para registrarse
+	- Corregido bug en register.php (y clean_input_string() en util.php) que permitiría modificar
+	  la cuenta de otro usuario al registrarse si se tiene mysql 4 (meneame.net está con mysql 5.0)
+	  Reportado por Alexander Concha.
+
+	- Cambio en el control anti-spam de comentarios, si se hacen más de 3 comentarios en
+	  tres minutos, se baja el karma en 0.5
+
+12/09/2006
+	- En enlace de las condiciones legales del registro abre una nueva ventana.
+
+11/09/2006
+	- Agregado control de redireccionamientos si el PHP es >= 5.0.0
+      (en este caso se usa la función stream_get_contents)
+	- Creada función de verificación del url.
+
+10/09/2006
+	- Agregado el autor al "hover" de los comentarios.
+	- http://mueveme.net, para los móviles.
+	- Agregado variable y control de dominios baneados por spam programado:
+		http://meneame.net/story/aviso-spam-programado-contra-meneame
+	- El bonus sólo se aplica a noticias que han estado por lo menos 15 minutos 
+	  en la cola.
+
+09/09/2006
+	- Permite continuar con el envío de una noticia aunque haya fallado la
+	  verificación del URL.
+
+08/09/2006
+	- Agregado cabecera "last-modified" para story.php
+	- Agregado enlace a las referencias #xx en comentarios.
+	- Agregado control de mayúsculas en el envío, no se permite más de un 0.25
+	- Agregado campo IP a los comentarios. lib/comment.php
+		ALTER TABLE `comments` ADD `comment_ip` CHAR( 24 ) NULL AFTER `comment_date` ;
+	- Cambiado el nick de comentarios de varchar a char, para ahorrar consultas:
+		ALTER TABLE `comments` CHANGE `comment_nick` `comment_nick` CHAR( 32 ) NOT NULL ;
+	- Cambiada la BBDD para tener siempre la última modificación de un enlace
+		ALTER TABLE `links` CHANGE `link_modified` `link_modified` TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP 
+	- Modificado lib/link.php para no actualizar ese valor.
+	
+07/09/2006
+	- Agregada condiciones legales y aceptarlas para el registro (register.php, libs/ads-credits-functions.php). benjamí
+
+05/09/2006
+	- Modificada la búsqueda (utils.php): si se busca una sola palabra busca por fecha y en modo
+	  "booleano", de forma similar a "date:"
+	- También detecta si sólo se ha puesto un URL con http://... o www.... y hace una búsqueda
+	  con "like", le mysql da resultados erróneos con el "match()".
+
+03/09/2006
+	- link.php, utils.php, comment.php: si una noticia tiene más de 7 días, muestra las fechas en vez de "fuzzy".
+	- Mejorado detección de trackbaks, preg_match('/(http:\/\/[\w-\/\.]+\/trackback\/*)/
+	  de http://curiosoperoinutil.com/
+
+02/09/2006
+	- Agregado tooltips.js y modificado comments.php para agregar los tooltips a cada #xxx en
+	  los comentarios.
+	- Optimizado backend/get_avatar.php
+	- Nuevo backend/get_avatar_url.php para usarlo desde el sneak.php, así se reduce un poco
+	  los problemas de lentitud del IE porque se conecta cada vez que hay un evento.
+
+31/08/2006
+	- Creado vote_com_img.php para los rss. Así se evitan las dos llamadas para obtener
+	  dos imágenes.
+
+30/08/2006
+	- submit.php: verifica si el url= ya está en la bbdd y lo redirecciona de ser así.
+	- Todas las imagenes que había en img/ y son utilizadas (sólo error.gif) se movieron a subdirectorios.
+	  Hacer un rf -f img/*.gif img/*.png
+
+29/08/2006
+	- promote5.php: Agregado un BONUS entre 1.0 y 2.0 a las noticias que tienen menos de dos horas
+	  y son votadas rápido. Así podrán salir antes en portada.
+	- Ampliado la longitud máxima de los urls
+		ALTER TABLE `links` CHANGE `link_url` `link_url` VARCHAR( 250 ) NOT NULL
+	- Separado los votos de los comentarios en story.php.
+	- Las pestañas se han mejorado (mnm15-1.css), no hace falta una clase adicional en shakeit.php (ul.shakeit-sub-nav)
+	- Quitada pestañas de "publicadas" en user.php, ya se muestra por colores
+
+
+28/08/2006
+	- Agregado $globals['forbidden_email_domains'] y control en check_email(), config.php y utils.php
+	- Agregado error 404 (en función not_found())
+		utils.php, story.php, user.php
+
+27/08/2006
+	- Gracias a los cambios anterioes, http://meneame.net/topcommented.php
+	  modificado el libs/html1.php
+
+Optimización IMPORTANTE:
+  - Cambio en la estructura de la BBDD: 
+  	ALTER TABLE `links` ADD `link_comments` INT( 11 ) UNSIGNED NOT NULL DEFAULT '0' AFTER `link_negatives`;
+	update links set link_comments = (select count(*) from comments where comment_link_id=link_id);
+
+  - Modificado libs/link.php, backend/comments_img.php, story.php, backend/sneaker.php para usar ese campo en vez de hacer
+    un "select count(*)" cada vez.
+  
+19/08/2006
+- backend/problem.php: verificar rango preciso de -1 a -7
+  ver http://www.masio.com.mx/2006/08/19/bug-descubierto-en-meneame-y-enchilame-y-clones-aka-fuera-bombas/
+
+15/08/2006
+- js/js/sneak03.js.php: resetea correctamente el contador de conexiones con chat o cambio de opciones
+- utils.php y varias más que lo usan: mejora de seguridad, agregada función clean_input_string() para verificar y limpiar
+    las entradas de usuario de strings. 
+- www/libs/utils.php: cambios pequeños para mejorar la interpretación de cursivas y negritas.
+
+09/08/2006
+- Resuelto problema XSS: http://www.buayacorp.com/archivos/¿meneame-vulnerable-a-ataques-xss/
+  No me agrada del todo la solución, buscaré una más "limpia".
+
+08/08/2006
+- www/trackback.php: solucionado bug en la expresión regular anti-spam.
+
+07/08/2006
+- agregado índice a la tabla 'links' para acelerar la generación de index.php
+	create index status_i on links(link_status); 
+- shakeit.php: sólo muestra las noticias de los últimos 7 días para pendientes,
+  y 4 días para descartadas y recomendadas (date_sub(....)).
+- karma3.php: ahora el karma baja muy poco si _no_ hay actividad.
+
+05/08/2006
+- www/user.php Sólo muestra las clases de IP si el usuario no es admin ni god. 
+
+03/08/2006
+- www/trackback.php Agregado control antispam http://mnm.uib.es/gallir/posts/2006/08/04/792/
+	if (preg_match('/http:\/\/[a-z0-9]\.[a-z0-9]-[^\/]+\/archives/.+\.php$/', $tb_url)) die;
+ 
+02/08/2006 
+- register.php y submit.php (medidas anti-spam y anti-abusos)
+- Fisgona y cia (cabal, sneak, telnet, backend)
+- Imágenes nuevas de fisgón
+- html1.php, los contadores de las categorias en shakeit.php
+- promote5.php (nuevo, con karma a corto y largo plazo)
+- submit.php, if ($current_user->user_karma < 7) {
+- utils.php (mejoras varias)
+- +cansina (utils.php, link.php => print_warn(), print_problem_form()
+- borrar textile.php  (y demás basura)
+- agregado adsense-story-02.php, deshabilitado por ahora, ver mnm15.css para el div
+- cambiada la forma de calcular karma de votos negativos: promote5.php
+  link.php: round(($value - $current_user->user_karma)/2);
+- quitado el url en api/check_url.php
+
