@@ -28,15 +28,15 @@ const AddCommentComponent = ({storyId}: Props) => {
         //dispatch(addCommentAsync({storyId, text, submitted: userData}));
     };
 
-    const updateText = (event: ChangeEvent<HTMLInputElement>) => {
+    const updateText = (event: ChangeEvent<HTMLTextAreaElement>) => {
         setText(event.target.value)
     };
     
     return (
         <div className="add-comment">
             <div>
-                <textarea className="form-input" onChange={updateText} cols="30" rows="10" value={text}/>
-                <Button onClick={submitComment}>{t`add_comment`}</Button>
+                <textarea className="form-input" onChange={updateText} cols={30} rows={10} value={text}/>
+                <Button buttonType="button" onClick={submitComment}>{t`add_comment`}</Button>
             </div>
             { submitError() && <ModalComponent message={commentError.error} /> }
         </div>

@@ -17,14 +17,23 @@ model Story {
   content   String
   permalink String
   link      String
+  tags      String
   createdAt DateTime  @default(now()) @map(name: "created_at")
   updatedAt     DateTime  @updatedAt @map(name: "updated_at")
   status  Status @default(QUEUED)
   owner    User   @relation(fields: [ownerId], references: [id])
   ownerId  String
+  category    Category   @relation(fields: [categoryId], references: [id])
+  categoryId  String
   comments   Comment[]
   storyVotes   StoryVote[]
   @@unique(fields: [id, ownerId], name: "id_and_ownerId")
+}
+
+model Category {
+  id        String     @default(cuid()) @id
+  name   String
+  stories Story[]
 }
 
 model Comment {

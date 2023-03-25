@@ -27,13 +27,13 @@ const Story = ({ story }: Props) => {
         <div className="news-body">
           <ul className="news-shakeit">
             <li className="mnm-published"><div>{storyVotes?.storyVotes.length} {t`votes`}</div></li>
-            <li className="shakeit"><a href="/" onClick={vote} title="Vote it!">{t`vote`}</a></li>
+            <li className="shakeit"><span onClick={vote} title="Vote it!">{t`vote`}</span></li>
           </ul>
           <h3 id="title691">
           <Link href={`/story/${id}`}>{title}</Link>
           </h3>
           <div className="news-submitted">
-            <a href={`${link}`}><strong>{link}</strong></a><br />
+            <Link href={`${link}`}><strong>{link}</strong></Link><br />
             {t`sent_by`}<strong>{user?.name}</strong> {t`published_at`} {createdAt}
           </div>
           <div className="news-body-text">
