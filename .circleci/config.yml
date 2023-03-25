@@ -27,7 +27,7 @@ jobs:
           - v1-dependencies-
 
       - run: npm install
-      - run: cypress install
+      - run: npx cypress install
 
       - save_cache:
           paths:
