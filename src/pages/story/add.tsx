@@ -19,14 +19,11 @@ export default function AddStory({}) {
   )
 }
 
-
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   //const stories = [];
-  const {data:{stories}} = await axios.get(`${process.env.API_URL}/api/story`)
   //console.log('App: ', stories)
   return {
     props: { 
-      stories,
       ...(await serverSideTranslations(locale!, ['common']))
     }
   };

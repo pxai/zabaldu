@@ -12,6 +12,7 @@
     "add": "Add Story",
     "story": "Story"
   },
+  "queued": "Queued",
   "add_comment": "Add Comment",
   "sent_by": "Sent by",
   "published_at": "Published at",

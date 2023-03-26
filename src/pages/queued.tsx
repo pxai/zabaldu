@@ -24,7 +24,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
   const stories = await prisma.story.findMany({
     where: {
       status: {
-        equals: 'PUBLISHED',
+        equals: 'QUEUED',
       },
     },
     include: {

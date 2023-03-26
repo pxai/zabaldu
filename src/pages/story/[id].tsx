@@ -1,4 +1,5 @@
 import axios from 'axios';
+import prisma from '../../lib/prisma';
 //simport styles from '@/styles/Home.module.css'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { GetStaticProps } from 'next';
@@ -31,19 +32,24 @@ const StoryPage = ({ story }: Props) => {
 
 export async function getStaticPaths() {
   return {
-    paths: [{ params: { id: '1' } } ],
+    paths: [{ params: { id: 'clfprk13t0000sbngdtbtmqj0' } } ],
     fallback: 'blocking', // true: returns null until it gets // blocking : blocks // false: 404
   }
 }
 
 export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   const { id }: any = params;
-  console.log('App getting: ', id)
-  const {data } = await axios.get(`${process.env.API_URL}/api/story/${id}`)
-  console.log('App: ', data)
+
+  const result =  await prisma.story.findUnique({
+    where: { id },
+    include: {
+      comments: true
+    },
+  });
+
   return {
     props: { 
-      story: data,
+      story: JSON.parse(JSON.stringify(result)),
       ...(await serverSideTranslations(locale!, ['common']))
     }
   };

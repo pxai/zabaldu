@@ -15,6 +15,9 @@ export default function Nav () {
         <nav>
             <Link href="/">
                 {t`home`}
+            </Link>{' | '}  
+            <Link href="/queued">              
+                {t`queued`}
             </Link>{' | '}
          { 
             !session ?

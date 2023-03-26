@@ -28,7 +28,7 @@ const SendForm = ({formValues = defaultFormFields, sendAction }: any) => {
     event.preventDefault();
     console.log("Component > About to send: ", {...formFields}) //, submitted: userData })
     try {
-      const response = await axios.post(`${process.env.API_URL}/api/story`, formFields)
+      const response = await axios.post(`/api/story`, formFields)
       router.push(`/`)
     } catch (error) {
       setSubmitError(`${(error as AxiosError).message}`)
