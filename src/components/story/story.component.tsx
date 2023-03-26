@@ -26,15 +26,15 @@ const Story = ({ story }: Props) => {
       <div className="news-summary">
         <div className="news-body">
           <ul className="news-shakeit">
-            <li className="mnm-published"><div>{storyVotes?.storyVotes.length} {t`votes`}</div></li>
+            <li className="mnm-published"><span>{storyVotes?.storyVotes.length} {t`votes`}</span></li>
             <li className="shakeit"><span onClick={vote} title="Vote it!">{t`vote`}</span></li>
           </ul>
           <h3 id="title691">
-          <Link href={`/story/${id}`}>{title}</Link>
+            <Link href={`/story/${id}`}>{title}</Link>
           </h3>
           <div className="news-submitted">
-            <Link href={`${link}`}><strong>{link}</strong></Link><br />
-            {t`sent_by`}<strong>{user?.name}</strong> {t`published_at`} {createdAt}
+            <div><Link href={`${link}`}><strong>{link}</strong></Link></div>
+            <div>{t`sent_by`}<strong>{user?.name}</strong> {t`published_at`} </div>
           </div>
           <div className="news-body-text">
             {content}
@@ -42,7 +42,7 @@ const Story = ({ story }: Props) => {
           <div className="news-details">
             <span className="tool">{comments?.length} comments</span>
             <span className="tool">tags: {tags}</span>
-            <span className="tool">category: {category}</span>
+            <span className="tool">category: {category?.name}</span>
           </div>
         </div>
       </div>
@@ -52,7 +52,7 @@ const Story = ({ story }: Props) => {
               </div>
           )
       }  
-      { storyVotes.error?.storyId === id && <ModalComponent message={storyVotes.error.message} /> }
+      { /*storyVotes.error?.storyId === id && <ModalComponent message={storyVotes.error.message} /> */}
     </>
   );
 };

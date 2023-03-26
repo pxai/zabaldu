@@ -15,13 +15,13 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
         return res.json(result)
     }
 
-    if (req.method === 'POST') {
-      console.log("API> HERE we are: ", req.body)
+    if (req.method === 'POST' && session?.user?.email) {
+      console.log("API> HERE we are: ", session?.user?.email, req.body)
       // creating a new todo.
       const title = String(req.body.title);
       const content = String(req.body.content);
       const permalink = title.toLowerCase();
-      const link = String(req.body.url);
+      const link = String(req.body.link);
       const tags = String(req.body.tags);
 
       const result = await prisma.story.create({

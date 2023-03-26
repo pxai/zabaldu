@@ -23,15 +23,15 @@ model Story {
   status  Status @default(QUEUED)
   owner    User   @relation(fields: [ownerId], references: [id])
   ownerId  String
-  category    Category   @relation(fields: [categoryId], references: [id])
-  categoryId  String
+  category Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  categoryId   String @default("clfpb52d40000sba6kgfi1o01")
   comments   Comment[]
   storyVotes   StoryVote[]
   @@unique(fields: [id, ownerId], name: "id_and_ownerId")
 }
 
 model Category {
-  id        String     @default(cuid()) @id
+  id     String     @default(cuid()) @id
   name   String
   stories Story[]
 }

@@ -6,13 +6,18 @@ export type StoryProps =  {
     link: string;
     status: string;
     tags: string;
-    category?: string;
+    category?: CategoryProps;
     createdAt: Date;
     updatedAt: Date;
     finishedAt: Date;
     user?: UserProps;
     comments?: CommentProps[]
     storyVotes?: StoryVoteProps[]
+}
+
+export type CategoryProps =  {
+    id: string;
+    name: string;
 }
 
 export type StoryVoteProps =  {
