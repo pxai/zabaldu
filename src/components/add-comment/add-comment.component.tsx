@@ -6,8 +6,8 @@ import { useSession } from 'next-auth/react';
 import { UserProps, CommentProps } from '../../../prisma/types';
 
 type Props = {
-    storyId: number
-  };
+    storyId: string
+};
 
 const AddCommentComponent = ({storyId}: Props) => {
     const { t } = useTranslation();

@@ -37,7 +37,7 @@ export async function getStaticPaths() {
 }
 
 export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
-  const { id } = params;
+  const { id }: any = params;
   console.log('App getting: ', id)
   const {data } = await axios.get(`${process.env.API_URL}/api/story/${id}`)
   console.log('App: ', data)

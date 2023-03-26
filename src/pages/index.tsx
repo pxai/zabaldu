@@ -6,7 +6,7 @@ import { useTranslation } from 'next-i18next'
 import Layout from '../components/layout';
 import StoriesComponent from '../components/stories/stories.component';
 
-export default function Home({stories}) {
+export default function Home({stories}: any) {
   const { t } = useTranslation()
 
   return (
