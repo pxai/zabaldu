@@ -17,6 +17,12 @@ yarn dev
 pnpm dev
 ```
 
+Hau lehen istorioa da
+Funtzionatzen al du? Ez det uste, baina lehen urratsa izando da. Ezerregatik x berpizkundea.
+https://zabaldu.net/
+zabaldu, dev
+general
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.

@@ -173,6 +173,6 @@ mockServer.onPost(/\/api\/comment\/[0-9]+\/vote/).reply(function (config) {
 });
 
 
-
+mockServer.resetHistory();
 
 export default mockServer;
