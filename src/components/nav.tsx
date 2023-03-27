@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
 import { useTranslation } from 'next-i18next'
+import Image from 'next/image'
 
 export default function Nav () {
     const { t } = useTranslation();
@@ -23,7 +24,7 @@ export default function Nav () {
         <>
         <div id="logo">
           <Link href='/'>
-              <img src="/zabaldu.png" />
+              <Image src="/zabaldu.png" alt="zabaldu.net"/>
           </Link>
         </div>
         <div id="header">
