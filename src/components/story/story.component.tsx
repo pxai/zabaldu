@@ -13,7 +13,7 @@ type Props = {
 const Story = ({ story }: Props) => {
   const { data: session, status } = useSession();
   const [currentUser, setCurrentUser] = useState<UserProps>(session?.user as UserProps)
-
+  const userName = currentUser?.name ? currentUser?.name.split(" ")[0] : 'user';
   const { t } = useTranslation();
   const { id, title, content, link, permalink, createdAt, user, comments, tags, category } = story;
   const storyVotes: any = { storyVotes: []};
@@ -34,7 +34,7 @@ const Story = ({ story }: Props) => {
           </h3>
           <div className="news-submitted">
             <div><Link href={`${link}`}><strong>{link}</strong></Link></div>
-            <div>{t`sent_by`}<strong>{user?.name}</strong> {t`published_at`} </div>
+            <div>{t`sent_by`} <strong>{userName}</strong> {t`published_at`} <span>{`${createdAt}`}</span></div>
           </div>
           <div className="news-body-text">
             {content}

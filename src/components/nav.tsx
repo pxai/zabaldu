@@ -11,32 +11,60 @@ export default function Nav () {
     const isActive: (pathname: string) => boolean = (pathname) =>
     router.pathname === pathname;
 
+    const handleChange = () => {
+       
+      }
+    
+      const handleSearch = () => {
+
+      }
+
     return (
-        <nav>
-            <Link href="/">
-                {t`home`}
-            </Link>{' | '}  
-            <Link href="/queued">              
-                {t`queued`}
-            </Link>{' | '}
-         { 
-            !session ?
-                <Link href="/api/auth/signin" data-active={isActive('/signup')}>
-                    {t`log_in`}
-                </Link>
-                :
-                <>
-                    <Link href="/profile" data-active={isActive('/profile')}>
-                        {t`profile`}
-                    </Link>{' | '}
-                    <Link href="/story/add" data-active={isActive('/profile')}>
+        <>
+        <div id="logo">
+          <Link href='/'>
+              <img src="/zabaldu.png" />
+          </Link>
+        </div>
+        <div id="header">
+          <ul>
+            <li>
+                <Link href="/queued">              
+                    {t`queued`}
+                </Link>{' | '}
+            </li>
+          {!session ? (
+            <>
+                <li>
+                <Link href="/story/add" data-active={isActive('/profile')}>
                         {t`story.add`}
-                    </Link>{' | '}
-                    <Link href="/api/auth/signout" data-active={isActive('/signup')}>
-                        {t`logout`}
-                    </Link>
-                </>
-         }
-        </nav>
+                </Link>
+              </li>
+              <li>
+                <Link href="/profile" data-active={isActive('/profile')}>
+                        {t`profile`}
+                </Link>
+              </li>
+            </>
+          ) : (
+            <>
+              <li><Link href="/api/auth/signin" data-active={isActive('/signup')}>
+                    {t`log_in`}
+                </Link></li>
+            </>
+
+          )}
+          <li>
+            <div>
+              <input name="search" placeholder="..." type="text" onChange={handleChange} onKeyDown={handleSearch}/>
+            </div>
+          </li>
+          </ul>
+        </div>
+        <div id="nav-string">
+          <div>» <Link href='/'><strong>Zabaldu</strong></Link></div>
+        </div>
+    </>
+
     )
 }

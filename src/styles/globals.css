@@ -64,7 +64,7 @@ html > body, html > body #container {
 /* footer at bottom workaround: end */
 
 #logo {
-	margin: 25px 10px;
+	margin: 2px 10px;
 	width: 250px;
 	height: 58px;
 	position: absolute;
@@ -493,15 +493,15 @@ ul.news-details li li {
 /* common */
 
 /** IE& freaking error */
-.mnm-published a:first-line {
+.mnm-published span:first-line {
 	font-size: 190%;
 	letter-spacing: -1px;
 }
-.mnm-queued a:first-line {
+.mnm-queued span:first-line {
 	font-size: 190%;
 	letter-spacing: -1px;
 }
-.mnm-discarded a:first-line {
+.mnm-discarded span:first-line {
 	font-size: 190%;
 	letter-spacing: -1px;
 }
@@ -514,69 +514,69 @@ ul.news-details li li {
 	border: none;
 }
 
-.mnm-published a:hover, .mnm-queued a:hover, .mnm-discarded a:hover {
+.mnm-published span:hover, .mnm-queued a:hover, .mnm-discarded a:hover {
 	color: #666;
 }
 
 /* published */
-.mnm-published a {
+.mnm-published span {
 	background-color: #4682b4;
 	color: #fff;
 	display: block;
 	padding: 6px 0;
 	text-decoration: none;
 	margin-bottom: 0;
-	background-image: url(https://raw.githubusercontent.com/pxai/zabaldu/master/public/elmnm-p03.png);
+	background-image: url(/elmnm-p03.png);
 	background-repeat: no-repeat;
 	background-position: top left;
 }
 
 /* queued */
-.mnm-queued a {
+.mnm-queued span {
 	background-color: #fff;
 	color: #4682b4;
 	display: block;
 	padding: 6px 0;
 	text-decoration: none;
 	margin-bottom: 0;
-	background-image: url(/web/20070628141549im_/http://www.zabaldu.com/img/common/elmnm-p03a.png);
+	background-image: url(/elmnm-p03.png);
 	background-repeat: no-repeat;
 	background-position: top left;
 	border: 1px solid #4682b4;
 }
 
-.mnm-queued a:first-line {
+.mnm-queued span:first-line {
 	font-weight: bold;
 }
 
 /* discarded */
-.mnm-discarded a {
+.mnm-discarded span {
 	background-color: #d9aa95;
 	color: #fff;
 	display: block;
 	padding: 6px 0;
 	text-decoration: none;
 	margin-bottom: 0;
-	background-image: url(/web/20070628141549im_/http://www.zabaldu.com/img/common/elmnm-p03b.png);
+	background-image: url(/elmnm-p03b.png);
 	background-repeat: no-repeat;
 	background-position: top left;
 	border: 1px solid #d9aa95;
 }
 
-.mnm-discarded a:first-line {
+.mnm-discarded span:first-line {
 	font-weight: bold;
 }
 
 /* vote box */
-.menealo {
+.shakeit {
 	background: #ffc8af 0 0;
 }
 
-* html .menealo {
+* html .shakeit {
 	background: #90b3d0 1px 1px;
 }
 
-.menealo a, .menealo span {
+.shakeit span, .menealo span {
 	display: block;
 	padding: 4px 0 4px 0;
 	border-width: 1px;

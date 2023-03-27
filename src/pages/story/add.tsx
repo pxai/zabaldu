@@ -12,7 +12,6 @@ export default function AddStory({}) {
   return (
     <Layout>
       <main className="main">
-      <h1>{t`site.name`}</h1>
       <SendForm  />
       </main>
     </Layout>
@@ -20,8 +19,6 @@ export default function AddStory({}) {
 }
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
-  //const stories = [];
-  //console.log('App: ', stories)
   return {
     props: { 
       ...(await serverSideTranslations(locale!, ['common']))

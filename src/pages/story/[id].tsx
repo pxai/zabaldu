@@ -18,7 +18,7 @@ type Props = {
 const StoryPage = ({ story }: Props) => {
   const { data: session, status } = useSession();
   const [currentUser, setCurrentUser] = useState<UserProps>(session?.user as UserProps)
-
+  console.log("Selected story: ", story)
   return (
     <Layout>
       <main className="main">
@@ -43,7 +43,10 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   const result =  await prisma.story.findUnique({
     where: { id },
     include: {
-      comments: true
+      comments: true,
+      category: {
+        select: { name: true }
+      }
     },
   });
 

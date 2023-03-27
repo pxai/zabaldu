@@ -11,8 +11,7 @@ export default function Home({stories}: any) {
   return (
     <Layout>
       <main className="main">
-      <h1>{t`site.name`}</h1>
-      <StoriesComponent stories={stories} status="published" />
+        <StoriesComponent stories={stories} status="published" />
       </main>
     </Layout>
   )
