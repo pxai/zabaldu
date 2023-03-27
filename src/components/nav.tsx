@@ -24,7 +24,7 @@ export default function Nav () {
         <>
         <div id="logo">
           <Link href='/'>
-              <Image src="/zabaldu.png" alt="zabaldu.net"/>
+              <Image src="/zabaldu.png" alt="zabaldu.net" width="250" height="60" />
           </Link>
         </div>
         <div id="header">
@@ -34,7 +34,7 @@ export default function Nav () {
                     {t`queued`}
                 </Link>{' | '}
             </li>
-          {!session ? (
+          {session ? (
             <>
                 <li>
                 <Link href="/story/add" data-active={isActive('/profile')}>
