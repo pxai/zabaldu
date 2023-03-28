@@ -32,7 +32,7 @@ const StoryPage = ({ story }: Props) => {
 
 export async function getStaticPaths() {
   return {
-    paths: [{ params: { id: 'clfprk13t0000sbngdtbtmqj0' } } ],
+    paths: [], //[{ params: { id: 'clfprk13t0000sbngdtbtmqj0' } } ],
     fallback: 'blocking', // true: returns null until it gets // blocking : blocks // false: 404
   }
 }

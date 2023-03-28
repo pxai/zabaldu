@@ -9,10 +9,14 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
       const result =  await prisma.story.findUnique({
         where: { id },
         include: {
-          comments: true
+          comments: {
+            include: {
+              owner: true,
+            },
+          },
         },
       });
-
+      console.log("Dake Ramón: ", result)
       return res.json(result)
   }
 }

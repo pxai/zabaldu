@@ -8,6 +8,10 @@ let storySchema = object({
     category: string().min(3).required(),
   });
 
+const commentSchema = object({
+  content: string().min(3).required(),
+});
+
 export interface StoryFormData {
     title: { value: string };
     content: { value: string };
@@ -24,7 +28,12 @@ export type StoryModel = {
   category: string;
 }
 
-const validateStory = async (story: any) => await storySchema.validate(story);
+export type CommentModel = {
+  content: string;
+}
 
-export { storySchema, validateStory };
+const validateStory = async (story: any) => await storySchema.validate(story);
+const validateComment = async (comment: any) => await commentSchema.validate(comment);
+
+export { storySchema, commentSchema, validateStory, validateComment };
   

@@ -6,8 +6,7 @@ import Button from '../button/button';
 import { useRouter } from 'next/router'
 import ModalComponent from '../modal/modal.component';
 import './send-form.module.scss';
-import { ErrorMessage, FormikHelpers, useFormik } from 'formik';
-import * as yup from 'yup';
+import { useFormik } from 'formik';
 import { storySchema, StoryModel } from '@/pages/api/story/schema';
 
 const defaultFormFields = {
@@ -25,18 +24,6 @@ const SendForm = ({formValues = defaultFormFields, sendAction }: any) => {
   const [submitError, setSubmitError] = useState<string>('');
   const router = useRouter()
   const { title, link, content, tags, category } = formFields;
-
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    console.log("Component > About to send: ", {...formFields}) //, submitted: userData })
-    try {
-      const response = await axios.post(`/api/story`, formFields)
-      router.push(`/`)
-    } catch (error) {
-      setSubmitError(`${(error as AxiosError).message}`)
-      console.log('Error on submit ', error);
-    }
-  };
 
   const formik = useFormik<StoryModel>({
     initialValues: formFields,
@@ -60,13 +47,6 @@ const SendForm = ({formValues = defaultFormFields, sendAction }: any) => {
   }, [])
   
 
-  //const submitError = () =>  !storyError.isLoading && storyError.error;
-
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-
-    setFormFields({ ...formFields, [name]: value });
-  };
   return (
     <div className="send-form">
       <h3>{t`send_story`}</h3>
@@ -82,14 +62,14 @@ const SendForm = ({formValues = defaultFormFields, sendAction }: any) => {
         />
     {formik.touched.title && formik.errors.title && <div>{formik.errors.title}</div>}
         <FormInput
-          label={t`text`}
+          label={t`content`}
           type='text'
           required
           onChange={formik.handleChange}
           name='content'
           value={formik.values.content}
         />
-
+    {formik.touched.content && formik.errors.content && <div>{formik.errors.content}</div>}
         <FormInput
           label={t`link`}
           type='text'
@@ -98,7 +78,7 @@ const SendForm = ({formValues = defaultFormFields, sendAction }: any) => {
           name='link'
           value={formik.values.link}
         />
-
+    {formik.touched.link && formik.errors.link && <div>{formik.errors.link}</div>}
         <FormInput
           label={t`tags`}
           type='text'
@@ -107,6 +87,7 @@ const SendForm = ({formValues = defaultFormFields, sendAction }: any) => {
           name='tags'
           value={formik.values.tags}
         />
+        {formik.touched.tags && formik.errors.tags && <div>{formik.errors.tags}</div>}
 
         <FormInput
           label={t`category`}
@@ -116,9 +97,10 @@ const SendForm = ({formValues = defaultFormFields, sendAction }: any) => {
           name='category'
           value={formik.values.category}
         />
+        {formik.touched.category && formik.errors.category && <div>{formik.errors.category}</div>}
         <Button type='submit'>{t`submit_story`}</Button>
       </form>
-      { /*submitError() && <ModalComponent message={storyError.error} />*/ }
+      { submitError && <ModalComponent message={submitError} /> }
     </div>
   );
 };
