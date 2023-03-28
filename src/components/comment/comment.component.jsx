@@ -7,7 +7,7 @@ import EditCommentComponent from "../edit-comment/edit-comment.component";
 const CommentComponent = ({comment, number}) => {
     const { t } = useTranslation();
     const [edit, setEdit] = useState(false)
-    const {id, content, submitted, createdAt } = comment;
+    const {id, content, submitted, createdAt, user } = comment;
 
     useEffect(() => {
         console.log("updateCommentAsync> dale:", edit, {...comment})
@@ -49,7 +49,7 @@ const CommentComponent = ({comment, number}) => {
                         </div>
                         <div className="comment-info">  
                             <a href="" onClick={voteUp}> + </a> | <a href="" onClick={voteDown}> - </a>
-                            {t`sent_by`} <Link href={`/user/1`}>{comment?.owner}</Link> {t`at`} {createdAt}
+                            {t`sent_by`} <Link href={`/user/1`}>{comment?.owner.name}</Link> {t`at`} {createdAt}
                         </div>
                         { /*submitted?.user_id === currentUser?.uid && (
                                 <div>

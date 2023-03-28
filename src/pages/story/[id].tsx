@@ -37,18 +37,26 @@ export async function getStaticPaths() {
   }
 }
 
+
 export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   const { id }: any = params;
 
   const result =  await prisma.story.findUnique({
     where: { id },
     include: {
-      comments: true,
+      comments: {
+        include: {
+          owner: {
+            select: { name: true }
+          }
+        }
+      },
       category: {
         select: { name: true }
       }
     },
   });
+console.log("Check out this result: ", JSON.stringify(result));
 
   return {
     props: { 

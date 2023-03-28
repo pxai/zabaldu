@@ -2,6 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { getSession } from 'next-auth/react';
 import prisma from '../../../lib/prisma';
 import {validateStory} from './schema';
+import sanitizeHtml from 'sanitize-html';
 
 export default async function handle(req: NextApiRequest, res: NextApiResponse) {
     const session = await getSession({ req });
@@ -26,11 +27,11 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
         }
 
         // creating a new todo.
-        const title = String(req.body.title);
-        const content = String(req.body.content);
+        const title = sanitizeHtml(String(req.body.title));
+        const content = sanitizeHtml(String(req.body.content));
         const permalink = title.toLowerCase();
-        const link = String(req.body.link);
-        const tags = String(req.body.tags);
+        const link = sanitizeHtml(String(req.body.link));
+        const tags = sanitizeHtml(String(req.body.tags));
 
         const result = await prisma.story.create({
             data: {
