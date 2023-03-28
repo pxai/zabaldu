@@ -2,6 +2,7 @@
 import ModalComponent from "../modal/modal.component";
 import { useTranslation } from 'next-i18next'
 import { useState } from 'react';
+import axios, { AxiosError } from 'axios';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import { UserProps, StoryProps } from '../../../prisma/types';
@@ -12,13 +13,23 @@ type Props = {
 
 const Story = ({ story }: Props) => {
   const { data: session, status } = useSession();
+  const [currentVotes, setCurrentVotes] = useState<number>(story.storyVotes?.length || 0)
   const [currentUser, setCurrentUser] = useState<UserProps>(session?.user as UserProps)
   const userName = currentUser?.name ? currentUser?.name.split(" ")[0] : 'user';
+  const [storyVoteResult, setStoryVoteResult] = useState<string>('');
   const { t } = useTranslation();
-  const { id, title, content, link, permalink, createdAt, user, comments, tags, category } = story;
-  const storyVotes: any = { storyVotes: []};
-  const vote = () => {
 
+  const { id, title, content, link, permalink, createdAt, user, comments, tags, category } = story;
+
+  const vote = async () => {
+      console.log("Component > About to vote: ", story.id) //, submitted: userData })
+      try {
+        const response = await axios.post(`/api/story/${story.id}/vote`)
+        setCurrentVotes(currentVotes + 1);
+      } catch (error) {
+        setStoryVoteResult(`${(error as AxiosError).message}`)
+        console.log('Error on submit ', error);
+      }
   }
 
   return (
@@ -26,7 +37,7 @@ const Story = ({ story }: Props) => {
       <div className="news-summary">
         <div className="news-body">
           <ul className="news-shakeit">
-            <li className="mnm-published"><span>{storyVotes?.storyVotes.length} {t`votes`}</span></li>
+            <li className="mnm-published"><span>{currentVotes} {t`votes`}</span></li>
             <li className="shakeit"><span onClick={vote} title="Vote it!">{t`vote`}</span></li>
           </ul>
           <h3 id="title691">
@@ -52,7 +63,7 @@ const Story = ({ story }: Props) => {
               </div>
           )
       }  
-      { /*storyVotes.error?.storyId === id && <ModalComponent message={storyVotes.error.message} /> */}
+      { storyVoteResult != '' && <ModalComponent message={storyVoteResult} /> }
     </>
   );
 };

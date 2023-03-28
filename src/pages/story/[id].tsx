@@ -53,7 +53,8 @@ export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
       },
       category: {
         select: { name: true }
-      }
+      },
+      storyVotes: true
     },
   });
 console.log("Check out this result: ", JSON.stringify(result));

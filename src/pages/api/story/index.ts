@@ -39,8 +39,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
                 owner: { connect: { email: String(session?.user?.email) } },
             },
         })
-        console.log("API: ", result)
-        return res.json(result)
 
+        return res.json(result)
   }
 }

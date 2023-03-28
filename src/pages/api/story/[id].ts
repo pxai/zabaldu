@@ -16,6 +16,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
               }
             },
           },
+          storyVotes: true
         },
       });
       console.log("Dake Ramón: ", result)

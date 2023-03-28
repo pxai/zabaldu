@@ -28,6 +28,7 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
     },
     include: {
       comments: true, 
+      storyVotes: true
     },
   }) 
   //const {data:{stories}} = await axios.get(`${process.env.API_URL}/api/story`)
