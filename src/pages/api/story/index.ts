@@ -3,6 +3,8 @@ import { getSession } from 'next-auth/react';
 import prisma from '../../../lib/prisma';
 import {validateStory} from './schema';
 import sanitizeHtml from 'sanitize-html';
+import moment from 'moment';
+const MINUTES_TO_ALLOW_NEW_STORY = 30;
 
 export default async function handle(req: NextApiRequest, res: NextApiResponse) {
     const session = await getSession({ req });
@@ -26,6 +28,23 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
           return res.status(500).send(error)
         }
 
+        const user = await prisma.user.findUnique({
+          where: { email: String(session?.user?.email) }
+        });
+
+        const latest = await prisma.story.findFirst({orderBy: [
+            {
+              createdAt: 'desc',
+            },
+          ],
+          where: { ownerId: user?.id  },
+        })
+
+        if (latest && isTooRecent(latest?.createdAt)) {
+          console.log("Too recent ", user, latest)
+          return res.status(500).send('Too recent story, wait ' + MINUTES_TO_ALLOW_NEW_STORY)
+        }
+
         // creating a new todo.
         const title = sanitizeHtml(String(req.body.title));
         const content = sanitizeHtml(String(req.body.content));
@@ -42,4 +61,13 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
 
         return res.json(result)
   }
+}
+
+function isTooRecent (createdAt: Date) {
+  const now = moment(new Date());
+  const end = moment(createdAt); 
+  const duration = moment.duration(now.diff(end));
+  const minutes = duration.asMinutes();
+
+  return minutes < MINUTES_TO_ALLOW_NEW_STORY;
 }

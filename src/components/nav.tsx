@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useSession } from 'next-auth/react';
+import { useSession, signOut } from 'next-auth/react';
 import { useTranslation } from 'next-i18next'
 import Image from 'next/image'
 
@@ -18,6 +18,10 @@ export default function Nav () {
     
       const handleSearch = () => {
 
+      }
+
+      const handleSignOut = () => {
+        signOut();
       }
 
     return (
@@ -46,11 +50,16 @@ export default function Nav () {
                         {t`profile`}
                 </Link>
               </li>
+              <li>
+                <a onClick={handleSignOut}>
+                        {t`sign_out`}
+                </a>
+              </li>
             </>
           ) : (
             <>
               <li><Link href="/api/auth/signin" data-active={isActive('/signup')}>
-                    {t`log_in`}
+                    {t`sign_in`}
                 </Link></li>
             </>
 
