@@ -5,6 +5,7 @@
 generator client {
   provider = "prisma-client-js"
   binaryTargets = ["native"]
+  previewFeatures = ["extendedWhereUnique"]
 }
 
 datasource db {
@@ -73,6 +74,7 @@ model CommentVote {
   comment Comment @relation(fields: [commentId], references: [id], onDelete: Cascade)
   commentId   String
   @@unique(fields: [id, ownerId], name: "id_and_ownerId")
+  @@unique(fields: [commentId, ownerId], name: "commentId_and_ownerId")
 }
 
 enum Status {

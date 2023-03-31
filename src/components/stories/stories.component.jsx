@@ -1,8 +1,7 @@
 import StoryComponent from '../story/story.component';
-import { useState } from 'react';
 import { useTranslation } from 'next-i18next'
 
-const StoriesComponent = ({ stories, status }) => {
+const StoriesComponent = ({ stories }) => {
   const { t } = useTranslation();
 
   return (

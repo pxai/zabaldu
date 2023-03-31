@@ -1,10 +1,11 @@
 import { useContext, useState, useEffect } from 'react';
 import Link from 'next/link';
+import axios, { AxiosError } from 'axios';
 import { useTranslation } from 'next-i18next'
 import ModalComponent from "../modal/modal.component";
 import EditCommentComponent from "../edit-comment/edit-comment.component";
 
-const CommentComponent = ({comment, number}) => {
+const CommentComponent = ({comment, number}: any) => {
     const { t } = useTranslation();
     const [edit, setEdit] = useState(false)
     const {id, content, submitted, createdAt, user } = comment;
@@ -15,28 +16,35 @@ const CommentComponent = ({comment, number}) => {
         console.log("updateCommentAsync> dale now:", edit, {...comment})
       }, [comment])
 
-    const voteUp = (event) => {
+    const voteUp = (event: React.MouseEvent<HTMLElement>) => {
         event.preventDefault();
         vote(1);
     }
 
-    const voteDown = (event) => {
+    const voteDown = (event: React.MouseEvent<HTMLElement>) => {
         event.preventDefault();
         vote(-1);
     }
 
-    const vote = (vote) => {
-
+    const vote = async (value: number) => {
+        console.log("Component > About to vote: ", comment.id, value) //, submitted: userData })
+        try {
+          const response = await axios.post(`/api/comment/${comment.id}/vote`, {value})
+          //setCurrentVotes(currentVotes + 1);
+        } catch (error) {
+          //setStoryVoteResult(`${(error as AxiosError).message}`)
+          console.log('Error on submit ', error);
+        }
     }
 
-    const deleteComment = (e) => {
-        e.preventDefault();
-    }
+    // const deleteComment = (e) => {
+    //     e.preventDefault();
+    // }
 
-    const updateComment = (e) => {
-        e.preventDefault();
-        setEdit(true)
-    }
+    // const updateComment = (e) => {
+    //     e.preventDefault();
+    //     setEdit(true)
+    // }
 
     return edit 
                 ? (<li><EditCommentComponent comment={comment}/></li>)
