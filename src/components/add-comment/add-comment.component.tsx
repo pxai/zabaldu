@@ -9,14 +9,15 @@ import { useFormik } from 'formik';
 import { commentSchema, CommentModel } from '@/pages/api/story/schema';
 
 type Props = {
-    storyId: string
+    storyId: string;
+    addComment: Function;
 };
 
 const defaultFormFields = {
     content: '',
   }
 
-const AddCommentComponent = ({storyId}: Props) => {
+const AddCommentComponent = ({storyId, addComment}: Props) => {
     const { t } = useTranslation();
     const [text, setText] = useState('');
     const [formFields, setFormFields] = useState(defaultFormFields);
@@ -24,6 +25,7 @@ const AddCommentComponent = ({storyId}: Props) => {
     const [submitError, setSubmitError] = useState<string>('');
     const { data: session, status } = useSession();
     const [currentUser, setCurrentUser] = useState<UserProps>(session?.user as UserProps);
+    const [toggleComment, setToggleComment] = useState<boolean>(true);
     const userData = { user: currentUser.name, user_id: currentUser.id};
 
 
@@ -33,6 +35,8 @@ const AddCommentComponent = ({storyId}: Props) => {
           console.log("Component > About to send: ", storyId, {...values}) //, submitted: userData })
           try {
             const response = await axios.post(`/api/story/${storyId}/comment`, values)
+            addComment(response.data);
+            setToggleComment(true);
           } catch (error) {
             setSubmitError(`${(error as AxiosError).message}`)
             console.log('Error on submit ', error);
@@ -41,10 +45,17 @@ const AddCommentComponent = ({storyId}: Props) => {
         validationSchema: commentSchema,
       });
 
-   useEffect(() => {
-       // if (commentError?.createdComment !== null && !commentError?.error)
-            //setText('')
-    }, [commentError])
+    const openFormHandle = (event: React.MouseEvent<HTMLElement>) => {
+      setToggleComment(!toggleComment);
+    };
+
+    if (toggleComment) {
+      return (
+        <div className="add-comment">
+          <Button type='button' onClick={openFormHandle}>{t`add_comment`}</Button>
+        </div>
+      )
+    }
     
     return (
         <div className="add-comment">
@@ -59,7 +70,7 @@ const AddCommentComponent = ({storyId}: Props) => {
                 value={formik.values.content}
                 />
                 {formik.touched.content && formik.errors.content && <div>{formik.errors.content}</div>}
-                <Button type='submit'>{t`submit_story`}</Button>
+                <Button type='submit'>{t`add_comment`}</Button>
             </form>
             </div>
 

@@ -31,8 +31,16 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
                 owner: { connect: { email: String(session?.user?.email) } },
             },
         })
-        console.log("API: ", result)
-        return res.json(result)
+
+        const comment =  await prisma.comment.findUnique({
+          where: { id: result.id },
+          include: {
+            owner: true,
+            commentVotes: true
+          },
+        });
+        console.log("API: ", comment)
+        return res.json(comment)
 
   }
 }

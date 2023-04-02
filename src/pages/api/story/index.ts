@@ -4,7 +4,7 @@ import prisma from '../../../lib/prisma';
 import {validateStory} from './schema';
 import sanitizeHtml from 'sanitize-html';
 import moment from 'moment';
-const MINUTES_TO_ALLOW_NEW_STORY = 30;
+const MINUTES_TO_ALLOW_NEW_STORY = process.env.MINUTES_TO_ALLOW_NEW_STORY || 30;
 
 export default async function handle(req: NextApiRequest, res: NextApiResponse) {
     const session = await getSession({ req });

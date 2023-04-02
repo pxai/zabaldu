@@ -9,7 +9,7 @@ import Layout from '../../components/layout';
 import StoryComponent from '../../components/story/story.component';
 import CommentsComponent from '../../components/comments/comments.component';
 import AddCommentComponent from '../../components/add-comment/add-comment.component';
-import { UserProps, StoryProps } from '../../../prisma/types';
+import { UserProps, StoryProps, CommentProps } from '../../../prisma/types';
 
 type Props = {
   story: StoryProps
@@ -17,14 +17,23 @@ type Props = {
 
 const StoryPage = ({ story }: Props) => {
   const { data: session, status } = useSession();
+  const [addedComments, setAddedComments] = useState<CommentProps[]>([]);
   const [currentUser, setCurrentUser] = useState<UserProps>(session?.user as UserProps)
+
+  const addComment = (comment: CommentProps) => {
+    console.log("Adding comment: ", comment)
+    setAddedComments([...addedComments, comment])
+  }
+
   console.log("Selected story: ", story)
   return (
     <Layout>
       <main className="main">
         <StoryComponent story={story} />
-        <CommentsComponent comments={story.comments} pages={story.comments?.length}/>
-        { currentUser && <AddCommentComponent storyId={story.id}/>}
+        <CommentsComponent 
+          comments={[...addedComments, ...story.comments as CommentProps[]]} 
+          pages={[...addedComments, ...story.comments as CommentProps[]].length}/>
+        { currentUser && <AddCommentComponent storyId={story.id} addComment={addComment} />}
       </main>
     </Layout>
   )

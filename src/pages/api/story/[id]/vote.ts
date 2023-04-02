@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { getSession } from 'next-auth/react';
 import prisma from '../../../../lib/prisma';
 
-const VOTE_LIMIT_TO_PUBLISH_STORY = 2;
+const VOTE_LIMIT_TO_PUBLISH_STORY = process.env.VOTE_LIMIT_TO_PUBLISH_STORY || 2;
 
 export default async function handle(req: NextApiRequest, res: NextApiResponse) {
     const session = await getSession({ req });
