@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Script from 'next/script'
 
-export default function Header () {
+export default function Footer () {
     return <footer>
         <Link href="/about">By Zabaldu</Link>
         <Script async src="https://www.googletagmanager.com/gtag/js?id=G-89SBRYJM9Z" strategy="afterInteractive"></Script>
