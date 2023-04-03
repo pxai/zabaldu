@@ -3,9 +3,10 @@ import { useTranslation } from 'next-i18next'
 import CommentComponent from "../comment/comment.component";
 import PaginatorComponent from "../paginator/paginator.component";
 
-const CommentsComponent = ({comments, pages = 1}) => {
+const CommentsComponent = ({comments}) => {
     const { t } = useTranslation();
     const [page, setPage] = useState(0);
+    const pages = Math.ceil(comments.length / 20);
 
     return (
         <div id="comments">
