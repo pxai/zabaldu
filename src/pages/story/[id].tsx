@@ -32,7 +32,7 @@ const StoryPage = ({ story }: Props) => {
         <StoryComponent story={story} />
         <CommentsComponent 
           comments={[...addedComments, ...story.comments as CommentProps[]]} 
-          pages={[...addedComments, ...story.comments as CommentProps[]].length}/>
+        />
         { currentUser && <AddCommentComponent storyId={story.id} addComment={addComment} />}
       </main>
     </Layout>

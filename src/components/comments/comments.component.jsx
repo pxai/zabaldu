@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useTranslation } from 'next-i18next'
 import CommentComponent from "../comment/comment.component";
-import PaginatorComponent from "../paginator/paginator.component";
+import CommentPaginatorComponent from "../paginator/comment-paginator.component";
 
 const CommentsComponent = ({comments}) => {
     const { t } = useTranslation();
@@ -16,7 +16,7 @@ const CommentsComponent = ({comments}) => {
                    <CommentComponent comment={comment} key={comment.id} number={(page * 10 ) + i+1} />
                 )}
             </ol>
-            <PaginatorComponent pages={pages} setPage={setPage} />
+            <CommentPaginatorComponent pages={pages} setPage={setPage} />
         </div>
     )
 }

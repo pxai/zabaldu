@@ -1,12 +1,9 @@
 import { Pagination, PageButton } from "./paginator.styles";
-import { useRouter } from 'next/router'
 
-const PaginatorComponent = ({pages, setPage}) => {
-    const router = useRouter()
+const CommentPaginatorComponent = ({pages, setPage}) => {
     const changePage = (page) => (event) => {
         event.preventDefault();
         setPage(page)
-        router.push(`/story/page/{page}`)
     };
     if (pages <= 1) return null;
     return (
@@ -20,4 +17,4 @@ const PaginatorComponent = ({pages, setPage}) => {
     )
 }
 
-export default PaginatorComponent;
+export default CommentPaginatorComponent;

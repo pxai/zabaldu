@@ -1,9 +1,9 @@
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { GetStaticProps } from 'next';
-import prisma from '../lib/prisma';
+import prisma from '../../../lib/prisma';
 import { useTranslation } from 'next-i18next'
-import Layout from '../components/layout';
-import StoriesComponent from '../components/stories/stories.component';
+import Layout from '../../../components/layout';
+import StoriesComponent from '../../../components/stories/stories.component';
 
 export default function Home({stories}: any) {
   const { t } = useTranslation()
@@ -17,8 +17,19 @@ export default function Home({stories}: any) {
   )
 }
 
-export const getStaticProps: GetStaticProps = async ({ locale }) => {
+
+const STORY_PAGINATION = process.env.STORY_PAGINATION || 10;
+
+export async function getStaticPaths() {
+  return {
+    paths: [{ params: { page: '0' } }, { params: { page: '1' } }, { params: { page: '2' } }],
+    fallback: 'blocking', // true: returns null until it gets // blocking : blocks // false: 404
+  }
+}
+
+export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
   //const stories = [];
+  const page: number = params?.page && Number.isInteger(+params?.page) ? +params.page : 0
   const stories = await prisma.story.findMany({
     where: {
       status: {
@@ -34,8 +45,8 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
         createdAt: 'desc',
       },
     ],
-    skip: 0,
-    take: 10,
+    skip: page * 10,
+    take: +STORY_PAGINATION,
   }) 
   //const {data:{stories}} = await axios.get(`${process.env.API_URL}/api/story`)
   console.log('App: ', stories)
