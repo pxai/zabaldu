@@ -42,7 +42,7 @@ export default function About() {
 
 <li>
 <h4>Nola bozkatu albisteak?</h4>
-<p>Jo <a href="/queued"><em>&quot;ilarakoak zabaldu&quot;</em></a> atalera eta argitaratu gabe dauden albisteak ikusiko dituzu, bidalpen dataren araberako hurrenkera beherakorrarekin. Gehien gustatzen zaizkizunak edo garrantzitsuenak baino ez dituzu &quot;zabaldu&quot; behar, horrela boto nahikoa jasotzen dituztenak agertuko dira hasierako orrialdean.</p>
+<p>Jo <Link href="/queued"><em>&quot;ilarakoak zabaldu&quot;</em></Link> atalera eta argitaratu gabe dauden albisteak ikusiko dituzu, bidalpen dataren araberako hurrenkera beherakorrarekin. Gehien gustatzen zaizkizunak edo garrantzitsuenak baino ez dituzu &quot;zabaldu&quot; behar, horrela boto nahikoa jasotzen dituztenak agertuko dira hasierako orrialdean.</p>
 </li>
 
 

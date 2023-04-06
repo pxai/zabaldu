@@ -9,7 +9,7 @@ const SelectInput = ({ label, values, ...otherProps }: any) => {
           {...otherProps}
         >
           {values.map( (category: CategoryProps) =>
-            <option value={category.id}>{category.name}</option>
+            <option key={category.id} value={category.id}>{category.name}</option>
           )}
         </select>
       {label && (
