@@ -1,6 +1,7 @@
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { GetStaticProps } from 'next';
-import prisma from '../lib/prisma';
+import Image from 'next/image';
+import Link from 'next/link';
 import { useTranslation } from 'next-i18next'
 import Layout from '../components/layout';
 
@@ -10,13 +11,18 @@ export default function About() {
   return (
     <Layout>
       <main className="main">
-      Zabaldu.net
+
       <h2 className="faq-title">Ohiko galderak</h2>
 <div id="faq-contents">
+<div>
+        <Image src="/gauss.jpg" alt="Txo, obretan Gauss, lol" title="" width="60" height="100" />
+      
+        Txo, obretan gaus, lol
+      </div>
 <ol>
 <li>
 <h4>Zer da zabaldu.net?</h4>
-<p>Zabaldu.com-en berpizkundea. Interneten aurkitutako albiste interesgarrienak zabaltzeko aukera ematen duen sistema da. Edozeinek bidali ditzake albisteak eta gainontzekoek bozkatu ditzakete, horrela boto kopuru bat jasoz, jendeari interesatzen zaionaren arabera. Eta horrela, boto gehien jasotzen dituztenak azalduko dira hasierako orrialdean. Hasiera batean bidalitako albisteak <a href="shakeit.php"><em>ilarara</em></a> doaz zuzenean, eta botoak jasotzen baditu orrialde printzipalera joango da.
+<p>Zabaldu.com-en berpizkundea. Interneten aurkitutako albiste interesgarrienak zabaltzeko aukera ematen duen sistema da. Edozeinek bidali ditzake albisteak eta gainontzekoek bozkatu ditzakete, horrela boto kopuru bat jasoz, jendeari interesatzen zaionaren arabera. Eta horrela, boto gehien jasotzen dituztenak azalduko dira hasierako orrialdean. Hasiera batean bidalitako albisteak <Link href="/queued"><em>ilarara</em></Link> doaz zuzenean, eta botoak jasotzen baditu orrialde printzipalera joango da.
 </p>
 </li>
 

@@ -5,7 +5,7 @@ let storySchema = object({
     content: string().min(10).required(),
     tags: string().min(3).required(),
     link: string().url().required(),
-    category: string().min(3).required(),
+    categoryId: string().min(3).required(),
   });
 
 const commentSchema = object({
@@ -17,7 +17,7 @@ export interface StoryFormData {
     content: { value: string };
     tags: { value: string };
     link: { value: string };
-    category: { value: string };
+    categoryId: { value: string };
 }
 
 export type StoryModel = {
@@ -25,7 +25,7 @@ export type StoryModel = {
   content: string;
   tags: string;
   link: string;
-  category: string;
+  categoryId: string;
 }
 
 export type CommentModel = {

@@ -51,10 +51,12 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
         const permalink = title.toLowerCase();
         const link = sanitizeHtml(String(req.body.link));
         const tags = sanitizeHtml(String(req.body.tags));
+        const categoryId = sanitizeHtml(String(req.body.categoryId));
 
         const result = await prisma.story.create({
             data: {
-                title, content, permalink, link, tags,
+                title, content, permalink, link, tags, 
+                category: {connect: {id: categoryId} },
                 owner: { connect: { email: String(session?.user?.email) } },
             },
         })

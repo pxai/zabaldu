@@ -45,5 +45,10 @@
   "sign_in_with_google": "Sign In With Google",
   "sign_out": "Sign Out",
   "send_story": "Send Story",
-  "register": "Register"
+  "register": "Register",
+  "general": "General", 
+  "tech": "Technology",
+  "sports": "Sports",
+  "culture": "Culture",
+  "eh": "Euskal Herria"
 }

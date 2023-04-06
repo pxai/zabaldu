@@ -5,15 +5,16 @@ import { GetServerSideProps } from 'next';
 import { useTranslation } from 'next-i18next'
 import Layout from '../../../components/layout';
 import SendForm from '../../../components/send-form/send-form.component';
-import { StoryProps } from 'prisma/types';
+import { CategoryProps, StoryProps } from 'prisma/types';
 import { useRouter } from 'next/router';
 import prisma from '@/lib/prisma';
 
 type Props = {
-  story: StoryProps
+  story: StoryProps,
+  categories: CategoryProps[]
 }
 
-export default function EditStory({story}: Props) {
+export default function EditStory({story, categories}: Props) {
   const router = useRouter();
   const { t } = useTranslation()
 
@@ -25,7 +26,7 @@ export default function EditStory({story}: Props) {
   return (
     <Layout>
       <main className="main">
-        <SendForm formValues={story} sendAction={handleStoryUpdate} />
+        <SendForm formValues={story} categories={categories} sendAction={handleStoryUpdate} />
       </main>
     </Layout>
   )
@@ -33,6 +34,7 @@ export default function EditStory({story}: Props) {
 
 export const getServerSideProps: GetServerSideProps = async ({ params, locale }) => {
   const { id }: any = params;
+  const categories = await prisma.category.findMany();
 
   const result =  await prisma.story.findUnique({
     where: { id },
@@ -41,6 +43,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params, locale })
 
   return {
     props: { 
+      categories,
       story: JSON.parse(JSON.stringify(result)),
       ...(await serverSideTranslations(locale!, ['common']))
     }

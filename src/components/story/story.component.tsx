@@ -73,7 +73,7 @@ const Story = ({ story }: Props) => {
           </div>
         </div>
       </div>
-      { user?.id === currentUser?.id && (
+      { user && user?.id === currentUser?.id && (
             <div>
               <div className="edit-story">
                   <Link href={`/story/edit/${id}`}>{t`edit`}</Link>
