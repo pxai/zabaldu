@@ -4,6 +4,8 @@ import { useRouter } from 'next/router';
 import { useSession, signOut } from 'next-auth/react';
 import { useTranslation } from 'next-i18next'
 import Image from 'next/image'
+import axios from 'axios';
+import { StoryProps } from 'prisma/types';
 
 export default function Nav () {
     const { t } = useTranslation();
@@ -14,7 +16,7 @@ export default function Nav () {
 
     const handleChange = () => {
        
-      }
+    }
     
       const handleSearch = () => {
 

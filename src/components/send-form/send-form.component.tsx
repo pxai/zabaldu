@@ -8,6 +8,7 @@ import ModalComponent from '../modal/modal.component';
 import './send-form.module.scss';
 import { useFormik } from 'formik';
 import { storySchema, StoryModel } from '@/pages/api/story/schema';
+import { StoryProps } from 'prisma/types';
 
 const defaultFormFields = {
   title: '',
@@ -30,8 +31,7 @@ const SendForm = ({formValues = defaultFormFields, sendAction }: any) => {
     onSubmit: async (values) => {
       console.log("Component > About to send: ", {...values}) //, submitted: userData })
       try {
-        const response = await axios.post(`/api/story`, values)
-        router.push(`/`)
+        sendAction(values)
       } catch (error) {
         setSubmitError(`${(error as AxiosError).message}`)
         console.log('Error on submit ', error);
@@ -42,7 +42,7 @@ const SendForm = ({formValues = defaultFormFields, sendAction }: any) => {
 
   useEffect(() => {
    // if (storyError.changedStory !== null && !storyError.error)
-      console.log("Nagivate")
+      console.log("FormFields: ", formValues)
       //navigate('/')
   }, [])
   

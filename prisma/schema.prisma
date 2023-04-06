@@ -82,6 +82,7 @@ enum Status {
   QUEUED
   ARCHIVED
   BANNED
+  DELETED
 }
 
 model User {

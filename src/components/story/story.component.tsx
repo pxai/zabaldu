@@ -6,6 +6,7 @@ import axios, { AxiosError } from 'axios';
 import Link from 'next/link';
 import { useSession } from 'next-auth/react';
 import { UserProps, StoryProps } from '../../../prisma/types';
+import { useRouter } from "next/router";
 
 type Props = {
   story: StoryProps
@@ -13,6 +14,7 @@ type Props = {
 
 const Story = ({ story }: Props) => {
   const { data: session, status } = useSession();
+  const router = useRouter();
   const [currentVotes, setCurrentVotes] = useState<number>(story.storyVotes?.length || 0)
   const [currentUser, setCurrentUser] = useState<UserProps>(session?.user as UserProps)
   const userName = currentUser?.name ? currentUser?.name.split(" ")[0] : 'user';
@@ -30,6 +32,20 @@ const Story = ({ story }: Props) => {
         setStoryVoteResult(`${(error as AxiosError).message}`)
         console.log('Error on submit ', error);
       }
+  }
+
+  const handleDelete = async (event: React.MouseEvent<HTMLElement>) => {
+    event.preventDefault();
+    try {
+      const msg = t`are_you_sure`
+      if (confirm(msg)) {
+        const response = await axios.delete(`/api/story/${story.id}`)
+        router.push('/')
+      }
+    } catch (error) {
+      //setStoryVoteResult(`${(error as AxiosError).message}`)
+      console.log('Error on delete ', error);
+    }
   }
 
   return (
@@ -58,9 +74,15 @@ const Story = ({ story }: Props) => {
         </div>
       </div>
       { user?.id === currentUser?.id && (
+            <div>
               <div className="edit-story">
-                  <Link href={`/story/edit/${id}`}>Edit</Link>
+                  <Link href={`/story/edit/${id}`}>{t`edit`}</Link>
               </div>
+              <div className="edit-story">
+                  <a onClick={handleDelete} >{t`remove`}</a>
+              </div>
+            </div>
+
           )
       }  
       { storyVoteResult != '' && <ModalComponent message={storyVoteResult} /> }
