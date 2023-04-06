@@ -2,16 +2,20 @@ import { useContext, useState, useEffect } from 'react';
 import Link from 'next/link';
 import axios, { AxiosError } from 'axios';
 import { useTranslation } from 'next-i18next'
+import { useSession } from 'next-auth/react';
 import ModalComponent from "../modal/modal.component";
 import EditCommentComponent from "../edit-comment/edit-comment.component";
+import { UserProps, CommentProps } from '../../../prisma/types';
 
 const CommentComponent = ({comment, number}: any) => {
     const { t } = useTranslation();
+    const { data: session, status } = useSession();
+    const user = session?.user as UserProps;
     const [edit, setEdit] = useState(false)
-    const {id, content, submitted, createdAt, user } = comment;
+    const [deleted, setDeleted] = useState(false)
+    const {id, content, ownerId, createdAt } = comment;
 
     useEffect(() => {
-        console.log("updateCommentAsync> dale:", edit, {...comment})
         if (edit) setEdit(false)
         console.log("updateCommentAsync> dale now:", edit, {...comment})
       }, [comment])
@@ -37,14 +41,24 @@ const CommentComponent = ({comment, number}: any) => {
         }
     }
 
-    // const deleteComment = (e) => {
-    //     e.preventDefault();
-    // }
+    const deleteComment = async (event: React.MouseEvent<HTMLElement>) => {
+        event.preventDefault();
+        try {
+            const response = await axios.delete(`/api/comment/${comment.id}`)
+            setDeleted(true)
+            //setCurrentVotes(currentVotes + 1);
+          } catch (error) {
+            //setStoryVoteResult(`${(error as AxiosError).message}`)
+            console.log('Error on delete ', error);
+          }
+    }
 
-    // const updateComment = (e) => {
-    //     e.preventDefault();
-    //     setEdit(true)
-    // }
+    const updateComment = (event: React.MouseEvent<HTMLElement>) => {
+        event.preventDefault();
+        setEdit(true)
+    }
+
+    if (deleted) return;
 
     return edit 
                 ? (<li><EditCommentComponent comment={comment}/></li>)
@@ -59,12 +73,12 @@ const CommentComponent = ({comment, number}: any) => {
                             <a href="" onClick={voteUp}> + </a> | <a href="" onClick={voteDown}> - </a>
                             {t`sent_by`} <Link href={`/user/1`}>{comment?.owner.name}</Link> {t`at`} {createdAt}
                         </div>
-                        { /*submitted?.user_id === currentUser?.uid && (
+                        { ownerId === user?.id && (
                                 <div>
                                     <a href="javacript: void(0)" onClick={updateComment}>{t`edit`}</a> | 
                                     <a href="javacript: void(0)" onClick={deleteComment}>{t`remove`}</a>
                                 </div>
-                            )*/
+                            )
                         }           
                         { /*commentVote.error?.commentId === id && <ModalComponent message={commentVote.error.message} />  */}
                     </li>

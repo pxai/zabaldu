@@ -33,7 +33,7 @@ const StoryPage = ({ story }: Props) => {
         <CommentsComponent 
           comments={[...addedComments, ...story.comments as CommentProps[]]} 
         />
-        { currentUser && <AddCommentComponent storyId={story.id} addComment={addComment} />}
+        { session?.user && <AddCommentComponent storyId={story.id} addComment={addComment} />}
       </main>
     </Layout>
   )
