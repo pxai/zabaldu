@@ -13,12 +13,8 @@ const CommentComponent = ({comment, number}: any) => {
     const user = session?.user as UserProps;
     const [edit, setEdit] = useState(false)
     const [deleted, setDeleted] = useState(false)
+    const [currentContent, setCurrentContent] = useState<string>(comment.content)
     const {id, content, ownerId, createdAt } = comment;
-
-    useEffect(() => {
-        if (edit) setEdit(false)
-        console.log("updateCommentAsync> dale now:", edit, {...comment})
-      }, [comment])
 
     const voteUp = (event: React.MouseEvent<HTMLElement>) => {
         event.preventDefault();
@@ -30,13 +26,17 @@ const CommentComponent = ({comment, number}: any) => {
         vote(-1);
     }
 
+    const saveComment = (updatedContent: string) => {
+        setEdit(!edit);
+        setCurrentContent(updatedContent);
+    }
+
     const vote = async (value: number) => {
         console.log("Component > About to vote: ", comment.id, value) //, submitted: userData })
         try {
           const response = await axios.post(`/api/comment/${comment.id}/vote`, {value})
           //setCurrentVotes(currentVotes + 1);
         } catch (error) {
-          //setStoryVoteResult(`${(error as AxiosError).message}`)
           console.log('Error on submit ', error);
         }
     }
@@ -61,13 +61,13 @@ const CommentComponent = ({comment, number}: any) => {
     if (deleted) return;
 
     return edit 
-                ? (<li><EditCommentComponent comment={comment}/></li>)
+                ? (<li><EditCommentComponent comment={comment} saveComment={saveComment}/></li>)
                 :
                 (
                     <li>
                         <div className="comment-body" id={`wholecomment${id}`}>
                             <strong>#{number}</strong>
-                            {content}
+                            {currentContent}
                         </div>
                         <div className="comment-info">  
                             <a href="" onClick={voteUp}> + </a> | <a href="" onClick={voteDown}> - </a>

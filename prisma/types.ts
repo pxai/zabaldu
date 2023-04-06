@@ -38,6 +38,7 @@ export type CommentProps =  {
     updatedAt: Date;
     finishedAt: Date;
     user?: UserProps;
+    ownerId?: string;
     commentVotes?: CommentVoteProps[];
 }
 
