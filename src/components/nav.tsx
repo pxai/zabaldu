@@ -74,7 +74,11 @@ export default function Nav () {
           </ul>
         </div>
         <div id="nav-string">
-          <div>» <Link href='/'><strong>Zabaldu</strong></Link></div>
+          <div>» <Link href='/'><strong>Zabaldu</strong></Link>
+            » <Link href={router.pathname} locale="eu"><strong>EU</strong></Link>
+            » <Link href={router.pathname} locale="es"><strong>ES</strong></Link>
+            » <Link href={router.pathname} locale="en"><strong>EN</strong></Link>
+          </div>
         </div>
     </>
 
