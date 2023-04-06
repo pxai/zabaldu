@@ -50,5 +50,7 @@
   "tech": "Technology",
   "sports": "Sports",
   "culture": "Culture",
-  "eh": "Euskal Herria"
+  "eh": "Euskal Herria",
+  "name": "Name",
+  "since": "Since"
 }

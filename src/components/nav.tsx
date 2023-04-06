@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChangeEvent, KeyboardEvent, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useSession, signOut } from 'next-auth/react';
@@ -10,21 +10,26 @@ import { StoryProps } from 'prisma/types';
 export default function Nav () {
     const { t } = useTranslation();
     const router = useRouter();
+    const [searchTerm, setSearchTerm] = useState<string>('');
     const { data: session, status } = useSession();
     const isActive: (pathname: string) => boolean = (pathname) =>
     router.pathname === pathname;
 
-    const handleChange = () => {
-       
+    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+       setSearchTerm(event.target.value);
     }
     
-      const handleSearch = () => {
+    const handleSearch = (event: KeyboardEvent<HTMLInputElement>) => {
+      if (searchTerm.trim().length < 3 ) return;
 
+      if (event.key === 'Enter') {
+        router.push(`/search?term=${searchTerm}`)
       }
+    }
 
-      const handleSignOut = () => {
-        signOut();
-      }
+    const handleSignOut = () => {
+      signOut();
+    }
 
     return (
         <>
@@ -68,7 +73,7 @@ export default function Nav () {
           )}
           <li>
             <div>
-              <input name="search" placeholder="..." type="text" onChange={handleChange} onKeyDown={handleSearch}/>
+              <input name="search" placeholder="..." type="text" value={searchTerm} onChange={handleChange} onKeyDown={handleSearch}/>
             </div>
           </li>
           </ul>
