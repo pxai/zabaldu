@@ -1206,6 +1206,26 @@
     "domelementtype" "^2.3.0"
     "domhandler" "^5.0.1"
 
+"dotenv-cli@^7.2.1":
+  "integrity" "sha512-ODHbGTskqRtXAzZapDPvgNuDVQApu4oKX8lZW7Y0+9hKA6le1ZJlyRS687oU9FXjOVEDU/VFV6zI125HzhM1UQ=="
+  "resolved" "https://registry.npmjs.org/dotenv-cli/-/dotenv-cli-7.2.1.tgz"
+  "version" "7.2.1"
+  dependencies:
+    "cross-spawn" "^7.0.3"
+    "dotenv" "^16.0.0"
+    "dotenv-expand" "^10.0.0"
+    "minimist" "^1.2.6"
+
+"dotenv-expand@^10.0.0":
+  "integrity" "sha512-GopVGCpVS1UKH75VKHGuQFqS1Gusej0z4FyQkPdwjil2gNIv+LNsqBlboOzpJFZKVT95GkCyWJbBSdFEFUWI2A=="
+  "resolved" "https://registry.npmjs.org/dotenv-expand/-/dotenv-expand-10.0.0.tgz"
+  "version" "10.0.0"
+
+"dotenv@^16.0.0":
+  "integrity" "sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ=="
+  "resolved" "https://registry.npmjs.org/dotenv/-/dotenv-16.0.3.tgz"
+  "version" "16.0.3"
+
 "duplexer@~0.1.1":
   "integrity" "sha512-jtD6YG370ZCIi/9GTaJKQxWTZD045+4R4hTk/x1UyoqadyJ9x9CgSi1RlVDQF8U2sxLLSnFkCaMihqljHIWgMg=="
   "resolved" "https://registry.npmjs.org/duplexer/-/duplexer-0.1.2.tgz"

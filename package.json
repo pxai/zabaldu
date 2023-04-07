@@ -3,12 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "npm run-script toggledev && dotenv -e .env.development -- next dev",
+    "build": "npm run-script toggleprod && dotenv -e .env -- npx next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "npm run-script e2e",
+    "test": "dotenv -e .env.test npm run-script e2e",
     "cypress:run": "npx cypress run",
+    "toggledev": "sed -i 's/cockroachdb/sqlite/g' prisma/schema.prisma",
+    "toggleprod": "sed -i 's/sqlite/cockroachdb/g' prisma/schema.prisma",
     "e2e": "start-server-and-test dev http://localhost:3000 cypress:run",
     "e2e:open": "start-server-and-test dev http://localhost:3000 cypress:open"
   },
@@ -43,6 +45,7 @@
     "@types/styled-components": "^5.1.26",
     "axios-mock-adapter": "^1.21.2",
     "cypress": "^12.8.1",
+    "dotenv-cli": "^7.2.1",
     "start-server-and-test": "^2.0.0"
   }
 }

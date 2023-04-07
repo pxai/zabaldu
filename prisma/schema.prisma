@@ -22,7 +22,7 @@ model Story {
   tags      String
   createdAt DateTime  @default(now()) @map(name: "created_at")
   updatedAt     DateTime  @updatedAt @map(name: "updated_at")
-  status  Status @default(QUEUED)
+  status    String @default("QUEUED")
   owner    User   @relation(fields: [ownerId], references: [id])
   ownerId  String
   category Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
@@ -44,9 +44,9 @@ model Comment {
   permalink String
   createdAt DateTime  @default(now()) @map(name: "created_at")
   updatedAt     DateTime  @updatedAt @map(name: "updated_at")
-  status  Status @default(PUBLISHED)
   owner    User   @relation(fields: [ownerId], references: [id])
   ownerId  String
+  status    String @default("PUBLISHED")
   story Story @relation(fields: [storyId], references: [id], onDelete: Cascade)
   storyId   String
   commentVotes   CommentVote[]
@@ -75,14 +75,6 @@ model CommentVote {
   commentId   String
   @@unique(fields: [id, ownerId], name: "id_and_ownerId")
   @@unique(fields: [commentId, ownerId], name: "commentId_and_ownerId")
-}
-
-enum Status {
-  PUBLISHED
-  QUEUED
-  ARCHIVED
-  BANNED
-  DELETED
 }
 
 model User {
@@ -132,7 +124,7 @@ model Session {
 }
 
 model VerificationToken {
-  id         Int      @id @default(sequence())
+  id         String      @id @default(cuid())
   identifier String
   token      String   @unique
   expires    DateTime
