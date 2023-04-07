@@ -15,7 +15,7 @@ const CommentComponent = ({comment, number}: any) => {
     const [deleted, setDeleted] = useState(false)
     const [currentContent, setCurrentContent] = useState<string>(comment.content)
     const {id, content, ownerId, createdAt } = comment;
-    const [votes, setVotes] = useState<number>(null);
+    const [votes, setVotes] = useState<number>();
 
     const voteUp = (event: React.MouseEvent<HTMLElement>) => {
         event.preventDefault();
