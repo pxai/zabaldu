@@ -12,7 +12,7 @@ export default function Profile() {
   const { data: session, status } = useSession();
   const user = session?.user as UserProps;
 
-  console.log("user: ", user, user?.image)
+  console.log("user: ",  session, status )
 
   if (!user?.image) return "";
   return (
