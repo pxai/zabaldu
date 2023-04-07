@@ -17,6 +17,20 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
            data: { commentId, ownerId, value } 
         });
 
-        return res.json(result)
+        const votes = await getTotalVotes(commentId)
+
+        return res.json({result: votes})
   }
+}
+
+async function getTotalVotes (commentId: string) {
+  const result = await prisma.commentVote.aggregate({
+      _sum: {
+        value: true,
+      },
+      where: {
+        commentId 
+      },
+  });
+  return result._sum.value;
 }

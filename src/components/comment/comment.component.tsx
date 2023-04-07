@@ -15,6 +15,7 @@ const CommentComponent = ({comment, number}: any) => {
     const [deleted, setDeleted] = useState(false)
     const [currentContent, setCurrentContent] = useState<string>(comment.content)
     const {id, content, ownerId, createdAt } = comment;
+    const [votes, setVotes] = useState<number>(null);
 
     const voteUp = (event: React.MouseEvent<HTMLElement>) => {
         event.preventDefault();
@@ -35,6 +36,7 @@ const CommentComponent = ({comment, number}: any) => {
         console.log("Component > About to vote: ", comment.id, value) //, submitted: userData })
         try {
           const response = await axios.post(`/api/comment/${comment.id}/vote`, {value})
+          setVotes(response.data.result)
           //setCurrentVotes(currentVotes + 1);
         } catch (error) {
           console.log('Error on submit ', error);
@@ -46,7 +48,6 @@ const CommentComponent = ({comment, number}: any) => {
         try {
             const response = await axios.delete(`/api/comment/${comment.id}`)
             setDeleted(true)
-            //setCurrentVotes(currentVotes + 1);
           } catch (error) {
             //setStoryVoteResult(`${(error as AxiosError).message}`)
             console.log('Error on delete ', error);
@@ -56,6 +57,15 @@ const CommentComponent = ({comment, number}: any) => {
     const updateComment = (event: React.MouseEvent<HTMLElement>) => {
         event.preventDefault();
         setEdit(true)
+    }
+
+    const showVotes = () => {
+        if (!user) return;
+        if (votes) return <span>{t`votes`} {votes} | </span>;
+
+        return (
+            <><a href="" onClick={voteUp}> + </a> | <a href="" onClick={voteDown}> - </a></>
+        )
     }
 
     if (deleted) return;
@@ -69,8 +79,10 @@ const CommentComponent = ({comment, number}: any) => {
                             <strong>#{number}</strong>
                             {currentContent}
                         </div>
-                        <div className="comment-info">  
-                            <a href="" onClick={voteUp}> + </a> | <a href="" onClick={voteDown}> - </a>
+                        <div className="comment-info"> 
+                            {
+                                showVotes() 
+                            } 
                             {t`sent_by`} <Link href={`/user/1`}>{comment?.owner.name}</Link> {t`at`} {createdAt}
                         </div>
                         { ownerId === user?.id && (
