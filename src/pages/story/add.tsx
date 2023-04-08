@@ -19,7 +19,7 @@ export default function AddStory({categories}: Props) {
 
   const handleStoryCreate = async (story: StoryProps) => {
     const response = await axios.post(`/api/story`, story)
-    router.push(`/`)
+    router.push(`/queued`)
   }
 
   return (
