@@ -6,6 +6,7 @@
     "dev": "npm run-script toggledev && npm run-script updatedbdev && dotenv -e .env.development -- npx next dev",
     "build": "npm run-script toggleprod && npm run-script updatedbprod  && dotenv -e .env -- npx next build",
     "test": "npm run-script toggledev && npm run-script updatedbtest  && dotenv -e .env.test -- npx jest",
+    "test:watch": "npm run-script toggledev && npm run-script updatedbtest  && dotenv -e .env.test -- npx jest --watchAll ",
     "start": "next start",
     "lint": "next lint",
     "test-e2e": "dotenv -e .env.test npm run-script e2e",
