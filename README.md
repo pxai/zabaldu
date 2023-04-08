@@ -1,6 +1,6 @@
 # Zabaldu
 
-[![Build Status](https://travis-ci.com/pxai/zabaldu.svg?branch=master)](https://travis-ci.com/pxai/zabaldu)
+[![CircleCI](https://circleci.com/gh/pxai/zabaldu.svg?style=svg)](https://circleci.com/gh/pxai/zabaldu)
 
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
