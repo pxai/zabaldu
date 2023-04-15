@@ -38,7 +38,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
           updatedAt: new Date().toISOString()
       },
   })
-  res.revalidate(`/story/${storyId}`)
+  await res.revalidate(`/story/${storyId}`)
   return res.json(comment)
 }
 }

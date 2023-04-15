@@ -61,7 +61,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
             },
         })
 
-        res.revalidate(`/queued`);
+        await res.revalidate(`/queued`);
 
         return res.json(result)
   }
