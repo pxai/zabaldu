@@ -15,7 +15,7 @@
     "updatedbtest": "npx dotenv -e .env.test npx prisma db push",
     "updatedbprod": "npx dotenv -e .env npx prisma db push",
     "toggledev": "sed -i '' 's/cockroachdb/sqlite/g' prisma/schema.prisma",
-    "toggleprod": "sed -i '' 's/sqlite/cockroachdb/g' prisma/schema.prisma",
+    "toggleprod": "sed -i 's/sqlite/cockroachdb/g' prisma/schema.prisma",
     "e2e": "start-server-and-test dev http://localhost:3000 cypress:run",
     "e2e:open": "start-server-and-test dev http://localhost:3000 cypress:open"
   },
