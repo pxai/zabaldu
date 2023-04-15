@@ -40,8 +40,11 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
           },
         });
         console.log("API: ", comment)
-        await res.revalidate(`/story/${storyId}`);
-        await res.revalidate(`/`);
+        await res.revalidate(`/eu/story/${storyId}`);
+        await res.revalidate(`/es/story/${storyId}`);
+        await res.revalidate(`/en`);
+        await res.revalidate(`/es`);
+        await res.revalidate(`/eu`);
         return res.json(comment)
 
   }
