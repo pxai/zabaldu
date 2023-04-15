@@ -46,7 +46,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query, locale }) 
   //const {data:{stories}} = await axios.get(`${process.env.API_URL}/api/story`)
   console.log('App: ', stories)
   return {
-    props: { 
+    props: {
       stories: JSON.parse(JSON.stringify(stories)),
       ...(await serverSideTranslations(locale!, ['common']))
     }

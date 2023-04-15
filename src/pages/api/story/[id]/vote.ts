@@ -29,13 +29,13 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
             },
         })
 
-        await checkTotalVotes (storyId);
-
+        await checkTotalVotes (storyId, res);
+        res.revalidate(`/queued`);
         return res.json(result)
   }
 }
 
-async function checkTotalVotes (storyId: string) {
+async function checkTotalVotes (storyId: string, res: NextApiResponse) {
         const result = await prisma.storyVote.aggregate({
             _count: {
               storyId: true,
@@ -51,5 +51,6 @@ async function checkTotalVotes (storyId: string) {
             data: { status: 'PUBLISHED' },
           });
           console.log("Update story to PUBLISHED!!", story);
+          res.revalidate(`/`);
         }
 }

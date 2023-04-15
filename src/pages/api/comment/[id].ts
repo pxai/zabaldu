@@ -17,13 +17,14 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
           }
         }
       });
-      console.log("Elimina Ramón: ", result)
+
       return res.json(result)
   }
 
 
   if (req.method === 'PUT') {
   const content = String(req.body.content);
+  const storyId = String(req.body.content);
 
   const comment = await prisma.comment.update({
       where: {
@@ -37,7 +38,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
           updatedAt: new Date().toISOString()
       },
   })
-  console.log("Comment Ramón: ", comment)
+  res.revalidate(`/story/${storyId}`)
   return res.json(comment)
 }
 }
