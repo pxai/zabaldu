@@ -4,4 +4,10 @@ module.exports = {
       locales: ['eu', 'en', 'es'],
       localeDetection: false
     },
+    domains: [
+      {
+        domain: 'zabaldu.net',
+        defaultLocale: 'eu',
+      },
+    ],
   }
