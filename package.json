@@ -7,6 +7,7 @@
     "build": "npm run-script toggleprod && npm run-script updatedbprod  && npx dotenv -e .env -- npx next build",
     "test": "npm run-script toggledev && npm run-script updatedbtest  && npx dotenv -e .env.test -- npx jest",
     "test:watch": "npm run-script toggledev && npm run-script updatedbtest  && npx dotenv -e .env.test -- npx jest --watchAll ",
+    "buildmac": "npm run-script toggleprodmac && npm run-script updatedbprod  && npx dotenv -e .env -- npx next build",
     "start": "next start",
     "lint": "next lint",
     "test-e2e": "npx dotenv -e .env.test npm run-script e2e",
@@ -18,6 +19,7 @@
     "studioprod": "npx dotenv -e .env npx prisma studio",
     "toggledev": "sed -i '' 's/cockroachdb/sqlite/g' prisma/schema.prisma",
     "toggleprod": "sed -i 's/sqlite/cockroachdb/g' prisma/schema.prisma",
+    "toggleprodmac": "sed -i '' 's/sqlite/cockroachdb/g' prisma/schema.prisma",
     "e2e": "start-server-and-test dev http://localhost:3000 cypress:run",
     "e2e:open": "start-server-and-test dev http://localhost:3000 cypress:open"
   },

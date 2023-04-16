@@ -40,8 +40,27 @@ const StoryPage = ({ story }: Props) => {
 }
 
 export async function getStaticPaths({ locales }: any) {
+  const stories = await prisma.story.findMany({  
+    select: { id: true },
+  });
+
+  const paths: any = [];
+
+  stories.forEach((story) => {
+    for (const locale of locales) {
+      paths.push({
+        params: {
+          id: story.id,
+        },
+        locale,
+      });
+    }
+  });
+
+  console.log("Generated story paths: ", paths)
+
   return {
-    paths: [{locale: 'eu'}, {locale: 'es'}, {locale: 'en'}], //[{ params: { id: 'clfprk13t0000sbngdtbtmqj0' } } ],
+    paths, //[{ params: { id: 'clfprk13t0000sbngdtbtmqj0' } } ],
     fallback: 'blocking', // true: returns null until it gets // blocking : blocks // false: 404
   }
 }
