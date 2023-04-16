@@ -46,6 +46,7 @@ const CommentComponent = ({comment, number}: any) => {
     const deleteComment = async (event: React.MouseEvent<HTMLElement>) => {
         event.preventDefault();
         try {
+            if (!confirm(String(t`are_you_sure`))) return;
             const response = await axios.delete(`/api/comment/${comment.id}`)
             setDeleted(true)
           } catch (error) {
