@@ -587,6 +587,7 @@ ul.news-details li li {
 	border-style: dotted;
 	border-color: #4682b4;
 	color: #4682b4;
+	cursor: pointer;
 }
 
 .menealo span {
