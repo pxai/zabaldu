@@ -20,6 +20,7 @@ const defaultFormFields = {
 const AddCommentComponent = ({storyId, addComment}: Props) => {
     const { t } = useTranslation();
     const [text, setText] = useState('');
+    const [sending, setSending] = useState<boolean>(false);
     const [formFields, setFormFields] = useState(defaultFormFields);
     const commentError = {createdComment: null, error: null, isLoading: false, };
     const [submitError, setSubmitError] = useState<string>('');
@@ -34,6 +35,7 @@ const AddCommentComponent = ({storyId, addComment}: Props) => {
         onSubmit: async (values) => {
           console.log("Component > About to send: ", storyId, {...values}) //, submitted: userData })
           try {
+            setSending(true);
             const response = await axios.post(`/api/story/${storyId}/comment`, values)
             addComment(response.data);
             setToggleComment(true);
@@ -41,6 +43,7 @@ const AddCommentComponent = ({storyId, addComment}: Props) => {
             setSubmitError(`${(error as AxiosError).message}`)
             console.log('Error on submit ', error);
           }
+          setSending(false);
         },
         validationSchema: commentSchema,
       });
@@ -70,7 +73,7 @@ const AddCommentComponent = ({storyId, addComment}: Props) => {
                 value={formik.values.content}
                 />
                 {formik.touched.content && formik.errors.content && <div>{formik.errors.content}</div>}
-                <Button type='submit'>{t`add_comment`}</Button>
+                <Button type='submit' disabled={sending}>{sending ? t`in_process` : t`add_comment`}</Button>
             </form>
             </div>
 

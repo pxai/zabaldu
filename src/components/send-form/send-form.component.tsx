@@ -24,6 +24,7 @@ const SendForm = ({formValues = defaultFormFields, sendAction, categories }: any
 
   const [formFields, setFormFields] = useState(formValues);
   const [submitError, setSubmitError] = useState<string>('');
+  const [sending, setSending] = useState<boolean>(false);
   const router = useRouter()
   const { title, link, content, tags, categoryId } = formFields;
 
@@ -32,11 +33,13 @@ const SendForm = ({formValues = defaultFormFields, sendAction, categories }: any
     onSubmit: async (values) => {
       console.log("Component > About to send: ", {...values}) //, submitted: userData })
       try {
+        setSending(true);
         sendAction(values)
       } catch (error) {
         setSubmitError(`${(error as AxiosError).message}`)
         console.log('Error on submit ', error);
       }
+      setSending(false);
     },
     validationSchema: storySchema,
   });
@@ -91,14 +94,13 @@ const SendForm = ({formValues = defaultFormFields, sendAction, categories }: any
         {formik.touched.tags && formik.errors.tags && <div>{formik.errors.tags}</div>}
         <SelectInput
           label={t`category`}
-          required
           values={categories}
           onChange={formik.handleChange}
           name='categoryId'
           value={formik.values.categoryId}
         />
         {formik.touched.categoryId && formik.errors.categoryId && <div>{formik.errors.categoryId}</div>}
-        <Button type='submit'>{t`submit_story`}</Button>
+        <Button type='submit' disabled={sending}>{sending ? t`in_process` : t`submit_story`}</Button>
       </form>
       { submitError && <ModalComponent message={submitError} /> }
     </div>
