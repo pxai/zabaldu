@@ -61,9 +61,9 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
             },
         })
 
-        await res.revalidate(`/en/queued`);
-        await res.revalidate(`/es/queued`);
-        await res.revalidate(`/eu/queued`);
+        await res.unstable_revalidate(`/en/queued`);
+        await res.unstable_revalidate(`/es/queued`);
+        await res.unstable_revalidate(`/eu/queued`);
 
         return res.json(result)
   }

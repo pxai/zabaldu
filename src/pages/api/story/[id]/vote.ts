@@ -30,9 +30,9 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
         })
 
         await checkTotalVotes (storyId, res);
-        await res.revalidate(`/en/queued`);
-        await res.revalidate(`/es/queued`);
-        await res.revalidate(`/eu/queued`);
+        await res.unstable_revalidate(`/en/queued`);
+        await res.unstable_revalidate(`/es/queued`);
+        await res.unstable_revalidate(`/eu/queued`);
         return res.json(result)
   }
 }
@@ -53,8 +53,8 @@ async function checkTotalVotes (storyId: string, res: NextApiResponse) {
             data: { status: 'PUBLISHED' },
           });
           console.log("Update story to PUBLISHED!!", story);
-          await res.revalidate(`/en`);
-          await res.revalidate(`/es`);
-          await res.revalidate(`/eu`);
+          await res.unstable_revalidate(`/en`);
+          await res.unstable_revalidate(`/es`);
+          await res.unstable_revalidate(`/eu`);
         }
 }
