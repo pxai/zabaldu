@@ -61,6 +61,10 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
             },
         })
 
+        await res.revalidate(`/en/story/${result.id}`);
+        await res.revalidate(`/es/story/${result.id}`);
+        await res.revalidate(`/eu/story/${result.id}`);
+
         await res.revalidate(`/en/queued`);
         await res.revalidate(`/es/queued`);
         await res.revalidate(`/eu/queued`);
