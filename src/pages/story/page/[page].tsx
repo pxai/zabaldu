@@ -20,7 +20,7 @@ export default function Home({stories}: any) {
 
 const STORY_PAGINATION = process.env.STORY_PAGINATION || 10;
 
-export async function getStaticPaths({locales}) {
+export async function getStaticPaths({locales}: any) {
   return {
     paths: [{ params: { page: '0' }, locale: 'eu' }, { params: { page: '1' }, locale: 'eu' }, { params: { page: '2' }, locale: 'eu' }],
     fallback: 'blocking', // true: returns null until it gets // blocking : blocks // false: 404

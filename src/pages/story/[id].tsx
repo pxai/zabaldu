@@ -39,7 +39,7 @@ const StoryPage = ({ story }: Props) => {
   )
 }
 
-export async function getStaticPaths({ locales }) {
+export async function getStaticPaths({ locales }: any) {
   return {
     paths: [{locale: 'eu'}, {locale: 'es'}, {locale: 'en'}], //[{ params: { id: 'clfprk13t0000sbngdtbtmqj0' } } ],
     fallback: 'blocking', // true: returns null until it gets // blocking : blocks // false: 404
