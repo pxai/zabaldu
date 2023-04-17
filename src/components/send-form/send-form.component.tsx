@@ -31,8 +31,9 @@ const SendForm = ({formValues = defaultFormFields, sendAction, categories }: any
   const formik = useFormik<StoryModel>({
     initialValues: formFields,
     onSubmit: async (values) => {
-      console.log("Component > About to send: ", {...values}) //, submitted: userData })
+      console.log("Component > About to send: ", sending, {...values}) //, submitted: userData })
       try {
+
         setSending(true);
         sendAction(values)
       } catch (error) {

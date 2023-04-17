@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "npm run-script toggledev && npm run-script updatedbdev && npx dotenv -e .env.development -- npx next dev",
+    "dev": "npm run-script toggledevmac && npm run-script updatedbdev && npx dotenv -e .env.development -- npx next dev",
     "build": "npm run-script toggleprod && npm run-script updatedbprod  && npx dotenv -e .env -- npx next build",
     "test": "npm run-script toggledev && npm run-script updatedbtest  && npx dotenv -e .env.test -- npx jest",
     "testmac": "npm run-script toggledevmac && npm run-script updatedbtest  && npx dotenv -e .env.test -- npx jest",
