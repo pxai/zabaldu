@@ -1,5 +1,5 @@
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { GetStaticProps } from 'next';
+import { GetServerSideProps } from 'next';
 import prisma from '../lib/prisma';
 import { useTranslation } from 'next-i18next'
 import Layout from '../components/layout';
@@ -18,7 +18,7 @@ export default function Queued ({stories}: any) {
 }
 
 
-export const getStaticProps: GetStaticProps = async ({ locale }) => {
+export const getServerSideProps: GetServerSideProps = async ({ locale }) => {
   //const stories = [];
   const stories = await prisma.story.findMany({
     where: {
