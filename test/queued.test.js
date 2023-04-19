@@ -9,7 +9,7 @@ describe('Queued',  () => {
 
     render(<Queued stories={[]} />)
 
-    const votesBox = screen.queryAllByText('vote')
+    const votesBox = screen.queryAllByText('Bozkatu')
     expect(votesBox.length).toBe(0)
   })
 
@@ -23,7 +23,7 @@ describe('Queued',  () => {
 
     render(<Queued stories={stories} />)
 
-    const votesBox = screen.queryAllByText('vote')
+    const votesBox = screen.queryAllByText('Bozkatu')
     const storyTitle = screen.getByText(stories[0].title)
     const storyContent = screen.getByText(stories[0].content)
 

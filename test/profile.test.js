@@ -9,7 +9,7 @@ describe('Profile',  () => {
 
     render(<Profile />)
 
-    const heading = screen.queryByRole('heading', {name: /profile/i })
+    const heading = screen.queryByRole('heading', {name: /profila/i })
 
     expect(heading).not.toBeInTheDocument()
   })
@@ -26,7 +26,7 @@ describe('Profile',  () => {
       })
 
     render(<Profile />)
-    const heading = screen.getByRole('heading', {name: /profile/i })
+    const heading = screen.getByRole('heading', {name: /profila/i })
 
     expect(heading).toBeInTheDocument()
   })
