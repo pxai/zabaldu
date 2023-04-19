@@ -42,7 +42,6 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
     props: {
       stories: JSON.parse(JSON.stringify(stories)),
       ...(await serverSideTranslations(locale!, ['common']))
-    },
-    revalidate: 60
+    }
   };
 };
