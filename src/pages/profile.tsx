@@ -18,12 +18,12 @@ export default function Profile() {
   return (
     <Layout>
       <main className="main">
-      <h2 className="faq-title">{t`profile`}</h2>
+      <h2 className="faq-title">Profila</h2>
   <div id="faq-contents">
       <Image src={user?.image} alt="zabaldu.net"  width="128" height="128" />
  
       <div>
-        <div><strong>{t`name`}:</strong>{user.name}</div>
+        <div><strong>Izena:</strong>{user.name}</div>
       </div>
 
   </div>

@@ -46,7 +46,7 @@ const CommentComponent = ({comment, number}: any) => {
     const deleteComment = async (event: React.MouseEvent<HTMLElement>) => {
         event.preventDefault();
         try {
-            if (!confirm(String(t`are_you_sure`))) return;
+            if (!confirm("Seguru al zaude")) return;
             const response = await axios.delete(`/api/comment/${comment.id}`)
             setDeleted(true)
           } catch (error) {
@@ -62,7 +62,7 @@ const CommentComponent = ({comment, number}: any) => {
 
     const showVotes = () => {
         if (!user) return;
-        if (votes) return <span>{t`votes`} {votes} | </span>;
+        if (votes) return <span>Botoak {votes} | </span>;
 
         return (
             <><a href="" onClick={voteUp}> + </a> | <a href="" onClick={voteDown}> - </a></>
@@ -84,12 +84,12 @@ const CommentComponent = ({comment, number}: any) => {
                             {
                                 showVotes() 
                             } 
-                            {t`sent_by`} <Link href={`/user/1`}>{comment?.owner.name}</Link> {t`at`} {createdAt}
+                            Bidaltzailea <Link href={`/user/1`}>{comment?.owner.name}</Link> Noiz: {createdAt}
                         </div>
                         { ownerId === user?.id && (
                                 <div>
-                                    <a href="javacript: void(0)" onClick={updateComment}>{t`edit`}</a> | 
-                                    <a href="javacript: void(0)" onClick={deleteComment}>{t`remove`}</a>
+                                    <a href="javacript: void(0)" onClick={updateComment}>Aldatu</a> | 
+                                    <a href="javacript: void(0)" onClick={deleteComment}>Ezabatu</a>
                                 </div>
                             )
                         }           

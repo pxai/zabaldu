@@ -10,7 +10,7 @@ const CommentsComponent = ({comments}) => {
 
     return (
         <div id="comments">
-            <h2>{t`comments`}</h2>
+            <h2>Iruzkiñak</h2>
             <ol id="comments-list">
                 {comments?.map( (comment, i) =>
                    <CommentComponent comment={comment} key={comment.id} number={(page * 10 ) + i+1} />

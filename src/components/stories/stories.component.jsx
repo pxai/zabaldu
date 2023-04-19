@@ -6,7 +6,7 @@ const StoriesComponent = ({ stories }) => {
 
   return (
     <div className="stories">
-      <h2>{t`latest`}</h2>
+      <h2>Azken Albsiteak</h2>
       {stories.map(story => <StoryComponent key={story.id} story={story} />)}
     </div>
   );

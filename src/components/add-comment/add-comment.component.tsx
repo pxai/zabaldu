@@ -55,7 +55,7 @@ const AddCommentComponent = ({storyId, addComment}: Props) => {
     if (toggleComment) {
       return (
         <div className="add-comment">
-          <Button type='button' onClick={openFormHandle}>{t`add_comment`}</Button>
+          <Button type='button' onClick={openFormHandle}>Bidali iruzkiña</Button>
         </div>
       )
     }
@@ -73,7 +73,7 @@ const AddCommentComponent = ({storyId, addComment}: Props) => {
                 value={formik.values.content}
                 />
                 {formik.touched.content && formik.errors.content && <div>{formik.errors.content}</div>}
-                <Button type='submit' disabled={sending}>{sending ? t`in_process` : t`add_comment`}</Button>
+                <Button type='submit' disabled={sending}>{sending ? 'Bidaltzen...' : 'Bidali iruzkiña'}</Button>
             </form>
             </div>
 

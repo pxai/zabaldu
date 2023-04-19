@@ -54,10 +54,10 @@ const SendForm = ({formValues = defaultFormFields, sendAction, categories }: any
 
   return (
     <div className="send-form">
-      <h3>{t`send_story`}</h3>
+      <h3>Bidali istorioa</h3>
       <form onSubmit={formik.handleSubmit}>
         <FormInput
-          label={t`title`}
+          label="Titulua"
           child='input'
           type='text'
           required
@@ -67,7 +67,7 @@ const SendForm = ({formValues = defaultFormFields, sendAction, categories }: any
         />
     {formik.touched.title && formik.errors.title && <div>{formik.errors.title}</div>}
         <FormInput
-          label={t`content`}
+          label="Testua"
           type='text'
           required
           onChange={formik.handleChange}
@@ -76,7 +76,7 @@ const SendForm = ({formValues = defaultFormFields, sendAction, categories }: any
         />
     {formik.touched.content && formik.errors.content && <div>{formik.errors.content}</div>}
         <FormInput
-          label={t`link`}
+          label="Esteka"
           type='text'
           required
           onChange={formik.handleChange}
@@ -85,7 +85,7 @@ const SendForm = ({formValues = defaultFormFields, sendAction, categories }: any
         />
     {formik.touched.link && formik.errors.link && <div>{formik.errors.link}</div>}
         <FormInput
-          label={t`tags`}
+          label="Etiketak"
           type='text'
           required
           onChange={formik.handleChange}
@@ -94,14 +94,14 @@ const SendForm = ({formValues = defaultFormFields, sendAction, categories }: any
         />
         {formik.touched.tags && formik.errors.tags && <div>{formik.errors.tags}</div>}
         <SelectInput
-          label={t`category`}
+          label="Kategoria"
           values={categories}
           onChange={formik.handleChange}
           name='categoryId'
           value={formik.values.categoryId}
         />
         {formik.touched.categoryId && formik.errors.categoryId && <div>{formik.errors.categoryId}</div>}
-        <Button type='submit' disabled={sending}>{sending ? t`in_process` : t`submit_story`}</Button>
+        <Button type='submit' disabled={sending}>{sending ? "Bidaltzen..." : "Bidali"}</Button>
       </form>
       { submitError && <ModalComponent message={submitError} /> }
     </div>

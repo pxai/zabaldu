@@ -40,7 +40,7 @@ const EditCommentComponent = ({comment, saveComment}: Props) => {
         <div className="edit-component">
             <div>
                 <textarea className='form-input' onChange={updateText} cols={30} rows={10} value={text}/>
-                <div><button onClick={submitComment}>{t`update_comment`}</button></div>
+                <div><button onClick={submitComment}>Aldadu iruzkiña</button></div>
             </div>
             { submitError && <ModalComponent message={submitError} /> }
         </div>

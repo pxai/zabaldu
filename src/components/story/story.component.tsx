@@ -37,7 +37,7 @@ const Story = ({ story }: Props) => {
   const handleDelete = async (event: React.MouseEvent<HTMLElement>) => {
     event.preventDefault();
     try {
-      const msg = t`are_you_sure`
+      const msg = "Seguru al zaude?"
       if (confirm(msg)) {
         const response = await axios.delete(`/api/story/${story.id}`)
         router.push('/')
@@ -53,15 +53,15 @@ const Story = ({ story }: Props) => {
       <div className="news-summary">
         <div className="news-body">
           <ul className="news-shakeit">
-            <li className="mnm-published"><span>{currentVotes} {t`votes`}</span></li>
-            <li className="shakeit"><span onClick={vote} title="Vote it!">{t`vote`}</span></li>
+            <li className="mnm-published"><span>{currentVotes} Botoak</span></li>
+            <li className="shakeit"><span onClick={vote} title="Vote it!">Bozkatu</span></li>
           </ul>
           <h3 id="title691">
             <Link href={`/story/${id}`}>{title}</Link>
           </h3>
           <div className="news-submitted">
             <div><Link href={`${link}`}><strong>{link}</strong></Link></div>
-            <div>{t`sent_by`} <strong>{userName}</strong> {t`published_at`} <span>{`${createdAt}`}</span></div>
+            <div>Egilea: <strong>{userName}</strong> Noiz: <span>{`${createdAt}`}</span></div>
           </div>
           <div className="news-body-text">
             {content}
@@ -76,10 +76,10 @@ const Story = ({ story }: Props) => {
       { user && user?.id === currentUser?.id && (
             <div>
               <div className="edit-story">
-                  <Link href={`/story/edit/${id}`}>{t`edit`}</Link>
+                  <Link href={`/story/edit/${id}`}>Aldatu</Link>
               </div>
               <div className="edit-story">
-                  <a onClick={handleDelete} >{t`remove`}</a>
+                  <a onClick={handleDelete} >Ezabatu</a>
               </div>
             </div>
 
